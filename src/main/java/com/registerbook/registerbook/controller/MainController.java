@@ -57,7 +57,7 @@ public class MainController {
     }
 
     // update member by id
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "update-member/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Member> updateMember(@PathVariable final Long id, @RequestBody Member member){
         Member currentMember = memberMemberService.findById(id);
         if(currentMember == null){

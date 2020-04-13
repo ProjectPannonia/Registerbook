@@ -6,6 +6,7 @@ app.controller('listmembercontroller',function($scope,$http,$location,$route){
     }).then(function(response){
         $scope.members = response.data;
     });
+
     $scope.editMember = function(memberId){
         $location.path("/update-member/" + memberId);
     }
