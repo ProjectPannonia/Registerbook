@@ -28,28 +28,36 @@ public class MemberService {
     }
 
     public List<Member> getMembersByName(String name){
-        List<Member> allMembers;
+        List<Member> result = nameSearchResult(name);
+        return result;
+    }
+    // getMembersByname assistant functions
+    private List<Member> nameSearchResult(String name){
+        List<Member> allMembers = memberJpaRepository.findAll();
         List<Member> result = new ArrayList<>();
-        char[] nameCharacters = name.toCharArray();
-        boolean isItSpace = false;
-        String firstName = "";
-        String lastName = "";
-
-        for (int i = 0; i < nameCharacters.length; i++){
-            if(Character.toString(nameCharacters[i]).equals("|")) {
-                isItSpace = true;
-            }
-            if(!isItSpace) firstName += nameCharacters[i];
-            else lastName += nameCharacters[i];
-        }
-        String lastNameF = lastName.substring(1);
-        allMembers = memberJpaRepository.findAll();
-
+        String[] separatedName = separateName(name);
         for (Member m : allMembers){
-            if(m.getFirstName().equals(firstName) && m.getLastName().equals(lastNameF)){
+            if(m.getFirstName().equals(separatedName[0]) && m.getLastName().equals(separatedName[1])){
                 result.add(m);
             }
         }
+        return result;
+    }
+    private String[] separateName(String name){
+        char[] nameCharacters = name.toCharArray();
+        String[] result = new String[2];
+        boolean isItSpace = false;
+        String firstName = "";
+        String lastNameProt = "";
+        String lastName = "";
+        for(int i = 0; i < nameCharacters.length;i++){
+            if(Character.toString(nameCharacters[i]).equals("|")) isItSpace = true;
+            if(!isItSpace) firstName += nameCharacters[i];
+            else lastNameProt += nameCharacters[i];
+        }
+        lastName = lastNameProt.substring(1);
+        result[0] = firstName;
+        result[1] = lastName;
 
         return result;
     }
