@@ -1,3 +1,4 @@
+
 app.controller('listmembercontroller',function($scope,$http,$location,$route){
     $http({
         method : 'GET',
@@ -8,4 +9,16 @@ app.controller('listmembercontroller',function($scope,$http,$location,$route){
 
     //edit
     //delete
+});
+
+app.controller('registermembercontroller', function($scope,$http,$location,$route){
+
+});
+
+app.controller('memberdetailscontroller', function($scope,$http,$location,$route){
+
+});
+
+app.controller('searchmembercontroller', function($scope,$http,$location,$route){
+
 });
