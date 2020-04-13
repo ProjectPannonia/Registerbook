@@ -1,0 +1,46 @@
+<div class="container">
+    <div class = "panel panel-default">
+        <div class = "alert alert-info">
+            <span class="lead">Search user by name</span>
+        </div>
+        <div class = "panel-body">
+            <div class = "table-responsive">
+                <table class = "table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th width="100">Edit</th>
+                        <th width="100">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat = "user in searchedMembers">
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.address }}</td>
+                        <!--<td>
+                            <button type = "button" ng-click = "searchByName()" class="btn btn-primary custom-width">
+                                <span class = "glyphicon glyphicon-edit">Edit</span>
+
+                            </button>
+                            <input type="text" ng-model="user.name"
+                                   id="uname" class="form-control input-sm"
+                                   placeholder="Enter user name" />
+                        </td>
+                        -->
+                    </tr>
+                    <tr>
+                        <form ng-submit="searchByName()" name="myForm"
+                              class="form-horizontal"></form>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <input type="text" ng-model = 'name'>
+                <button ng-click = "searchByName()">Send the name</button>
+            </div>
+        </div>
+    </div>
+</div>
