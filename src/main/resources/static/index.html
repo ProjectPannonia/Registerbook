@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" ng-app = "memberegistrationsystem">
+    <head>
+        <meta charset="UTF-8">
+        <title>Musician registry</title>
+    </head>
+    <body>
+        <div  class="page-header text-center">
+            <h2>Musician registration system</h2>
+        </div>
+        <nav class = "navbar navbar-default">
+            <div class = "navbar navbar-default">
+                <!--<a href = "#/" class="btn btn-info navbar-btn" role = "button"></a>-->
+                <a href = "#/list-all-members" class="btn btn-info" role = "button">List already registered members</a>
+            </div>
+        </nav>
+        <div ng-view></div>
+        <script src="/webjars/angularjs/1.4.9/angular.js"></script>
+        <script src="/webjars/angularjs/1.4.9/angular-resource.js"></script>
+        <script src="/webjars/angularjs/1.4.9/angular-route.js"></script>
+        <script src="/js/app.js"></script>
+        <script src="/js/controller.js"></script>
+        <link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap.css">
+    </body>
+</html>
