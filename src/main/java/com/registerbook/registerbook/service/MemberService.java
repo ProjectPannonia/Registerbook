@@ -31,6 +31,57 @@ public class MemberService {
         List<Member> result = nameSearchResult(name);
         return result;
     }
+
+    public void save(Member member) {
+        memberJpaRepository.save(member);
+    }
+
+    public Member findByName(String name){
+        List<Member> allMembers = memberJpaRepository.findAll();
+        String[] separateTheName = separateName(name);
+        Member result = null;
+
+        for (int i = 0; i < allMembers.size(); i++){
+            Member actual = allMembers.get(i);
+            if(actual.getFirstName().equals(separateTheName[0]) && actual.getLastName().equals(separateTheName[1])){
+                result = actual;
+            }
+        }
+
+        return result;
+    }
+
+    public Member findByNameCreating(String firstName,String lastName){
+        List<Member> allMembers = memberJpaRepository.findAll();
+        Member result = null;
+
+        for (int i = 0; i < allMembers.size(); i++){
+            Member actual = allMembers.get(i);
+            if(actual.getFirstName().equals(firstName) && actual.getLastName().equals(lastName)){
+                result = actual;
+            }
+        }
+
+        return result;
+    }
+
+    public Member findById(Long id) {
+        List<Member> allMembers = memberJpaRepository.findAll();
+        Member member = null;
+        for (Member m : allMembers){
+            if(m.getId() == id) member = m;
+        }
+        return member;
+    }
+
+    public void deleteById(Long id) {
+        memberJpaRepository.deleteById(id);
+    }
+    public void delete(Member member){
+        memberJpaRepository.delete(member);
+    }
+
+    /*Private methods*/
     // getMembersByname assistant functions
     private List<Member> nameSearchResult(String name){
         List<Member> allMembers = memberJpaRepository.findAll();
@@ -61,4 +112,5 @@ public class MemberService {
 
         return result;
     }
+    // End of private methods
 }

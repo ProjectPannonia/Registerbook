@@ -12,7 +12,10 @@ app.controller('listmembercontroller',function($scope,$http,$location,$route){
 });
 
 app.controller('registermembercontroller', function($scope,$http,$location,$route){
-
+    $scope.submitMemberForm = function(){
+        method : 'POST',
+        url : 'http://localhost:8080/'
+    };
 });
 
 app.controller('memberdetailscontroller', function($scope,$http,$location,$route){
