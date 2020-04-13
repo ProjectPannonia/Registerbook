@@ -1,0 +1,8 @@
+INSERT INTO MEMBERS(ID,FIRSTNAME,LASTNAME,BAND,ADDRESS,EMAIL,FAVOURITEANIMAL,FAVOURITEMEAL)
+    VALUES(1,'Letenyei','Adam','Amon Amarth','Bakonyszombathely','letenyeidam89@gmail.com','kutya','teszta');
+INSERT INTO MEMBERS(ID,FIRSTNAME,LASTNAME,BAND,ADDRESS,EMAIL,FAVOURITEANIMAL,FAVOURITEMEAL)
+    VALUES(2,'Kovács','Béla','Metallica','Győr','bela@h.com','macska','krumpli');
+INSERT INTO MEMBERS(ID,FIRSTNAME,LASTNAME,BAND,ADDRESS,EMAIL,FAVOURITEANIMAL,FAVOURITEMEAL)
+    VALUES(3,'Vasas','Jozsef','Metallica','Kisbér','jozsi@h.com','krokodil','bab');
+INSERT INTO MEMBERS(ID,FIRSTNAME,LASTNAME,BAND,ADDRESS,EMAIL,FAVOURITEANIMAL,FAVOURITEMEAL)
+    VALUES(4,'Letenyei','Adam','XYZ','Bakonyszombathely','dam89@gmail.com','majom','uborka');
