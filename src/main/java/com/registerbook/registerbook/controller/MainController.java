@@ -10,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -36,7 +34,7 @@ public class MainController {
 
     //create new member
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Member> createMember(@Valid @RequestBody final Member member){
+    public ResponseEntity<Member> createMember(@RequestBody final Member member){
         logger.info("Creating member: {}",member);
         if(memberMemberService.findByNameCreating(member.getFirstName(), member.getLastName()) != null){
             //return new ResponseEntity<Member>(new CustomErrorType("Unable to create new member. A member with name: " + member.getFirstName() + " " + member.getLastName() + " already exist."),HttpStatus.CONFLICT);

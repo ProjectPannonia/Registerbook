@@ -25,8 +25,8 @@ app.controller('registermembercontroller', function($scope,$http,$location,$rout
     $scope.submitMemberForm = function(){
         $http({
                 method : 'POST',
-                url : 'http://localhost:8080/register/member',
-                data : $scope.member,
+                url : 'http://localhost:8080/register/member/',
+                data : $scope.member
         }).then(function(response){
             $location.path("/list-all-members");
             $route.reload();

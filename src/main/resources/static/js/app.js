@@ -1,4 +1,4 @@
-var app = angular.module('memberegistrationsystem',['ngRoute','ngResource']);
+var app = angular.module('memberregistrationsystem',['ngRoute','ngResource']);
 
 app.config(function($routeProvider){
     $routeProvider.when('/list-all-members',{
