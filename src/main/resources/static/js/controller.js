@@ -39,18 +39,18 @@ app.controller('registermembercontroller', function($scope,$http,$location,$rout
     }
 });
 
-app.controller('memberdetailscontroller', function($scope,$http,$location,$route){
+app.controller('memberdetailscontroller', function($scope,$http,$routeParams,$location,$route){
     $scope.memberId = $routeParams.id;
     $http({
         method : 'GET',
-        url : 'http://localhost:8080/register/member' + $scope.memberId
+        url : 'http://localhost:8080/register/member/' + $scope.memberId
     }).then(function(response){
         $scope.member = response.data;
     });
     $scope.submitMemberForm = function(){
         $http({
             method : 'POST',
-            url : 'http://localhost:8080/register/member',
+            url : 'http://localhost:8080/register/member/',
             data : $scope.member,
         }).then(function(response){
             $location.path("/list-all-members");
