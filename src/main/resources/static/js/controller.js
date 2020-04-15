@@ -88,3 +88,7 @@ app.controller('searchmembercontroller', function($scope,$http,$location,$route)
                 $scope.member = null;
         }
 });
+
+app.controller('searchdropdown',function($scope,$http,$location,$route){
+
+});

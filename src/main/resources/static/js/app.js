@@ -13,6 +13,9 @@ app.config(function($routeProvider){
     }).when('/search-a-member',{
         templateUrl : 'template/searchmember.html',
         controller : 'searchmembercontroller'
+    }).when('/search-drop-down',{
+        templateUrl : 'template/searchdropdown.html',
+        controller : 'searchdropdown'
     }).otherwise({
        redirectTo : '/home',
        templateUrl : '/template/home.html'
