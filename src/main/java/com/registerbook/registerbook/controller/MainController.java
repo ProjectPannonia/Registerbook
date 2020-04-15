@@ -1,5 +1,6 @@
 package com.registerbook.registerbook.controller;
 
+import com.registerbook.registerbook.errorHandler.CustomErrorType;
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.service.MemberService;
 import org.slf4j.Logger;
@@ -39,7 +40,7 @@ public class MainController {
     public ResponseEntity<Member> createMember(@RequestBody final Member member){
         logger.info("Creating member: {}",member);
         if(memberMemberService.findByNameCreating(member.getName()) != null){
-            //return new ResponseEntity<Member>(new CustomErrorType("Unable to create new member. A member with name: " + member.getFirstName() + " " + member.getLastName() + " already exist."),HttpStatus.CONFLICT);
+            return new ResponseEntity<Member>(new CustomErrorType("Unable to create new member. A member with name: " + member.getName()+ " already exist."),HttpStatus.CONFLICT);
         }
         memberMemberService.save(member);
 
@@ -51,7 +52,7 @@ public class MainController {
     public ResponseEntity<Member> getUserById(@PathVariable("id") final Long id){
         Member member = memberMemberService.findById(id);
         if(member == null){
-            //return new ResponseEntity<Member>(new CustomErrorType("Member with id " + id + " not found"),HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Member>(new CustomErrorType("Member with id " + id + " not found"),HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<Member>(member,HttpStatus.OK);
@@ -62,7 +63,7 @@ public class MainController {
     public ResponseEntity<Member> updateMember(@PathVariable final Long id, @RequestBody Member member){
         Member currentMember = memberMemberService.findById(id);
         if(currentMember == null){
-            //return new ResponseEntity<Member>(new CustomErrorType("Unable to update. Member with id " + id + " not found."),HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Member>(new CustomErrorType("Unable to update. Member with id " + id + " not found."),HttpStatus.NOT_FOUND);
         }
         currentMember.setName(member.getName());
         currentMember.setBand(member.getBand());
@@ -80,6 +81,12 @@ public class MainController {
         return new ResponseEntity<Member>(HttpStatus.NO_CONTENT);
     }
 
+    // Get a member by name
+    @GetMapping("/searchname/{name}")
+    public ResponseEntity<List<Member>> getMemberByName(@PathVariable("name") final String name){
+        List<Member> members = memberMemberService.getMembersByName(name);
+        return new ResponseEntity<List<Member>>(members,HttpStatus.OK);
+    }
 
 
     /* ADVANCED REST FUNCTIONS */
@@ -113,18 +120,5 @@ public class MainController {
     }
     */
 
-    // Get a member by name
-    @GetMapping("/searchname/{name}")
-    public ResponseEntity<List<Member>> getMemberByName(@PathVariable("name") final String name){
-        //Member member = memberMemberService.findByName(name);
-        List<Member> members = memberMemberService.getMembersByName(name);
-        //Member test = allMembers.get(0);
-        /*
-        if(member == null){
-            return new ResponseEntity<Member>(member,HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<Member>(member,HttpStatus.OK);
-        */
-         return new ResponseEntity<List<Member>>(members,HttpStatus.OK);
-    }
+
 }
