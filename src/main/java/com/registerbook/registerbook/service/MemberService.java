@@ -13,21 +13,23 @@ public class MemberService {
     @Autowired
     MemberJpaRepository memberJpaRepository;
 
-    public List<Member> getAllMember(){
+    public List<Member> getAllMember() {
         List<Member> allMember = memberJpaRepository.findAll();
         return allMember;
     }
 
-    public List<Member> getBandMembers(String bandName){
+    // Get the members of a specified band
+    public List<Member> getBandMembers(String bandName) {
         List<Member> allMember = memberJpaRepository.findAll();
         List<Member> bandMembers = new ArrayList<>();
         for (Member m : allMember) {
-            if(m.getBand().equals(bandName)) bandMembers.add(m);
+            if (m.getBand().equals(bandName)) bandMembers.add(m);
         }
         return bandMembers;
     }
 
-    public List<Member> getMembersByName(String name){
+    // Get a list of members by name
+    public List<Member> getMembersByName(String name) {
         List<Member> result = nameSearchResult(name);
         return result;
     }
@@ -36,28 +38,24 @@ public class MemberService {
         memberJpaRepository.save(member);
     }
 
-    public Member findByName(String name){
+    // Get a member by name
+    public Member findByName(String name) {
         List<Member> allMembers = memberJpaRepository.findAll();
         String[] separateTheName = separateName(name);
-        Member result = null;
-
-        for (int i = 0; i < allMembers.size(); i++){
-            Member actual = allMembers.get(i);
-            if(actual.getFirstName().equals(separateTheName[0]) && actual.getLastName().equals(separateTheName[1])){
-                result = actual;
-            }
-        }
+        String firstName = separateTheName[0].toString();
+        String lastName = separateTheName[1];
+        Member result = findByNameTags(firstName,lastName);
 
         return result;
     }
 
-    public Member findByNameCreating(String firstName,String lastName){
+    public Member findByNameCreating(String firstName, String lastName) {
         List<Member> allMembers = memberJpaRepository.findAll();
         Member result = null;
 
-        for (int i = 0; i < allMembers.size(); i++){
+        for (int i = 0; i < allMembers.size(); i++) {
             Member actual = allMembers.get(i);
-            if(actual.getFirstName().equals(firstName) && actual.getLastName().equals(lastName)){
+            if (actual.getFirstName().equals(firstName) && actual.getLastName().equals(lastName)) {
                 result = actual;
             }
         }
@@ -68,8 +66,8 @@ public class MemberService {
     public Member findById(Long id) {
         List<Member> allMembers = memberJpaRepository.findAll();
         Member member = null;
-        for (Member m : allMembers){
-            if(m.getId() == id) member = m;
+        for (Member m : allMembers) {
+            if (m.getId() == id) member = m;
         }
         return member;
     }
@@ -77,40 +75,50 @@ public class MemberService {
     public void deleteById(Long id) {
         memberJpaRepository.deleteById(id);
     }
-    public void delete(Member member){
+
+    public void delete(Member member) {
         memberJpaRepository.delete(member);
     }
 
     /*Private methods*/
     // getMembersByname assistant functions
-    private List<Member> nameSearchResult(String name){
+    private Member findByNameTags(String firstName,String lastName){
+        List<Member> allMembers= memberJpaRepository.findAll();
+        for (Member m : allMembers){
+            if(m.getFirstName().equals(firstName)&& m.getLastName().equals(lastName)){
+                return m;
+            }
+        }
+        return null;
+    }
+    private List<Member> nameSearchResult(String name) {
         List<Member> allMembers = memberJpaRepository.findAll();
         List<Member> result = new ArrayList<>();
         String[] separatedName = separateName(name);
-        for (Member m : allMembers){
-            if(m.getFirstName().equals(separatedName[0]) && m.getLastName().equals(separatedName[1])){
+        for (Member m : allMembers) {
+            if (m.getFirstName().equals(separatedName[0]) && m.getLastName().equals(separatedName[1])) {
                 result.add(m);
             }
         }
         return result;
     }
-    private String[] separateName(String name){
-        char[] nameCharacters = name.toCharArray();
-        String[] result = new String[2];
-        boolean isItSpace = false;
-        String firstName = "";
-        String lastNameProt = "";
-        String lastName = "";
-        for(int i = 0; i < nameCharacters.length;i++){
-            if(Character.toString(nameCharacters[i]).equals("|")) isItSpace = true;
-            if(!isItSpace) firstName += nameCharacters[i];
-            else lastNameProt += nameCharacters[i];
-        }
-        lastName = lastNameProt.substring(1);
-        result[0] = firstName;
-        result[1] = lastName;
 
+    private String[] separateName(String name) {
+        char[] chars = name.toCharArray();
+        ArrayList<Character> firstName = new ArrayList<>();
+        firstName.add(chars[0]);
+        ArrayList<Character> lastName = new ArrayList<>();
+        boolean flag = false;
+        for (int i = 1; i < chars.length; i++){
+            char act = chars[i];
+            if(Character.isUpperCase(act)) flag = true;
+            if(!Character.isLetter(act)) continue;
+            if(!flag) firstName.add(act);
+            if(flag) lastName.add(act);
+        }
+        String[] result = new String[]{firstName.toString(),lastName.toString()};
         return result;
     }
-    // End of private methods
+
+
 }

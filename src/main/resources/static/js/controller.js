@@ -62,12 +62,12 @@ app.controller('memberdetailscontroller', function($scope,$http,$routeParams,$lo
 });
 
 app.controller('searchmembercontroller', function($scope,$http,$location,$route){
-    $scope.searchByName = function(){
+    $scope.searchbyname = function(){
         let a = $scope.name;
         console.log(a);
         $http({
             method : 'GET',
-            url : 'http://localhost:8080/register/member/' + a
+            url : 'http://localhost:8080/register/member/searchWithName/' + a
         }).then(function(response){
             $scope.searchedMembers = response.data;
         });

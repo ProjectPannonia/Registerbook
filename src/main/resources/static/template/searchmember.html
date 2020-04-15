@@ -16,30 +16,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat = "user in searchedMembers">
-                        <td>{{ user.name }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.address }}</td>
-                        <!--<td>
-                            <button type = "button" ng-click = "searchByName()" class="btn btn-primary custom-width">
-                                <span class = "glyphicon glyphicon-edit">Edit</span>
-
-                            </button>
-                            <input type="text" ng-model="user.name"
-                                   id="uname" class="form-control input-sm"
-                                   placeholder="Enter user name" />
-                        </td>
-                        -->
+                    <tr ng-repeat = "member in searchedMembers">
+                        <td>{{ member.firstName }}</td>
+                        <td>{{ member.lastName }}</td>
+                        <td>{{ member.band }}</td>
+                        <td>{{ member.address }}</td>
+                        <td>{{ member.email }}</td>
+                        <td>{{ member.favouriteAnimal }}</td>
+                        <td>{{ member.favouriteMeal }}</td>
                     </tr>
-                    <tr>
+                    <!--<tr>
                         <form ng-submit="searchByName()" name="myForm"
                               class="form-horizontal"></form>
-                    </tr>
+                    </tr>-->
                     </tbody>
                 </table>
 
                 <input type="text" ng-model = 'name'>
-                <button ng-click = "searchByName()">Send the name</button>
+                <button ng-click = "searchbyname()">Send the name</button>
             </div>
         </div>
     </div>
