@@ -4,22 +4,23 @@
     </div>
     <div class="panel panel-default ">
         <div class="alert alert-success">
-            <span class="lead">Register New User</span>
-            <p>Please maintain uniqueness of User-Name</p>
+            <span class="lead">Register New Musician</span>
+            <p>Please maintain uniqueness of member-name</p>
         </div>
         <div class="panel-body ">
             <div class="container">
                 <form ng-submit="submitMemberForm()" name="myForm"
                       class="form-horizontal">
                     <div class="row">
-                    <div class="form-group col-md-12">
-                        <label class="col-md-2 control-lable" for="name">
-                            First name
-                        </label>
-                        <div class="col-md-7">
-                            <input type="text" ng-model="member.name"
-                                   id="name" class="form-control input-sm"
-                                   placeholder="Enter firstname" />
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="uname">
+                                Name
+                            </label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="member.name"
+                                       id="uname" class="form-control input-sm"
+                                       placeholder="Enter name" />
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -66,7 +67,7 @@
                             <div class="col-md-7">
                                 <input type="text" ng-model="member.favouriteAnimal"
                                        id="favouriteAnimal" class="form-control input-sm"
-                                       placeholder="Enter favourite animal name" />
+                                       placeholder="Enter favourite animal" />
                             </div>
                         </div>
                     </div>
@@ -78,7 +79,7 @@
                             <div class="col-md-7">
                                 <input type="text" ng-model="member.favouriteMeal"
                                        id="favouriteMeal" class="form-control input-sm"
-                                       placeholder="Enter user name" />
+                                       placeholder="Enter favourite meal" />
                             </div>
                         </div>
                     </div>

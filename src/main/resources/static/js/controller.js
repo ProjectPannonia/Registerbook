@@ -74,7 +74,7 @@ app.controller('searchmembercontroller', function($scope,$http,$location,$route)
     }
     $scope.editMember = function(memberId){
             $location.path("/update-member/" + memberId);
-        }
+    }
         $scope.deleteMember = function(memberId){
             $http({
                 method : 'DELETE',

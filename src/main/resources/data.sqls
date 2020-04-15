@@ -1,6 +1,0 @@
-INSERT INTO Members(ID,NAME,BAND,ADDRESS,EMAIL,FAVOURITEANIMAL,FAVOURITEMEAL) VALUES(1,'Letenyei Adam','Amon amarth','Bszh','letenyeidam89@gmail.com','dog','teszta');
-INSERT INTO Members(ID,NAME,BAND,ADDRESS,EMAIL,FAVOURITEANIMAL,FAVOURITEMEAL) VALUES(2,'Repas Krisztina','Amon amarth','Nyul','le89@gmail.com','cat','pepper');
-INSERT INTO Members(ID,NAME,BAND,ADDRESS,EMAIL,FAVOURITEANIMAL,FAVOURITEMEAL) VALUES(3,'Barnabas Zoltan','Amon amarth','Nyirseg','dam89@gmail.com','rabbit','potato');
-INSERT INTO Members(ID,NAME,BAND,ADDRESS,EMAIL,FAVOURITEANIMAL,FAVOURITEMEAL) VALUES(4,'Vasas Jozsef','Metallica','Acs','letenye89@gmail.com','horse','carrot');
-INSERT INTO Members(ID,NAME,BAND,ADDRESS,EMAIL,FAVOURITEANIMAL,FAVOURITEMEAL) VALUES(5,'Kovacs Bela','Metallica','Gyor','leidam89@gmail.com','kenguru','melon');
-INSERT INTO Members(ID,NAME,BAND,ADDRESS,EMAIL,FAVOURITEANIMAL,FAVOURITEMEAL) VALUES(6,'Letenyei Adam','Amon amarth','Bszh','leasf@gmail.com','dog','teszta');
