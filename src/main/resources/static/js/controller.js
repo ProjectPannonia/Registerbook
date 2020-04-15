@@ -90,5 +90,11 @@ app.controller('searchmembercontroller', function($scope,$http,$location,$route)
 });
 
 app.controller('searchdropdown',function($scope,$http,$location,$route){
-
+    $scope.names = ['Elso','masodik','harmadik','negyedik'];
+    var a = $scope.selectedName;
+    console.log(a);
+    $scope.push = function(){
+        var a = $scope.selectedName;
+            console.log(a);
+    };
 });
