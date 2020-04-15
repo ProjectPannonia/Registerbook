@@ -90,11 +90,23 @@ app.controller('searchmembercontroller', function($scope,$http,$location,$route)
 });
 
 app.controller('searchdropdown',function($scope,$http,$location,$route){
-    $scope.names = ['Elso','masodik','harmadik','negyedik'];
-    var a = $scope.selectedName;
-    console.log(a);
+    $scope.names = ["Name","Band","Favourite animal","Favourite meal"];
+
     $scope.push = function(){
-        var a = $scope.selectedName;
-            console.log(a);
+
+        $scope.property = [$scope.selectedName,$scope.content];
+        console.log($scope.property[0] + " " + $scope.property[1]);
+
+        if($scope.content != null && $scope.selectedName != null){
+             $http({
+                         method : 'POST',
+                         url : 'http://localhost:8080/register/member/searchproperty',
+                         data : $scope.property,
+                     }).then(function(response){
+                         $scope.searched = response.data;
+                     },function(errResponse){
+                         $scope.errorMessage = errResponse.data.errorMessage;
+                     });
+             }
     };
 });

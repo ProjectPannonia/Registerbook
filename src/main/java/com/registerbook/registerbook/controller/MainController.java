@@ -89,6 +89,12 @@ public class MainController {
         List<Member> members = memberMemberService.getMembersByName(name);
         return new ResponseEntity<List<Member>>(members,HttpStatus.OK);
     }
+    // GET members by specified property
+    @PostMapping(value = "/searchproperty", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Member>> getSpecifiedMembers(@RequestBody final String[] content){
+        List<Member> specifiedMembers = memberMemberService.specifiedSearch(content);
+        return new ResponseEntity<List<Member>>(specifiedMembers,HttpStatus.OK);
+    }
 
 
     /* ADVANCED REST FUNCTIONS */

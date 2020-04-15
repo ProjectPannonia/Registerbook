@@ -82,10 +82,59 @@ public class MemberService {
         }
         return result;
     }
+    public List<Member> specifiedSearch(String[] content) {
+        return specifier(content);
+    }
+
+
+    private List<Member> specifier(String[] content){
+        List<Member> allMembers = memberJpaRepository.findAll();
+        List<Member> result = new ArrayList<>();
+        String property = content[0];
+        String value = content[1];
+
+        switch (property){
+            case "Name" :  result = getMembersByName(value);
+                break;
+            case "Band" : result = getMembersByBand(value);
+                break;
+            case "Favourite animal" : getMembersByFavouriteAnimal(value);
+                break;
+            case "Favourite meal" : getMembersByFavouriteMeal(value);
+        }
+
+        return result;
+    }
+
+    private List<Member> getMembersByBand(String value) {
+        List<Member> allMembers = memberJpaRepository.findAll();
+        List<Member> result = new ArrayList<>();
+        for(Member m : allMembers){
+            if(m.getBand().equals(value)) result.add(m);
+        }
+        return result;
+    }
+    private List<Member> getMembersByFavouriteMeal(String value) {
+        List<Member> allMembers = memberJpaRepository.findAll();
+        List<Member> result = new ArrayList<>();
+        for(Member m : allMembers){
+            if(m.getFavouriteMeal().equals(value)) result.add(m);
+        }
+        return result;
+    }
+    private List<Member> getMembersByFavouriteAnimal(String value) {
+        List<Member> allMembers = memberJpaRepository.findAll();
+        List<Member> result = new ArrayList<>();
+        for(Member m : allMembers){
+            if(m.getFavouriteAnimal().equals(value)) result.add(m);
+        }
+        return result;
+    }
 
     /*Private methods*/
     // getMembersByname assistant functions
-    /*private Member findByNameTags(String firstName,String lastName){
+    /*
+    private Member findByNameTags(String firstName,String lastName){
         List<Member> allMembers= memberJpaRepository.findAll();
         for(int i = 0; i < allMembers.size(); i++){
             Member actual = allMembers.get(i);
@@ -95,7 +144,7 @@ public class MemberService {
             }
         }
         return null;
-    }*//*
+    }
     public List<Member> nameSearchResult(String name) {
         List<Member> allMembers = memberJpaRepository.findAll();
         List<Member> result = new ArrayList<>();
