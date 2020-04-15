@@ -13,29 +13,29 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Long id;
-    @NotEmpty
-    @Length(max = 50)
+    @NotEmpty(message = "error.name.empty")
+    @Length(max = 50, message = "error.name.length")
     @Column(name = "name")
     private String name;
-    @NotEmpty
-    @Length(max = 50)
+    @NotEmpty(message = "error.band.empty")
+    @Length(max = 50,message = "error.band.length")
     @Column(name = "BAND")
     private String band;
-    @NotEmpty
-    @Length(max = 150)
+    @NotEmpty(message = "error.address.empty")
+    @Length(max = 150, message = "error.address.length")
     @Column(name = "ADDRESS")
     private String address;
     @Email(message = "error.email.email")
-    @NotEmpty(message = "error.mail.empty")
+    @NotEmpty(message = "error.email.empty")
     @Length(max = 80, message = "error.email.length")
     @Column(name = "EMAIL")
     private String email;
-    @NotEmpty
-    @Length(max = 50)
+    @NotEmpty(message = "error.favouriteA.empty")
+    @Length(max = 50, message = "error.favouriteA.length")
     @Column(name = "FAVOURITEANIMAL")
     private String favouriteAnimal;
-    @NotEmpty
-    @Length(max = 50)
+    @NotEmpty(message = "error.favouriteM.empty")
+    @Length(max = 50, message = "error.favouriteM.length")
     @Column(name = "FAVOURITEMEAL")
     private String favouriteMeal;
 
