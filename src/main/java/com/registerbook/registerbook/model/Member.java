@@ -15,12 +15,8 @@ public class Member {
     private Long id;
     @NotEmpty
     @Length(max = 50)
-    @Column(name = "FIRSTNAME")
-    private String firstName;
-    @NotEmpty
-    @Length(max = 50)
-    @Column(name = "LASTNAME")
-    private String lastName;
+    @Column(name = "name")
+    private String name;
     @NotEmpty
     @Length(max = 50)
     @Column(name = "BAND")
@@ -51,20 +47,12 @@ public class Member {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getBand() {

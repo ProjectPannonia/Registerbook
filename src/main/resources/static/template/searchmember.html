@@ -9,21 +9,33 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Email</th>
+                        <th>Band</th>
                         <th>Address</th>
+                        <th>Email</th>
+                        <th>Favourite animal</th>
+                        <th>Favourite meal</th>
                         <th width="100">Edit</th>
                         <th width="100">Delete</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat = "member in searchedMembers">
-                        <td>{{ member.firstName }}</td>
-                        <td>{{ member.lastName }}</td>
+                        <td>{{ member.name }}</td>
                         <td>{{ member.band }}</td>
                         <td>{{ member.address }}</td>
                         <td>{{ member.email }}</td>
                         <td>{{ member.favouriteAnimal }}</td>
                         <td>{{ member.favouriteMeal }}</td>
+                        <td>
+                            <button type="button" ng-click = "editMember(member.id)" class="btn btn-primary custom-width">
+                                <span class = "gyphicon glyphicon-edit">Edit</span>
+                            </button>
+                        </td>
+                        <td>
+                            <button type = "button" ng-click = "deleteMember(member.id)" class="btn btn-danger custom-width">
+                                <span class = "glyphicon glyphicon-remove">Delete</span>
+                            </button>
+                        </td>
                     </tr>
                     <!--<tr>
                         <form ng-submit="searchByName()" name="myForm"

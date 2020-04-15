@@ -18,7 +18,7 @@ public class MemberService {
         return allMember;
     }
 
-    // Get the members of a specified band
+    // Get the members of a band
     public List<Member> getBandMembers(String bandName) {
         List<Member> allMember = memberJpaRepository.findAll();
         List<Member> bandMembers = new ArrayList<>();
@@ -30,39 +30,19 @@ public class MemberService {
 
     // Get a list of members by name
     public List<Member> getMembersByName(String name) {
-        List<Member> result = nameSearchResult(name);
+        List<Member> allMembers = memberJpaRepository.findAll();
+        List<Member> result = new ArrayList<>();
+        for (int i = 0; i < allMembers.size(); i++){
+            Member actual = allMembers.get(i);
+            if(actual.getName().equals(name))
+                result.add(actual);
+        }
         return result;
     }
 
     public void save(Member member) {
         memberJpaRepository.save(member);
     }
-
-    // Get a member by name
-    public Member findByName(String name) {
-        List<Member> allMembers = memberJpaRepository.findAll();
-        String[] separateTheName = separateName(name);
-        String firstName = separateTheName[0].toString();
-        String lastName = separateTheName[1];
-        Member result = findByNameTags(firstName,lastName);
-
-        return result;
-    }
-
-    public Member findByNameCreating(String firstName, String lastName) {
-        List<Member> allMembers = memberJpaRepository.findAll();
-        Member result = null;
-
-        for (int i = 0; i < allMembers.size(); i++) {
-            Member actual = allMembers.get(i);
-            if (actual.getFirstName().equals(firstName) && actual.getLastName().equals(lastName)) {
-                result = actual;
-            }
-        }
-
-        return result;
-    }
-
     public Member findById(Long id) {
         List<Member> allMembers = memberJpaRepository.findAll();
         Member member = null;
@@ -71,7 +51,6 @@ public class MemberService {
         }
         return member;
     }
-
     public void deleteById(Long id) {
         memberJpaRepository.deleteById(id);
     }
@@ -79,46 +58,73 @@ public class MemberService {
     public void delete(Member member) {
         memberJpaRepository.delete(member);
     }
+    // Get a member by name
+    /*public Member findByName(String name) {
+        List<Member> allMembers = memberJpaRepository.findAll();
+        String[] separateTheName = separateName(name);
+        String firstName = separateTheName[0].toString();
+        String lastName = separateTheName[1];
+        Member result = findByNameTags(firstName,lastName);
+
+        return result;
+    }
+*/
+
+    public Member findByNameCreating(String name) {
+        List<Member> allMembers = memberJpaRepository.findAll();
+        Member result = null;
+
+        for (int i = 0; i < allMembers.size(); i++) {
+            Member actual = allMembers.get(i);
+            if (actual.getName().equals(name)) {
+                result = actual;
+            }
+        }
+        return result;
+    }
 
     /*Private methods*/
     // getMembersByname assistant functions
-    private Member findByNameTags(String firstName,String lastName){
+    /*private Member findByNameTags(String firstName,String lastName){
         List<Member> allMembers= memberJpaRepository.findAll();
-        for (Member m : allMembers){
-            if(m.getFirstName().equals(firstName)&& m.getLastName().equals(lastName)){
-                return m;
+        for(int i = 0; i < allMembers.size(); i++){
+            Member actual = allMembers.get(i);
+            if(actual.getFirstName().equals(firstName)){
+                if(actual.getLastName().equals(lastName))
+                    return actual;
             }
         }
         return null;
-    }
-    private List<Member> nameSearchResult(String name) {
+    }*//*
+    public List<Member> nameSearchResult(String name) {
         List<Member> allMembers = memberJpaRepository.findAll();
         List<Member> result = new ArrayList<>();
-        String[] separatedName = separateName(name);
+
         for (Member m : allMembers) {
-            if (m.getFirstName().equals(separatedName[0]) && m.getLastName().equals(separatedName[1])) {
+            if (m.getName().equals(name)) {
                 result.add(m);
             }
         }
         return result;
     }
+/*
+    public String[] separateName(String name) {
+        String[] result = new String[2];
+        int upperCaseLetterPosition = 0;
 
-    private String[] separateName(String name) {
-        char[] chars = name.toCharArray();
-        ArrayList<Character> firstName = new ArrayList<>();
-        firstName.add(chars[0]);
-        ArrayList<Character> lastName = new ArrayList<>();
-        boolean flag = false;
-        for (int i = 1; i < chars.length; i++){
-            char act = chars[i];
-            if(Character.isUpperCase(act)) flag = true;
-            if(!Character.isLetter(act)) continue;
-            if(!flag) firstName.add(act);
-            if(flag) lastName.add(act);
+        for (int i = 1; i < name.length(); i++){
+            if (Character.isUpperCase(name.charAt(i))) {
+                upperCaseLetterPosition = i;
+                break;
+            }
         }
-        String[] result = new String[]{firstName.toString(),lastName.toString()};
+        String firstName = name.substring(0,upperCaseLetterPosition).trim();
+        String lastName = name.substring(upperCaseLetterPosition).trim();
+        result[0] = firstName;
+        result[1] = lastName;
+
         return result;
     }
 
-
+*/
 }

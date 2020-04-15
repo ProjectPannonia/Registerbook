@@ -15,8 +15,8 @@ import java.util.List;
 @RequestMapping("/register/member")
 public class MainController {
     public static final Logger logger = LoggerFactory.getLogger(MainController.class);
-    private MemberService memberMemberService;
 
+    private MemberService memberMemberService;
     @Autowired
     public void setMemberMemberService(MemberService memberMemberService){
         this.memberMemberService = memberMemberService;
@@ -38,7 +38,7 @@ public class MainController {
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Member> createMember(@RequestBody final Member member){
         logger.info("Creating member: {}",member);
-        if(memberMemberService.findByNameCreating(member.getFirstName(), member.getLastName()) != null){
+        if(memberMemberService.findByNameCreating(member.getName()) != null){
             //return new ResponseEntity<Member>(new CustomErrorType("Unable to create new member. A member with name: " + member.getFirstName() + " " + member.getLastName() + " already exist."),HttpStatus.CONFLICT);
         }
         memberMemberService.save(member);
@@ -64,8 +64,7 @@ public class MainController {
         if(currentMember == null){
             //return new ResponseEntity<Member>(new CustomErrorType("Unable to update. Member with id " + id + " not found."),HttpStatus.NOT_FOUND);
         }
-        currentMember.setFirstName(member.getFirstName());
-        currentMember.setLastName(member.getLastName());
+        currentMember.setName(member.getName());
         currentMember.setBand(member.getBand());
         currentMember.setAddress(member.getAddress());
         currentMember.setEmail(member.getEmail());
@@ -113,14 +112,19 @@ public class MainController {
         return new ResponseEntity<List<Member>>(membersByName,HttpStatus.OK);
     }
     */
-    
+
     // Get a member by name
-    @GetMapping("/searchWithName/{name}")
-    public ResponseEntity<Member> getMemberByName(@PathVariable("name") String name){
-        Member member = memberMemberService.findByName(name);
+    @GetMapping("/searchname/{name}")
+    public ResponseEntity<List<Member>> getMemberByName(@PathVariable("name") final String name){
+        //Member member = memberMemberService.findByName(name);
+        List<Member> members = memberMemberService.getMembersByName(name);
+        //Member test = allMembers.get(0);
+        /*
         if(member == null){
             return new ResponseEntity<Member>(member,HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<Member>(member,HttpStatus.OK);
+        */
+         return new ResponseEntity<List<Member>>(members,HttpStatus.OK);
     }
 }
