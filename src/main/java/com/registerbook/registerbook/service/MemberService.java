@@ -98,11 +98,51 @@ public class MemberService {
                 break;
             case "Band" : result = getMembersByBand(value);
                 break;
-            case "Favourite animal" : getMembersByFavouriteAnimal(value);
+            case "Favourite animal" : result = getMembersByFavouriteAnimal(value);
                 break;
-            case "Favourite meal" : getMembersByFavouriteMeal(value);
+            case "Favourite meal" : result = getMembersByFavouriteMeal(value);
+                break;
+            case "Instrument" : result = getMembersByInstrument(value);
+                break;
+            case "Country" : result = getMembersByCountry(value);
+                break;
+            case "City" : result = getMembersByCity(value);
+                break;
         }
 
+        return result;
+    }
+
+    private List<Member> getMembersByCity(String value) {
+        List<Member> allMembers = memberJpaRepository.findAll();
+        List<Member> result = new ArrayList<>();
+        for(Member m : allMembers){
+            if(m.getAddress().equals(value)){
+                result.add(m);
+            }
+        }
+        return result;
+    }
+
+    private List<Member> getMembersByCountry(String value) {
+        List<Member> allMembers = memberJpaRepository.findAll();
+        List<Member> result = new ArrayList<>();
+        for(Member m : allMembers){
+            if(m.getCountry().equals(value)){
+                result.add(m);
+            }
+        }
+        return result;
+    }
+
+    private List<Member> getMembersByInstrument(String value) {
+        List<Member> allMembers = memberJpaRepository.findAll();
+        List<Member> result = new ArrayList<>();
+        for(Member m : allMembers){
+            if(m.getInstrument().equals(value)){
+                result.add(m);
+            }
+        }
         return result;
     }
 

@@ -90,7 +90,7 @@ app.controller('searchmembercontroller', function($scope,$http,$location,$route)
 });
 
 app.controller('searchdropdown',function($scope,$http,$location,$route){
-    $scope.names = ["Name","Band","Favourite animal","Favourite meal"];
+    $scope.names = ["Name","Band","Favourite animal","City","Country","Instrument"];
 
     $scope.push = function(){
 
