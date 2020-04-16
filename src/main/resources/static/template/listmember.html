@@ -10,6 +10,8 @@
                         <tr>
                             <th>Name</th>
                             <th>Band</th>
+                            <th>Instrument</th>
+                            <th>Country</th>
                             <th>Address</th>
                             <th>Email</th>
                             <th>Favourite animal</th>
@@ -22,6 +24,8 @@
                         <tr ng-repeat = "member in members">
                             <td>{{member.name}}</td>
                             <td>{{member.band}}</td>
+                            <td>{{ member.instrument }}</td>
+                            <td>{{ member.country }}</td>
                             <td>{{member.address}}</td>
                             <td>{{member.email}}</td>
                             <td>{{member.favouriteAnimal}}</td>

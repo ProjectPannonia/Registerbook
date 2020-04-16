@@ -16,6 +16,9 @@ app.config(function($routeProvider){
     }).when('/search-drop-down',{
         templateUrl : 'template/searchdropdown.html',
         controller : 'searchdropdown'
+    }).when('/new-member-registration',{
+        templateUrl : 'template/newmemberregistration.html',
+        controller : 'newmemberregistration'
     }).otherwise({
        redirectTo : '/home',
        templateUrl : '/template/home.html'

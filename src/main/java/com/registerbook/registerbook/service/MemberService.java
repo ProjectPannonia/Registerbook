@@ -118,7 +118,9 @@ public class MemberService {
         List<Member> allMembers = memberJpaRepository.findAll();
         List<Member> result = new ArrayList<>();
         for(Member m : allMembers){
-            if(m.getFavouriteMeal().equals(value)) result.add(m);
+            if(m.getFavouriteMeal().equals(value)) {
+                result.add(m);
+            }
         }
         return result;
     }
@@ -126,7 +128,9 @@ public class MemberService {
         List<Member> allMembers = memberJpaRepository.findAll();
         List<Member> result = new ArrayList<>();
         for(Member m : allMembers){
-            if(m.getFavouriteAnimal().equals(value)) result.add(m);
+            if(m.getFavouriteAnimal().equals(value)){
+                result.add(m);
+            }
         }
         return result;
     }

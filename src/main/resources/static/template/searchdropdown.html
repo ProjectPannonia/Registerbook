@@ -1,7 +1,7 @@
 <div class="container">
     <div class = "panel panel-default">
         <div class = "alert alert-info">
-            <span class="lead">Search user by name</span>
+            <span class="lead">Specified search</span>
         </div>
         <div class = "panel-body">
             <div class = "table-responsive">
@@ -10,6 +10,8 @@
                     <tr>
                         <th>Name</th>
                         <th>Band</th>
+                        <th>Instrument</th>
+                        <th>Country</th>
                         <th>Address</th>
                         <th>Email</th>
                         <th>Favourite animal</th>
@@ -22,6 +24,8 @@
                     <tr ng-repeat = "member in searched">
                         <td>{{ member.name }}</td>
                         <td>{{ member.band }}</td>
+                        <td>{{ member.instrument }}</td>
+                        <td>{{ member.country }}</td>
                         <td>{{ member.address }}</td>
                         <td>{{ member.email }}</td>
                         <td>{{ member.favouriteAnimal }}</td>
@@ -37,20 +41,12 @@
                             </button>
                         </td>
                     </tr>
-                    <!--<tr>
-                        <form ng-submit="searchByName()" name="myForm"
-                              class="form-horizontal"></form>
-                    </tr>-->
                     </tbody>
                 </table>
-
-                <!--<input type="text" ng-model = 'name'>
-                <button ng-click = "searchbyname()">Send the name</button>
-                -->
                 <div>
                     <select ng-model = "selectedName" ng-options = "x for x in names"></select>
                     <input type="text" ng-model = "content">
-                    <button ng-click = "push()">Send the name</button>
+                    <button ng-click = "push()">Search</button>
                 </div>
             </div>
         </div>

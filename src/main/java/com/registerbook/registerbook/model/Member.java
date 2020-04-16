@@ -13,27 +13,41 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Long id;
+
     @NotEmpty(message = "error.name.empty")
     @Length(max = 50, message = "error.name.length")
     @Column(name = "name")
     private String name;
+
     @NotEmpty(message = "error.band.empty")
     @Length(max = 50,message = "error.band.length")
     @Column(name = "BAND")
     private String band;
+
+    @NotEmpty(message = "error.instrument.empty")
+    @Column(name = "INSTRUMENT")
+    private String instrument;
+
+    @NotEmpty(message = "error.country.empty")
+    @Column(name = "COUNTRY")
+    private String country;
+
     @NotEmpty(message = "error.address.empty")
     @Length(max = 150, message = "error.address.length")
     @Column(name = "ADDRESS")
     private String address;
+
     @Email(message = "error.email.email")
     @NotEmpty(message = "error.email.empty")
     @Length(max = 80, message = "error.email.length")
     @Column(name = "EMAIL")
     private String email;
+
     @NotEmpty(message = "error.favouriteA.empty")
     @Length(max = 50, message = "error.favouriteA.length")
     @Column(name = "FAVOURITEANIMAL")
     private String favouriteAnimal;
+
     @NotEmpty(message = "error.favouriteM.empty")
     @Length(max = 50, message = "error.favouriteM.length")
     @Column(name = "FAVOURITEMEAL")
@@ -93,5 +107,21 @@ public class Member {
 
     public void setFavouriteMeal(String favouriteMeal) {
         this.favouriteMeal = favouriteMeal;
+    }
+
+    public String getInstrument() {
+        return instrument;
+    }
+
+    public void setInstrument(String instrument) {
+        this.instrument = instrument;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
