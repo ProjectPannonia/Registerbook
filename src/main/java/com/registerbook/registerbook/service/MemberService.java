@@ -13,9 +13,6 @@ public class MemberService {
     @Autowired
     MemberJpaRepository memberJpaRepository;
 
-    @Autowired
-    private List<Member> allMember = getAllMember();
-
     public List<Member> getAllMember() {
         List<Member> allMember = memberJpaRepository.findAll();
         return allMember;
@@ -23,8 +20,9 @@ public class MemberService {
 
     // Get the members of a band
     public List<Member> getBandMembers(String bandName) {
+        List<Member> allMember = getAllMember();
         List<Member> bandMembers = new ArrayList<>();
-        for (Member m : allMember) 
+        for (Member m : allMember)
             if (m.getBand().equals(bandName)) bandMembers.add(m);
 
         return bandMembers;
@@ -32,6 +30,7 @@ public class MemberService {
 
     // Get a list of members by name
     public List<Member> getMembersByName(String name) {
+        List<Member> allMember = getAllMember();
         List<Member> result = new ArrayList<>();
         for (int i = 0; i < allMember.size(); i++){
             Member actual = allMember.get(i);
@@ -46,6 +45,7 @@ public class MemberService {
     }
 
     public Member findById(Long id) {
+        List<Member> allMember = getAllMember();
         Member member = null;
         for (Member m : allMember) {
             if (m.getId() == id) member = m;
@@ -62,6 +62,7 @@ public class MemberService {
     }
 
     public Member findByNameCreating(String name) {
+        List<Member> allMember = getAllMember();
         Member result = null;
         for (int i = 0; i < allMember.size(); i++) {
             Member actual = allMember.get(i);
@@ -76,6 +77,7 @@ public class MemberService {
 
     // Private methods
     private List<Member> specifier(String[] content){
+        List<Member> allMember = getAllMember();
         List<Member> result = new ArrayList<>();
         String property = content[0];
         String value = content[1];
@@ -98,6 +100,7 @@ public class MemberService {
         return result;
     }
     private List<Member> getMembersByCity(String value) {
+        List<Member> allMember = getAllMember();
         List<Member> result = new ArrayList<>();
         for(Member m : allMember){
             if(m.getAddress().equals(value)){
@@ -107,6 +110,7 @@ public class MemberService {
         return result;
     }
     private List<Member> getMembersByCountry(String value) {
+        List<Member> allMember = getAllMember();
         List<Member> result = new ArrayList<>();
         for(Member m : allMember){
             if(m.getCountry().equals(value)){
@@ -116,6 +120,7 @@ public class MemberService {
         return result;
     }
     private List<Member> getMembersByInstrument(String value) {
+        List<Member> allMember = getAllMember();
         List<Member> result = new ArrayList<>();
         for(Member m : allMember){
             if(m.getInstrument().equals(value)){
@@ -125,6 +130,7 @@ public class MemberService {
         return result;
     }
     private List<Member> getMembersByBand(String value) {
+        List<Member> allMember = getAllMember();
         List<Member> result = new ArrayList<>();
         for(Member m : allMember){
             if(m.getBand().equals(value)) result.add(m);
@@ -132,6 +138,7 @@ public class MemberService {
         return result;
     }
     private List<Member> getMembersByFavouriteMeal(String value) {
+        List<Member> allMember = getAllMember();
         List<Member> result = new ArrayList<>();
         for(Member m : allMember){
             if(m.getFavouriteMeal().equals(value)) {
@@ -141,6 +148,7 @@ public class MemberService {
         return result;
     }
     private List<Member> getMembersByFavouriteAnimal(String value) {
+        List<Member> allMember = getAllMember();
         List<Member> result = new ArrayList<>();
         for(Member m : allMember){
             if(m.getFavouriteAnimal().equals(value))
