@@ -95,38 +95,4 @@ public class MainController {
         List<Member> specifiedMembers = memberMemberService.specifiedSearch(content);
         return new ResponseEntity<List<Member>>(specifiedMembers,HttpStatus.OK);
     }
-
-
-    /* ADVANCED REST FUNCTIONS */
-
-    //Delete member by name
-    /*@DeleteMapping("/deleteByName/{name}")
-    public ResponseEntity<Member> deleteMemberByName(@PathVariable("name") final String name){
-        Member member = memberMemberService.findByName(name);
-        memberMemberService.delete(member);
-        return new ResponseEntity<Member>(HttpStatus.NO_CONTENT);
-    }
-    */
-    //get band members
-    /*@GetMapping("/bandMembers/{bandName}")
-    public ResponseEntity<List<Member>> getBandMembers(@PathVariable("bandName") String bandName){
-        List<Member> bandMembers = memberMemberService.getBandMembers(bandName);
-        if(bandMembers.isEmpty()){
-            return new ResponseEntity<List<Member>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<List<Member>>(bandMembers,HttpStatus.OK);
-    }*/
-
-    //get members list by name
-    /*@GetMapping("/searchByName/{name}")
-    public ResponseEntity<List<Member>> getMemberListByName(@PathVariable("name") String name){
-        List<Member> membersByName = memberMemberService.getMembersByName(name);
-        if (membersByName.isEmpty()){
-            return new ResponseEntity<List<Member>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<List<Member>>(membersByName,HttpStatus.OK);
-    }
-    */
-
-
 }
