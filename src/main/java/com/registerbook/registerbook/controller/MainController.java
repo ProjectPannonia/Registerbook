@@ -92,7 +92,13 @@ public class MainController {
     // GET members by specified property
     @PostMapping(value = "/searchproperty", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Member>> getSpecifiedMembers(@RequestBody final String[] content){
-        List<Member> specifiedMembers = memberMemberService.specifiedSearch(content);
+        List<Member> specifiedMembers = memberMemberService.searchByProperty(content);
         return new ResponseEntity<List<Member>>(specifiedMembers,HttpStatus.OK);
+    }
+    //GET statistics
+    @GetMapping("/statistics")
+    public ResponseEntity<int[]> getStatistics(){
+        int[] resultStatistics = memberMemberService.statistics();
+        return new ResponseEntity<int[]>(resultStatistics,HttpStatus.OK);
     }
 }
