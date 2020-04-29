@@ -19,6 +19,9 @@ app.config(function($routeProvider){
     }).when('/new-member-registration',{
         templateUrl : 'template/newmemberregistration.html',
         controller : 'newmemberregistration'
+    }).when('/change-group-properties',{
+        templateUrl : 'template/changegroupproperties.html',
+        controller : 'changegroupproperties'
     }).otherwise({
        redirectTo : '/home',
        templateUrl : '/template/home.html'

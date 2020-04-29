@@ -5,6 +5,7 @@ import com.registerbook.registerbook.repository.MemberJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -74,8 +75,44 @@ public class MemberService {
     public List<Member> specifiedSearch(String[] content) {
         return specifier(content);
     }
+    // Method to get statistics
+    public ArrayList<Integer> statistics(){
+        List<Member> allMembers = memberJpaRepository.findAll();
+        ArrayList<Integer> statistics = new ArrayList<>();
+        int numberOfRegisteredMusicians = allMembers.size();
+        int numberOfMusicBands = countMusicBands(allMembers);
+        statistics.add(numberOfRegisteredMusicians);
+        statistics.add(numberOfMusicBands);
+        return statistics;
+    }
 
-    // Private methods
+
+    /* Private methods */
+    private int countMusicBands(List<Member> allMembers) {
+        int numberOfBands = countRegisteredBands(listOfAllBand(allMembers));
+        return numberOfBands;
+    }
+    // Get the number of registered bands
+    private int countRegisteredBands(String[] allBand){
+        int numberOfBands = 0;
+        ArrayList<String> filtered = new ArrayList<>();
+
+        for (int i = 0; i < allBand.length; i++){
+            String actual = allBand[i];
+            if(!filtered.contains(actual)) filtered.add(actual);
+        }
+        return numberOfBands;
+    }
+    // Create a full list of bands
+    private String[] listOfAllBand(List<Member> members){
+        String[] bands = new String[members.size()];
+        int count = 0;
+        for (Member m : members) {
+            bands[count] = m.getBand();
+            count++;
+        }
+        return bands;
+    }
     private List<Member> specifier(String[] content){
         List<Member> allMember = getAllMember();
         List<Member> result = new ArrayList<>();

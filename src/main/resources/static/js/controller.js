@@ -110,7 +110,11 @@ app.controller('searchdropdown',function($scope,$http,$location,$route){
              }
     };
 });
-
+app.controller('changegroupproperties',function($scope,$http,$location,$route){
+    $scope.names = ["Band","City","Country","Instrument"];
+    $scope.searched;
+    
+});
 app.controller('newmemberregistration',function($scope,$http,$location,$route){
     $scope.instruments = ['Guitar','Bass Guitar','Drum','Voice','Violin','Harmonica','Rhythm guitar','Keyboard instruments'];
     $scope.countries = ['Germany','Sweden','Hungary','UK','USA','Norway','Finnland','Canada'];
