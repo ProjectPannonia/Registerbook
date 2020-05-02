@@ -98,7 +98,7 @@ public class MainController {
     //GET statistics
     @GetMapping("/statistics")
     public ResponseEntity<int[]> getStatistics(){
-        int[] resultStatistics = memberMemberService.statistics();
+        int[] resultStatistics = memberMemberService.getStatistics();
         return new ResponseEntity<int[]>(resultStatistics,HttpStatus.OK);
     }
 }

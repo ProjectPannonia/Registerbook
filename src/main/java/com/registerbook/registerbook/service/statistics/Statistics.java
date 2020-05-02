@@ -2,17 +2,20 @@ package com.registerbook.registerbook.service.statistics;
 
 import com.registerbook.registerbook.model.Member;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Statistics {
 
     public int[] getStatitstics(List<Member> allMembers){
-        int[] result = new int[2];
+        int[] result = new int[10];
         // The first element is the number of registered members in database
         result[0] = allMembers.size();
         // The second element is the number of bands in the database
         result[1] = numberOfBands(allMembers);
-
+        //['Germany','Sweden','Hungary','UK','USA','Norway','Finnland','Canada'];
+        List<MembersOfSpecifiedCountry> numberOfMembersByCountry = numberOfMembersByCountry(allMembers);
+        result[2] = numberOfMembersByCountry.ge
         return result;
     }
     private int numberOfBands(List<Member> allMembers){
@@ -28,8 +31,7 @@ public class Statistics {
     public List<MembersOfSpecifiedCountry> numberOfMembersByCountry(List<Member> allMembers){
         List<MembersOfSpecifiedCountry> result = new ArrayList<>();
         String[] registeredCountries = getRegisteredCountries(allMembers);
-        int count = 0;
-
+        Arrays.sort(registeredCountries);
         for(int i = 0; i < registeredCountries.length; i++){
             int n = numberOfMemberOfSpecificCountry(registeredCountries[i],allMembers);
             result.add(new MembersOfSpecifiedCountry(registeredCountries[i],n));

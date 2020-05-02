@@ -82,10 +82,9 @@ public class MemberService {
     }
     /* New functionality */
     // Method to get statistics
-    public int[] statistics(){
+    public int[] getStatistics(){
         List<Member> allMembers = memberJpaRepository.findAll();
         Statistics getStatistics = new Statistics();
-
         int[] result = getStatistics.getStatitstics(allMembers);
         return result;
     }
