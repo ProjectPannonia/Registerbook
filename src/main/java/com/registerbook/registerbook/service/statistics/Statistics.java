@@ -15,7 +15,7 @@ public class Statistics {
         result[1] = numberOfBands(allMembers);
         //['Germany','Sweden','Hungary','UK','USA','Norway','Finnland','Canada'];
         List<MembersOfSpecifiedCountry> numberOfMembersByCountry = numberOfMembersByCountry(allMembers);
-        result[2] = numberOfMembersByCountry.ge
+        //result[2] = numberOfMembersByCountry.ge
         return result;
     }
     private int numberOfBands(List<Member> allMembers){
