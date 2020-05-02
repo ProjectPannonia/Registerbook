@@ -2,21 +2,22 @@ package com.registerbook.registerbook;
 
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.service.statistics.Statistics;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestStatistics {
+import static org.junit.Assert.assertEquals;
+
+public class TestNumberOfCountries {
+    List<Member> allMembers = null;
     Statistics statistics = null;
-    List<Member> testArray = null;
 
     @Before
     public void init(){
+        allMembers = new ArrayList<>();
         statistics = new Statistics();
-        testArray = new ArrayList<>();
         Member member1 = new Member();
         member1.setId(new Long(1));
         member1.setName("Letenyei Ádám");
@@ -57,28 +58,19 @@ public class TestStatistics {
         member4.setBand("Amon Amarth");
         member4.setCountry("Sweden");
         member4.setInstrument("Drum");
-        testArray.add(member1);
-        testArray.add(member2);
-        testArray.add(member3);
-        testArray.add(member4);
+        allMembers.add(member1);
+        allMembers.add(member2);
+        allMembers.add(member3);
+        allMembers.add(member4);
     }
-
     @Test
     public void test(){
-        int[] test = statistics.getStatitstics(testArray);
-        int resultNumberOfRegisteredMembers = test[0];
-        int resultNumberOfRegisteredBands = test[1];
-        int expectedNumberOfRegisteredMembers = 4;
-        int expectedNumberOfRegisteredBands = 3;
-        System.out.println("Regisztrált zenészek - Expected: " + resultNumberOfRegisteredMembers + ", Result: " + test[0]);
-        System.out.println("Registrált bandák - Expected: " + resultNumberOfRegisteredBands + ", Result: " + test[1]);
-        assertEquals(resultNumberOfRegisteredMembers,expectedNumberOfRegisteredMembers);
-        assertEquals(resultNumberOfRegisteredBands,expectedNumberOfRegisteredBands);
-    }
-
-    @After
-    public void setToNull(){
-        testArray = null;
-        statistics = null;
+        int expected = 3;
+        String[] r = statistics.getRegisteredCountries(allMembers);
+        for (int i = 0; i < r.length; i++){
+            System.out.println(r[i]);
+        }
+        int result = statistics.getRegisteredCountries(allMembers).length;
+        assertEquals(expected,result);
     }
 }
