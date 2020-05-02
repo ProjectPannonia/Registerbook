@@ -1,6 +1,7 @@
 package com.registerbook.registerbook;
 
 import com.registerbook.registerbook.model.Member;
+import com.registerbook.registerbook.service.statistics.MembersOfSpecifiedCountry;
 import com.registerbook.registerbook.service.statistics.Statistics;
 import org.junit.Before;
 import org.junit.Test;
@@ -58,19 +59,37 @@ public class TestNumberOfCountries {
         member4.setBand("Amon Amarth");
         member4.setCountry("Sweden");
         member4.setInstrument("Drum");
+        Member member5 = new Member();
+        member5.setId(new Long(5));
+        member5.setName("Kata");
+        member5.setFavouriteMeal("Káposzta");
+        member5.setFavouriteAnimal("Zebra");
+        member5.setAddress("Nyíregy");
+        member5.setEmail("k@j.com");
+        member5.setBand("Amon Amarth");
+        member5.setCountry("Hungary");
+        member5.setInstrument("Drum");
         allMembers.add(member1);
         allMembers.add(member2);
         allMembers.add(member3);
         allMembers.add(member4);
+        allMembers.add(member5);
     }
     @Test
     public void test(){
-        int expected = 3;
-        String[] r = statistics.getRegisteredCountries(allMembers);
-        for (int i = 0; i < r.length; i++){
-            System.out.println(r[i]);
+        List<MembersOfSpecifiedCountry> result = statistics.numberOfMembersByCountry(allMembers);
+        int expectedNumberOfSweden = 1;
+        int resultNumberOfSweden = result.get(2).getNumberFromThisCountry();
+        int expectedNumberOfGermany = 1;
+        int resultNumberOfGermany = result.get(1).getNumberFromThisCountry();
+        int expectedNumberOfHungary = 3;
+        int resultNumberOfHungary = result.get(0).getNumberFromThisCountry();
+        //assertEquals(result.get(0));
+        for (int i = 0; i < result.size(); i++){
+            System.out.println(result.get(i).getCountry());
         }
-        int result = statistics.getRegisteredCountries(allMembers).length;
-        assertEquals(expected,result);
+        assertEquals(expectedNumberOfGermany,resultNumberOfGermany);
+        assertEquals(expectedNumberOfHungary,resultNumberOfHungary);
+        assertEquals(expectedNumberOfSweden,resultNumberOfSweden);
     }
 }
