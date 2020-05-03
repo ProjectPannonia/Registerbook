@@ -1,5 +1,5 @@
 .box{
-    cursor: none ;
+    cursor: default;
 }
 
 .text:hover,.box:hover{
