@@ -13,9 +13,25 @@ public class Statistics {
         result[0] = allMembers.size();
         // The second element is the number of bands in the database
         result[1] = numberOfBands(allMembers);
-        //['Germany','Sweden','Hungary','UK','USA','Norway','Finnland','Canada'];
+        //Canada,Finnland,Germany,Hungary,Norway,Sweden,UK,USA
         List<MembersOfSpecifiedCountry> numberOfMembersByCountry = numberOfMembersByCountry(allMembers);
-        //result[2] = numberOfMembersByCountry.ge
+        // Canada
+        result[2] = numberOfMembersByCountry.get(0).getNumberFromThisCountry();
+        // Finnland
+        result[3] = numberOfMembersByCountry.get(1).getNumberFromThisCountry();
+        // Germany
+        result[4] = numberOfMembersByCountry.get(2).getNumberFromThisCountry();
+        //Hungary
+        result[5] = numberOfMembersByCountry.get(3).getNumberFromThisCountry();
+        // Norway
+        result[6] = numberOfMembersByCountry.get(4).getNumberFromThisCountry();
+        // Sweden
+        result[7] = numberOfMembersByCountry.get(5).getNumberFromThisCountry();
+        // UK
+        result[8] = numberOfMembersByCountry.get(6).getNumberFromThisCountry();
+        // USA
+        result[9] = numberOfMembersByCountry.get(7).getNumberFromThisCountry();
+
         return result;
     }
     private int numberOfBands(List<Member> allMembers){

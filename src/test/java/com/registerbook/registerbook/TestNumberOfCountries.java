@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class TestNumberOfCountries {
     List<Member> allMembers = null;
     Statistics statistics = null;
-
+/*
     @Before
     public void init(){
         allMembers = new ArrayList<>();
@@ -172,4 +172,6 @@ public class TestNumberOfCountries {
         }
 
     }
+    */
+
 }

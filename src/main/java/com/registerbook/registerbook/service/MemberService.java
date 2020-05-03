@@ -92,8 +92,6 @@ public class MemberService {
 
 
     /* Private assistant methods */
-
-
     private List<Member> specifier(String[] content){
         List<Member> allMember = getAllMember();
         List<Member> result = new ArrayList<>();
@@ -103,10 +101,6 @@ public class MemberService {
             case "Name" :  result = getMembersByName(value);
                 break;
             case "Band" : result = getMembersByBand(value);
-                break;
-            case "Favourite animal" : result = getMembersByFavouriteAnimal(value);
-                break;
-            case "Favourite meal" : result = getMembersByFavouriteMeal(value);
                 break;
             case "Instrument" : result = getMembersByInstrument(value);
                 break;
@@ -155,16 +149,18 @@ public class MemberService {
         }
         return result;
     }
-    private List<Member> getMembersByFavouriteMeal(String value) {
+    /*private List<Member> getMembersByFavouriteMeal(String value) {
         List<Member> allMember = getAllMember();
         List<Member> result = new ArrayList<>();
         for(Member m : allMember){
-            if(m.getFavouriteMeal().equals(value)) {
+            if(m.getAge().equals(value)) {
                 result.add(m);
             }
         }
         return result;
     }
+
+
     private List<Member> getMembersByFavouriteAnimal(String value) {
         List<Member> allMember = getAllMember();
         List<Member> result = new ArrayList<>();
@@ -174,4 +170,6 @@ public class MemberService {
         }
         return result;
     }
+    */
+
 }

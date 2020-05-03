@@ -71,8 +71,8 @@ public class MainController {
         currentMember.setBand(member.getBand());
         currentMember.setAddress(member.getAddress());
         currentMember.setEmail(member.getEmail());
-        currentMember.setFavouriteAnimal(member.getFavouriteAnimal());
-        currentMember.setFavouriteMeal(member.getFavouriteMeal());
+        currentMember.setYearOfBirth(member.getYearOfBirth());
+        //currentMember.setFavouriteMeal(member.getFavouriteMeal());
         return new ResponseEntity<Member>(currentMember,HttpStatus.OK);
     }
 

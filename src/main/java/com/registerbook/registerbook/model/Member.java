@@ -43,7 +43,9 @@ public class Member {
     @Column(name = "EMAIL")
     private String email;
 
-    @NotEmpty(message = "error.favouriteA.empty")
+    @Column(name = "YEAROFBIRTH")
+    private int yearOfBirth;
+    /*@NotEmpty(message = "error.favouriteA.empty")
     @Length(max = 50, message = "error.favouriteA.length")
     @Column(name = "FAVOURITEANIMAL")
     private String favouriteAnimal;
@@ -52,7 +54,7 @@ public class Member {
     @Length(max = 50, message = "error.favouriteM.length")
     @Column(name = "FAVOURITEMEAL")
     private String favouriteMeal;
-
+    */
     public Long getId() {
         return id;
     }
@@ -92,7 +94,7 @@ public class Member {
     public void setEmail(String email) {
         this.email = email;
     }
-
+/*
     public String getFavouriteAnimal() {
         return favouriteAnimal;
     }
@@ -108,7 +110,7 @@ public class Member {
     public void setFavouriteMeal(String favouriteMeal) {
         this.favouriteMeal = favouriteMeal;
     }
-
+*/
     public String getInstrument() {
         return instrument;
     }
@@ -123,5 +125,13 @@ public class Member {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public int getYearOfBirth() {
+        return yearOfBirth;
+    }
+
+    public void setYearOfBirth(int yearOfBirth) {
+        this.yearOfBirth = yearOfBirth;
     }
 }

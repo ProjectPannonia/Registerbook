@@ -90,7 +90,7 @@ app.controller('searchmembercontroller', function($scope,$http,$location,$route)
 });
 
 app.controller('searchdropdown',function($scope,$http,$location,$route){
-    $scope.names = ["Name","Band","Favourite animal","City","Country","Instrument"];
+    $scope.names = ["Name","Band","City","Country","Instrument"];
 
     $scope.push = function(){
 
@@ -110,13 +110,13 @@ app.controller('searchdropdown',function($scope,$http,$location,$route){
              }
     };
 });
-app.controller('changegroupproperties',function($scope,$http,$location,$route){
+app.controller('statistics',function($scope,$http,$location,$route){
     $scope.names = ["Band","City","Country","Instrument"];
     $scope.searched;
     
 });
 app.controller('newmemberregistration',function($scope,$http,$location,$route){
-    $scope.instruments = ['Guitar','Bass Guitar','Drum','Voice','Violin','Harmonica','Rhythm guitar','Keyboard instruments'];
+    $scope.instruments = ['Guitar','Bass Guitar','Drum','Singer','Violin','Harmonica','Rhythm guitar','Keyboard instruments'];
     $scope.countries = ['Germany','Sweden','Hungary','UK','USA','Norway','Finnland','Canada'];
 
     $scope.submitMemberForm = function(){
