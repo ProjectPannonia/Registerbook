@@ -8,26 +8,24 @@ import java.util.List;
 public class Statistics {
 
     public StatisticData getStatitstics(List<Member> allMembers){
-        StatisticData statistic;
-        int[] result = new int[10];
-        // The first element is the number of registered members in database
-        int registeredMembers = allMembers.size();
-        // The second element is the number of bands in the database
-        int numberOfBands = numberOfBands(allMembers);
         //Canada,Finnland,Germany,Hungary,Norway,Sweden,UK,USA
+        StatisticData statistic;
+        int registeredMembers = allMembers.size();
+        int numberOfBands = numberOfBands(allMembers);
         List<MembersOfSpecifiedCountry> numberOfMembersByCountry = numberOfMembersByCountry(allMembers);
 
         int canadian = numberOfMembersByCountry.get(0).getNumberFromThisCountry();
-        int finnland = numberOfMembersByCountry.get(1).getNumberFromThisCountry();
+        int finn = numberOfMembersByCountry.get(1).getNumberFromThisCountry();
         int german = numberOfMembersByCountry.get(2).getNumberFromThisCountry();
-        int hungary = numberOfMembersByCountry.get(3).getNumberFromThisCountry();
+        int hungarian = numberOfMembersByCountry.get(3).getNumberFromThisCountry();
         int norwegian = numberOfMembersByCountry.get(4).getNumberFromThisCountry();
         int sweden = numberOfMembersByCountry.get(5).getNumberFromThisCountry();
         int uk = numberOfMembersByCountry.get(6).getNumberFromThisCountry();
         int usa = numberOfMembersByCountry.get(7).getNumberFromThisCountry();
 
         statistic = new StatisticData(registeredMembers,numberOfBands,
-                canadian,finnland,german,hungary,norwegian,sweden,uk,usa);
+                canadian,finn,german,hungarian,norwegian,sweden,uk,usa);
+
         return statistic;
     }
     private int numberOfBands(List<Member> allMembers){

@@ -111,9 +111,12 @@ app.controller('searchdropdown',function($scope,$http,$location,$route){
     };
 });
 app.controller('statistics',function($scope,$http,$location,$route){
-    $scope.names = ["Band","City","Country","Instrument"];
-    $scope.searched;
-    
+    $http({
+            method : 'GET',
+            url : 'http://localhost:8080/register/member/statistics'
+        }).then(function(response){
+            $scope.statistics = response.data;
+        });
 });
 app.controller('newmemberregistration',function($scope,$http,$location,$route){
     $scope.instruments = ['Guitar','Bass Guitar','Drum','Singer','Violin','Harmonica','Rhythm guitar','Keyboard instruments'];

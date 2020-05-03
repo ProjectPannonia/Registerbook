@@ -2,6 +2,7 @@ package com.registerbook.registerbook.service;
 
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
+import com.registerbook.registerbook.service.statistics.StatisticData;
 import com.registerbook.registerbook.service.statistics.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,10 +83,10 @@ public class MemberService {
     }
     /* New functionality */
     // Method to get statistics
-    public int[] getStatistics(){
+    public StatisticData getStatistics(){
         List<Member> allMembers = memberJpaRepository.findAll();
-        Statistics getStatistics = new Statistics();
-        int[] result = getStatistics.getStatitstics(allMembers);
+        Statistics statistics = new Statistics();
+        StatisticData result = statistics.getStatitstics(allMembers);
         return result;
     }
 
