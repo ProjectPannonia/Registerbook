@@ -1,7 +1,7 @@
 package com.registerbook.registerbook.service.statistics;
 
 public class StatisticData {
-    //$scope.countries = ['Germany','Sweden','Hungary','UK','USA','Norway','Finnland','Canada'];
+
     private int registeredMembers;
     private int numberOfBands;
     private int canadianBands;

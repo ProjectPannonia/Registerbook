@@ -45,16 +45,8 @@ public class Member {
 
     @Column(name = "YEAROFBIRTH")
     private int yearOfBirth;
-    /*@NotEmpty(message = "error.favouriteA.empty")
-    @Length(max = 50, message = "error.favouriteA.length")
-    @Column(name = "FAVOURITEANIMAL")
-    private String favouriteAnimal;
 
-    @NotEmpty(message = "error.favouriteM.empty")
-    @Length(max = 50, message = "error.favouriteM.length")
-    @Column(name = "FAVOURITEMEAL")
-    private String favouriteMeal;
-    */
+
     public Long getId() {
         return id;
     }
@@ -94,23 +86,7 @@ public class Member {
     public void setEmail(String email) {
         this.email = email;
     }
-/*
-    public String getFavouriteAnimal() {
-        return favouriteAnimal;
-    }
 
-    public void setFavouriteAnimal(String favouriteAnimal) {
-        this.favouriteAnimal = favouriteAnimal;
-    }
-
-    public String getFavouriteMeal() {
-        return favouriteMeal;
-    }
-
-    public void setFavouriteMeal(String favouriteMeal) {
-        this.favouriteMeal = favouriteMeal;
-    }
-*/
     public String getInstrument() {
         return instrument;
     }

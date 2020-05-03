@@ -73,7 +73,7 @@ public class MainController {
         currentMember.setAddress(member.getAddress());
         currentMember.setEmail(member.getEmail());
         currentMember.setYearOfBirth(member.getYearOfBirth());
-        //currentMember.setFavouriteMeal(member.getFavouriteMeal());
+
         return new ResponseEntity<Member>(currentMember,HttpStatus.OK);
     }
 

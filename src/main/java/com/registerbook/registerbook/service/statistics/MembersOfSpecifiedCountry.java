@@ -1,6 +1,7 @@
 package com.registerbook.registerbook.service.statistics;
 
 public class MembersOfSpecifiedCountry {
+
     private String country;
     private int numberFromThisCountry;
 

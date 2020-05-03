@@ -62,10 +62,6 @@ public class MemberService {
         memberJpaRepository.deleteById(id);
     }
 
-    public void delete(Member member) {
-        memberJpaRepository.delete(member);
-    }
-
     public Member findByNameCreating(String name) {
         List<Member> allMember = getAllMember();
         Member result = null;
@@ -81,7 +77,6 @@ public class MemberService {
     public List<Member> searchByProperty(String[] content) {
         return specifier(content);
     }
-    /* New functionality */
     // Method to get statistics
     public StatisticData getStatistics(){
         List<Member> allMembers = memberJpaRepository.findAll();
@@ -89,8 +84,6 @@ public class MemberService {
         StatisticData result = statistics.getStatitstics(allMembers);
         return result;
     }
-
-
 
     /* Private assistant methods */
     private List<Member> specifier(String[] content){
@@ -150,27 +143,4 @@ public class MemberService {
         }
         return result;
     }
-    /*private List<Member> getMembersByFavouriteMeal(String value) {
-        List<Member> allMember = getAllMember();
-        List<Member> result = new ArrayList<>();
-        for(Member m : allMember){
-            if(m.getAge().equals(value)) {
-                result.add(m);
-            }
-        }
-        return result;
-    }
-
-
-    private List<Member> getMembersByFavouriteAnimal(String value) {
-        List<Member> allMember = getAllMember();
-        List<Member> result = new ArrayList<>();
-        for(Member m : allMember){
-            if(m.getFavouriteAnimal().equals(value))
-                result.add(m);
-        }
-        return result;
-    }
-    */
-
 }
