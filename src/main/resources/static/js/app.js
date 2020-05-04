@@ -20,7 +20,7 @@ app.config(function($routeProvider){
         templateUrl : 'template/newmemberregistration.html',
         controller : 'newmemberregistration'
     }).when('/statistics',{
-        templateUrl : 'template/statistics.html',
+        templateUrl : 'template/teststat.html',
         controller : 'statistics'
     }).otherwise({
        redirectTo : '/home',

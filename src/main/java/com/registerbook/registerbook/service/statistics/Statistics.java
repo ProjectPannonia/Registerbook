@@ -11,10 +11,9 @@ public class Statistics {
         StatisticData statistic;
         List<MembersOfSpecifiedCountry> numberOfMembersByCountry;
 
+        numberOfMembersByCountry = numberOfMembersByCountry(allMembers);
         int registeredMembers = allMembers.size();
         int numberOfBands = countBands(allMembers);
-        numberOfMembersByCountry = numberOfMembersByCountry(allMembers);
-
         int canadian = numberOfMembersByCountry.get(0).getNumberFromThisCountry();
         int finn = numberOfMembersByCountry.get(1).getNumberFromThisCountry();
         int german = numberOfMembersByCountry.get(2).getNumberFromThisCountry();
