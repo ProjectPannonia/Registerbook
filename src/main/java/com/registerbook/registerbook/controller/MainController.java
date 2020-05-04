@@ -68,6 +68,7 @@ public class MainController {
         if(currentMember == null){
             return new ResponseEntity<Member>(new CustomErrorType("Unable to update. Member with id " + id + " not found."),HttpStatus.NOT_FOUND);
         }
+
         currentMember.setName(member.getName());
         currentMember.setBand(member.getBand());
         currentMember.setAddress(member.getAddress());
