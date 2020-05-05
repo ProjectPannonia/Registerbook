@@ -1,11 +1,11 @@
 package com.registerbook.registerbook.service.statistics;
 
-public class MembersOfSpecifiedCountry {
+public class CountryAndNumber {
 
     private String country;
     private int numberFromThisCountry;
 
-    public MembersOfSpecifiedCountry(String country, int numberFromThisCountry) {
+    public CountryAndNumber(String country, int numberFromThisCountry) {
         this.country = country;
         this.numberFromThisCountry = numberFromThisCountry;
     }
