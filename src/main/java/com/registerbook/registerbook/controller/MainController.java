@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -21,6 +20,7 @@ public class MainController {
     public static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
     private MemberService memberMemberService;
+
     @Autowired
     public void setMemberMemberService(MemberService memberMemberService){
         this.memberMemberService = memberMemberService;

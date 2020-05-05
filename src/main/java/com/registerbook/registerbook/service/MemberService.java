@@ -3,6 +3,7 @@ package com.registerbook.registerbook.service;
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.statistics.AdvancedStatistics;
+import com.registerbook.registerbook.service.statistics.MembersOfSpecifiedCountry;
 import com.registerbook.registerbook.service.statistics.StatisticData;
 import com.registerbook.registerbook.service.statistics.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class MemberService {
     public List<Member> getAllMember() {
         List<Member> allMember = memberJpaRepository.findAll();
         return allMember;
+    }
+
+    public List<Member> countMembersFromCountry(String country){
+        List<Member> searched = memberJpaRepository.countPerCountry(country);
+        return searched;
     }
 
     // Get a full musicband
@@ -81,10 +87,10 @@ public class MemberService {
     // Method to get statistics
     public StatisticData getStatistics(){
         List<Member> allMembers = memberJpaRepository.findAll();
-        //Statistics statistics = new Statistics();
         AdvancedStatistics as = new AdvancedStatistics();
-        //StatisticData result = statistics.getStatitstics(allMembers);
         StatisticData result = as.getStatistics(allMembers);
+        List<Member> membersFromGermany = countMembersFromCountry("Germany");
+        System.out.println(membersFromGermany);
         return result;
     }
 
