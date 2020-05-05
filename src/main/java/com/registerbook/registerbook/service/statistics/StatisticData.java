@@ -13,6 +13,9 @@ public class StatisticData {
     private int ukBands;
     private int usaBands;
 
+    public StatisticData(){
+
+    }
     public StatisticData(int registeredMembers, int numberOfBands, int canadianBands, int finnBands, int germanBands, int hungarianBands, int norwayBands, int swedenBands, int ukBands, int usaBands) {
         this.registeredMembers = registeredMembers;
         this.numberOfBands = numberOfBands;

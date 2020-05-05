@@ -22,11 +22,7 @@ public class Statistics {
         int sweden = numberOfMembersByCountry.get(5).getNumberFromThisCountry();
         int uk = numberOfMembersByCountry.get(6).getNumberFromThisCountry();
         int usa = numberOfMembersByCountry.get(7).getNumberFromThisCountry();
-
-        statistic = new StatisticData(registeredMembers,numberOfBands,
-                canadian,finn,german,hungarian,norwegian,sweden,uk,usa);
-
-        return statistic;
+        return null;
     }
 
     private int countBands(List<Member> allMembers){
