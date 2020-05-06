@@ -42,10 +42,10 @@ public class MainController {
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Member> createMember(@Valid @RequestBody final Member member){
         logger.info("Creating member: {}",member);
-        if(memberMemberService.findByNameCreating(member.getName()) != null){
+        if(memberMemberService.checkMemberWithThisNameAlreadyInDatabase(member.getName()) != null){
             return new ResponseEntity<Member>(new CustomErrorType("Unable to create new member. A member with name: " + member.getName()+ " already exist."),HttpStatus.CONFLICT);
         }
-        memberMemberService.save(member);
+        memberMemberService.saveNewMember(member);
 
         return new ResponseEntity<Member>(member,HttpStatus.CREATED);
     }
@@ -53,7 +53,7 @@ public class MainController {
     // GET a musician by id
     @GetMapping("/{id}")
     public ResponseEntity<Member> getUserById(@PathVariable("id") final Long id){
-        Member member = memberMemberService.findById(id);
+        Member member = memberMemberService.findMemberById(id);
         if(member == null){
             return new ResponseEntity<Member>(new CustomErrorType("Member with id " + id + " not found"),HttpStatus.NOT_FOUND);
         }
@@ -64,7 +64,7 @@ public class MainController {
     // PUT first search a musician by id, then update properties
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Member> updateMember(@PathVariable final Long id, @RequestBody Member member){
-        Member currentMember = memberMemberService.findById(id);
+        Member currentMember = memberMemberService.findMemberById(id);
         if(currentMember == null){
             return new ResponseEntity<Member>(new CustomErrorType("Unable to update. Member with id " + id + " not found."),HttpStatus.NOT_FOUND);
         }
@@ -81,7 +81,7 @@ public class MainController {
     // DELETE  musician by id
     @DeleteMapping("/{id}")
     public ResponseEntity<Member> deleteMember(@PathVariable("id") final Long id){
-        memberMemberService.deleteById(id);
+        memberMemberService.deleteMemberById(id);
         return new ResponseEntity<Member>(HttpStatus.NO_CONTENT);
     }
 
@@ -97,7 +97,7 @@ public class MainController {
     // GET members by specified property
     @PostMapping(value = "/searchproperty", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Member>> getSpecifiedMembers(@RequestBody final String[] content){
-        List<Member> specifiedMembers = memberMemberService.searchByProperty(content);
+        List<Member> specifiedMembers = memberMemberService.searchBySpecifiedProperty(content);
         return new ResponseEntity<List<Member>>(specifiedMembers,HttpStatus.OK);
     }
     //GET statistics

@@ -5,7 +5,6 @@ import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.statistics.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,73 +14,28 @@ public class MemberService {
     @Autowired
     MemberJpaRepository memberJpaRepository;
 
+
     public List<Member> getAllMember() {
-        List<Member> allMember = memberJpaRepository.findAll();
-        return allMember;
+        return memberJpaRepository.findAll();
     }
 
-    public List<Member> countMembersFromCountry(String country){
-        List<Member> searched = memberJpaRepository.countPerCountry(country);
-        return searched;
-    }
-
-    // Get a full musicband
-    public List<Member> getABand(String bandName) {
-        /*List<Member> allMember = getAllMember();
-        List<Member> bandMembers = new ArrayList<>();
-        for (Member m : allMember) {
-            if (m.getBand().equals(bandName)) bandMembers.add(m);
-        }
-        return bandMembers;*/
-        System.out.println("Benne vagyok");
-        return memberJpaRepository.getBandMembers(bandName);
-    }
-
-    // Get a list of members by name
-    public List<Member> getMembersByName(String name) {
-        List<Member> allMember = getAllMember();
-        List<Member> result = new ArrayList<>();
-        for (int i = 0; i < allMember.size(); i++){
-            Member actual = allMember.get(i);
-            if(actual.getName().equals(name))
-                result.add(actual);
-        }
-        return result;
-    }
-
-    // Register a new member to the database
-    public void save(Member member) {
+    public void saveNewMember(Member member) {
         memberJpaRepository.save(member);
     }
 
-    // Find a registered member by id
-    public Member findById(Long id) {
-        List<Member> allMember = getAllMember();
-        Member member = null;
-        for (Member m : allMember) {
-            if (m.getId() == id) member = m;
-        }
-        return member;
+    public Member findMemberById(Long id) {
+        return memberJpaRepository.findMemberById(id);
     }
 
-    // Delete a member by id
-    public void deleteById(Long id) {
+    public void deleteMemberById(Long id) {
         memberJpaRepository.deleteById(id);
     }
 
-    public Member findByNameCreating(String name) {
-        List<Member> allMember = getAllMember();
-        Member result = null;
-        for (int i = 0; i < allMember.size(); i++) {
-            Member actual = allMember.get(i);
-            if (actual.getName().equals(name))
-                result = actual;
-        }
-        return result;
+    public Member checkMemberWithThisNameAlreadyInDatabase(String name) {
+        return memberJpaRepository.findMemberByName(name);
     }
-
-    // Specified search
-    public List<Member> searchByProperty(String[] content) {
+    // Specified search(content[0] = property, content[1] = searchedText)
+    public List<Member> searchBySpecifiedProperty(String[] content) {
         return specifier(content);
     }
     // Method to get statistics
@@ -98,7 +52,6 @@ public class MemberService {
 
     /* Private assistant methods */
     private List<Member> specifier(String[] content){
-        List<Member> allMember = getAllMember();
         List<Member> result = new ArrayList<>();
         String property = content[0];
         String value = content[1];
@@ -113,44 +66,6 @@ public class MemberService {
                 break;
             case "City" : result = memberJpaRepository.getMemberByCity(value);
                 break;
-        }
-        return result;
-    }
-    private List<Member> getMembersByCity(String value) {
-        List<Member> allMember = getAllMember();
-        List<Member> result = new ArrayList<>();
-        for(Member m : allMember){
-            if(m.getAddress().equals(value)){
-                result.add(m);
-            }
-        }
-        return result;
-    }
-    private List<Member> getMembersByCountry(String value) {
-        List<Member> allMember = getAllMember();
-        List<Member> result = new ArrayList<>();
-        for(Member m : allMember){
-            if(m.getCountry().equals(value)){
-                result.add(m);
-            }
-        }
-        return result;
-    }
-    private List<Member> getMembersByInstrument(String value) {
-        List<Member> allMember = getAllMember();
-        List<Member> result = new ArrayList<>();
-        for(Member m : allMember){
-            if(m.getInstrument().equals(value)){
-                result.add(m);
-            }
-        }
-        return result;
-    }
-    private List<Member> getMembersByBand(String value) {
-        List<Member> allMember = getAllMember();
-        List<Member> result = new ArrayList<>();
-        for(Member m : allMember){
-            if(m.getBand().equals(value)) result.add(m);
         }
         return result;
     }
