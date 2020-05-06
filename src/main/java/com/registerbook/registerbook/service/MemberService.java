@@ -90,7 +90,10 @@ public class MemberService {
         AdvancedStatistics as = new AdvancedStatistics();
         StatisticData result = as.getStatistics(allMembers);
         List<Member> membersFromGermany = countMembersFromCountry("Germany");
-        System.out.println(membersFromGermany);
+        //System.out.println(memberJpaRepository.countByCountryObjects());
+        //System.out.println(membersFromGermany);
+        int countMembers = memberJpaRepository.allMembers();
+        System.out.println("Összes regisztrált tag: " + memberJpaRepository.allMembers());
         return result;
     }
 
