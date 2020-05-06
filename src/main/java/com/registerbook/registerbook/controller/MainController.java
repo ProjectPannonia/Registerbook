@@ -86,11 +86,14 @@ public class MainController {
     }
 
     // Get a member by name
-    @GetMapping("/searchname/{name}")
+
+    /*@GetMapping("/searchname/{name}")
     public ResponseEntity<List<Member>> getMemberByName(@PathVariable("name") final String name){
         List<Member> members = memberMemberService.getMembersByName(name);
         return new ResponseEntity<List<Member>>(members,HttpStatus.OK);
     }
+    */
+
     // GET members by specified property
     @PostMapping(value = "/searchproperty", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Member>> getSpecifiedMembers(@RequestBody final String[] content){

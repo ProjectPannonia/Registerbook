@@ -10,9 +10,6 @@ app.config(function($routeProvider){
     }).when('/update-member/:id',{
         templateUrl : '/template/memberupdate.html',
         controller : 'memberdetailscontroller'
-    }).when('/search-a-member',{
-        templateUrl : 'template/searchmember.html',
-        controller : 'searchmembercontroller'
     }).when('/search-drop-down',{
         templateUrl : 'template/searchdropdown.html',
         controller : 'searchdropdown'

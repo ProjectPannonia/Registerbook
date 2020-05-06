@@ -42,4 +42,8 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
 
     @Query(value = "SELECT s FROM Member s WHERE s.country = :mCountry ")
     List<Member> getMemberByCountry(@Param("mCountry") String mCountry);
+
+    @Query(value = "SELECT s FROM Member s WHERE s.id = :sId")
+    Member findMemberById(@Param("sId") Long sId);
+
 }
