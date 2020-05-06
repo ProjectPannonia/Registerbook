@@ -2,12 +2,10 @@ package com.registerbook.registerbook.service;
 
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
-import com.registerbook.registerbook.service.statistics.AdvancedStatistics;
-import com.registerbook.registerbook.service.statistics.MembersOfSpecifiedCountry;
-import com.registerbook.registerbook.service.statistics.StatisticData;
-import com.registerbook.registerbook.service.statistics.Statistics;
+import com.registerbook.registerbook.service.statistics.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,14 +84,13 @@ public class MemberService {
     }
     // Method to get statistics
     public StatisticData getStatistics(){
-        List<Member> allMembers = memberJpaRepository.findAll();
-        AdvancedStatistics as = new AdvancedStatistics();
-        StatisticData result = as.getStatistics(allMembers);
-        List<Member> membersFromGermany = countMembersFromCountry("Germany");
-        //System.out.println(memberJpaRepository.countByCountryObjects());
-        //System.out.println(membersFromGermany);
-        int countMembers = memberJpaRepository.allMembers();
-        System.out.println("Összes regisztrált tag: " + memberJpaRepository.allMembers());
+        int numberOfRegisteredMembers = memberJpaRepository.numberOfMembers();
+        int numberOfRegisteredBands = memberJpaRepository.numberOfRegisteredBands();
+        List<String> registeredCountries = memberJpaRepository.registeredCountries();
+        List<Integer> memberPerCountry = memberJpaRepository.numberOfMembersPerCountry();
+        Statistics statistics = new Statistics();
+        StatisticData result = statistics.getAdvancedStatistics(numberOfRegisteredMembers,numberOfRegisteredBands,registeredCountries,memberPerCountry);
+
         return result;
     }
 

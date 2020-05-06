@@ -7,9 +7,40 @@ import java.util.List;
 
 public class Statistics {
 
+    public StatisticData getAdvancedStatistics(int numberOfMembers,int numberOfRegisteredBands, List<String> countries, List<Integer> memberPerCountry){
+
+        StatisticData result = makePairs(numberOfMembers,numberOfRegisteredBands,countries,memberPerCountry);
+        return result;
+    }
+    private StatisticData makePairs(int numberOfMembers,int numberOfRegisteredBands,List<String> countries,List<Integer> memberPerCountry){
+        List<MembersPerCountry> pairs = new ArrayList<>();
+
+        for(int i = 0; i < countries.size(); i++)
+            pairs.add(new MembersPerCountry(countries.get(i),memberPerCountry.get(i)));
+
+        return createStatistic(numberOfMembers,numberOfRegisteredBands,pairs);
+    }
+
+    private StatisticData createStatistic(int numberOfMembers,int numberOfRegisteredBands,List<MembersPerCountry> pairs) {
+        StatisticData stat = new StatisticData();
+        stat.setRegisteredMembers(numberOfMembers);
+        stat.setNumberOfBands(numberOfRegisteredBands);
+        //CANADA,FINNLAND,GERMANY,HUNGARY,NORWAY,SWEDEN,UK,USA
+        stat.setCanadianBands(pairs.get(0).number);
+        stat.setFinnBands(pairs.get(1).number);
+        stat.setGermanBands(pairs.get(2).number);
+        stat.setHungarianBands(pairs.get(3).number);
+        stat.setNorwayBands(pairs.get(4).number);
+        stat.setSwedenBands(pairs.get(5).number);
+        stat.setUkBands(pairs.get(6).number);
+        stat.setUsaBands(pairs.get(7).number);
+
+        return stat;
+    }
+
     public StatisticData getStatitstics(List<Member> allMembers){
         StatisticData statistic;
-        List<MembersOfSpecifiedCountry> numberOfMembersByCountry;
+        /*List<MembersOfSpecifiedCountry> numberOfMembersByCountry;
 
         numberOfMembersByCountry = numberOfMembersByCountry(allMembers);
         int registeredMembers = allMembers.size();
@@ -22,6 +53,7 @@ public class Statistics {
         int sweden = numberOfMembersByCountry.get(5).getNumberFromThisCountry();
         int uk = numberOfMembersByCountry.get(6).getNumberFromThisCountry();
         int usa = numberOfMembersByCountry.get(7).getNumberFromThisCountry();
+         */
         return null;
     }
 
