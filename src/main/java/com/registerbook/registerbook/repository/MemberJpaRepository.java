@@ -1,8 +1,6 @@
 package com.registerbook.registerbook.repository;
 
 import com.registerbook.registerbook.model.Member;
-import com.registerbook.registerbook.service.statistics.MembersOfSpecifiedCountry;
-import com.registerbook.registerbook.service.statistics.MembersPerCountry;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface MemberJpaRepository extends JpaRepository<Member,Long> {
+
     List<Member> findAll();
 
     @Query(value = "select s from Member s where s.country = :country")
@@ -29,9 +28,18 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
     @Query(value = "SELECT COUNT(DISTINCT band) FROM members", nativeQuery = true)
     int numberOfRegisteredBands();
 
-    //@Query("SELECT m.COUNTRY,COUNT(m.COUNTRY) FROM Members AS m GROUP BY m.COUNTRY ORDER BY m.COUNTRY")
-    //@Query(value = "SELECT m.COUNTRY,COUNT(m.COUNTRY) FROM Members AS m GROUP BY m.COUNTRY ORDER BY m.COUNTRY")
-    //List<Object[]> countByCountryObjects();
+    @Query(value = "select s from Member s where s.band = :sband")
+    List<Member> getBandMembers(@Param("sband") String sband);
 
-    //List<Object[]> countByCountryObjects2();
+    @Query(value = "select s from Member s where s.name = :memberName")
+    List<Member> getMemberByName(@Param("memberName") String memberName);
+
+    @Query(value = "SELECT s FROM Member s WHERE s.address = :mCity")
+    List<Member> getMemberByCity(@Param("mCity") String mCity);
+
+    @Query(value = "SELECT s FROM Member s WHERE s.instrument = :mInstrument")
+    List<Member> getMemberByInstrument(@Param("mInstrument") String mInstrument);
+
+    @Query(value = "SELECT s FROM Member s WHERE s.country = :mCountry ")
+    List<Member> getMemberByCountry(@Param("mCountry") String mCountry);
 }

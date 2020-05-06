@@ -27,12 +27,14 @@ public class MemberService {
 
     // Get a full musicband
     public List<Member> getABand(String bandName) {
-        List<Member> allMember = getAllMember();
+        /*List<Member> allMember = getAllMember();
         List<Member> bandMembers = new ArrayList<>();
         for (Member m : allMember) {
             if (m.getBand().equals(bandName)) bandMembers.add(m);
         }
-        return bandMembers;
+        return bandMembers;*/
+        System.out.println("Benne vagyok");
+        return memberJpaRepository.getBandMembers(bandName);
     }
 
     // Get a list of members by name
@@ -101,15 +103,15 @@ public class MemberService {
         String property = content[0];
         String value = content[1];
         switch (property){
-            case "Name" :  result = getMembersByName(value);
+            case "Name" :  result = memberJpaRepository.getMemberByName(value);
                 break;
-            case "Band" : result = getMembersByBand(value);
+            case "Band" : result = memberJpaRepository.getBandMembers(value);;
                 break;
-            case "Instrument" : result = getMembersByInstrument(value);
+            case "Instrument" : result = memberJpaRepository.getMemberByInstrument(value);
                 break;
-            case "Country" : result = getMembersByCountry(value);
+            case "Country" : result = memberJpaRepository.getMemberByCountry(value);
                 break;
-            case "City" : result = getMembersByCity(value);
+            case "City" : result = memberJpaRepository.getMemberByCity(value);
                 break;
         }
         return result;
