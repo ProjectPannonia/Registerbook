@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 import static org.mockito.Mockito.when;
 
 public class TestRepositoryFunctions {
@@ -65,8 +66,17 @@ public class TestRepositoryFunctions {
     @Test
     public void test(){
         when(mjr.findAll()).thenReturn(result);
+
+
         int expected = 4;
         int result = mjr.findAll().size();
         assertEquals(expected,result);
+    }
+    @Test
+    public void testFindById(){
+        when(mjr.findMemberById(new Long(1))).thenReturn(result.get(0));
+        String expectedName = "Letenyei Ádám";
+        String resultName = mjr.findMemberById(new Long(1)).getName();
+        assertEquals(expectedName,resultName);
     }
 }
