@@ -23,8 +23,8 @@ public class MemberService {
         memberJpaRepository.save(member);
     }
 */
-    public Member saveNewMember(Member member){
-        return memberJpaRepository.save(member);
+    public void saveNewMember(Member member){
+        memberJpaRepository.save(member);
     }
     public Member findMemberById(Long id) {
         return memberJpaRepository.findMemberById(id);
