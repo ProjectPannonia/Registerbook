@@ -20,9 +20,10 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ServiceTest {
-    Member testMember;
+    Member testMember1;
     Member testMember2;
-    ArrayList<Member> testAllMember;
+
+    ArrayList<Member> testMemberList;
 
     @Mock
     MemberJpaRepository memberJpaRepository;
@@ -32,16 +33,16 @@ public class ServiceTest {
 
     @Before
     public void init(){
-        testAllMember = new ArrayList<Member>();
-        testMember = new Member();
-        testMember.setName("Letenyei Ádám");
-        testMember.setId(new Long(1));
-        testMember.setInstrument("Guitar");
-        testMember.setCountry("Hungary");
-        testMember.setBand("Amon Amarth");
-        testMember.setEmail("ld@gm.hu");
-        testMember.setYearOfBirth(1989);
-        testMember.setAddress("BSZH");
+        testMemberList = new ArrayList<Member>();
+        testMember1 = new Member();
+        testMember1.setName("Letenyei Ádám");
+        testMember1.setId(new Long(1));
+        testMember1.setInstrument("Guitar");
+        testMember1.setCountry("Hungary");
+        testMember1.setBand("Amon Amarth");
+        testMember1.setEmail("ld@gm.hu");
+        testMember1.setYearOfBirth(1989);
+        testMember1.setAddress("BSZH");
         testMember2 = new Member();
         testMember2.setName("Józsi");
         testMember2.setId(new Long(2));
@@ -51,17 +52,17 @@ public class ServiceTest {
         testMember2.setEmail("sa@gm.hu");
         testMember2.setYearOfBirth(1979);
         testMember2.setAddress("Malmö");
-        testAllMember.add(testMember);
-        testAllMember.add(testMember2);
+        testMemberList.add(testMember1);
+        testMemberList.add(testMember2);
     }
 
     @Test
     public void findAllTest(){
-        when(memberJpaRepository.findAll()).thenReturn(testAllMember);
+        when(memberJpaRepository.findAll()).thenReturn(testMemberList);
         List<Member> resultAllMember = memberService.getAllMember();
 
-        assertEquals(testAllMember,resultAllMember);
-        Member firstTestName = testAllMember.get(0);
+        assertEquals(testMemberList,resultAllMember);
+        Member firstTestName = testMemberList.get(0);
         Member firstResultTestNAme = resultAllMember.get(0);
         assertThat(firstTestName.getName()).isSameAs(firstResultTestNAme.getName());
     }

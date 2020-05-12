@@ -2,7 +2,8 @@ package com.registerbook.registerbook.service;
 
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
-import com.registerbook.registerbook.service.statistics.*;
+import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.StatisticData;
+import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -37,9 +38,9 @@ public class MemberService {
     public Member checkMemberWithThisNameAlreadyInDatabase(String name) {
         return memberJpaRepository.findMemberByName(name);
     }
-    // Specified search(content[0] = property, content[1] = searchedText)
-    public List<Member> searchBySpecifiedProperty(String[] content) {
-        return specifier(content);
+    // Specified search(propertyAndValue[0] = property, propertyAndValue[1] = searchedText)
+    public List<Member> searchBySpecifiedProperty(String[] propertyAndValue) {
+        return specifier(propertyAndValue);
     }
     // Method to get statistics
     public StatisticData getStatistics(){

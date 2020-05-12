@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.service.statistics;
+package com.registerbook.registerbook.service.statistics.specialObjectsForStatistics;
 
 public class MembersPerCountry {
     String country;

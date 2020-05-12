@@ -3,7 +3,7 @@ package com.registerbook.registerbook.controller;
 import com.registerbook.registerbook.errorHandler.CustomErrorType;
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.service.MemberService;
-import com.registerbook.registerbook.service.statistics.StatisticData;
+import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.StatisticData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,8 +96,8 @@ public class MainController {
 
     // GET members by specified property
     @PostMapping(value = "/searchproperty", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Member>> getSpecifiedMembers(@RequestBody final String[] content){
-        List<Member> specifiedMembers = memberMemberService.searchBySpecifiedProperty(content);
+    public ResponseEntity<List<Member>> getSpecifiedMembers(@RequestBody final String[] propertyAndValue){
+        List<Member> specifiedMembers = memberMemberService.searchBySpecifiedProperty(propertyAndValue);
         return new ResponseEntity<List<Member>>(specifiedMembers,HttpStatus.OK);
     }
     //GET statistics
