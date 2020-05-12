@@ -19,11 +19,7 @@ public class MemberService {
     public List<Member> getAllMember() {
         return memberJpaRepository.findAll();
     }
-/*
-    public void saveNewMember(Member member) {
-        memberJpaRepository.save(member);
-    }
-*/
+
     public void saveNewMember(Member member){
         memberJpaRepository.save(member);
     }
@@ -38,10 +34,11 @@ public class MemberService {
     public Member checkMemberWithThisNameAlreadyInDatabase(String name) {
         return memberJpaRepository.findMemberByName(name);
     }
-    // Specified search(propertyAndValue[0] = property, propertyAndValue[1] = searchedText)
+    // Specified search(propertyAndValue[0] = property, propertyAndValue[1] = searchedValue)
     public List<Member> searchBySpecifiedProperty(String[] propertyAndValue) {
         return specifier(propertyAndValue);
     }
+
     // Method to get statistics
     public StatisticData getStatistics(){
         int numberOfRegisteredMembers = memberJpaRepository.numberOfMembers();
