@@ -21,6 +21,8 @@ public class MemberService {
     }
 
     public void saveNewMember(Member member){
+
+
         memberJpaRepository.save(member);
     }
     public Member findMemberById(Long id) {

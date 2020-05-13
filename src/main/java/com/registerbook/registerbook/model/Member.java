@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "MEMBERS")
@@ -42,6 +43,7 @@ public class Member {
     @Column(name = "EMAIL")
     private String email;
 
+    @NotNull
     @Column(name = "YEAROFBIRTH")
     private int yearOfBirth;
 
