@@ -2,6 +2,7 @@ package com.registerbook.registerbook.service;
 
 import com.registerbook.registerbook.model.CountryEntity;
 import com.registerbook.registerbook.model.Member;
+import com.registerbook.registerbook.repository.CountryJpaRepository;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.StatisticData;
 import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.Statistics;
@@ -16,7 +17,8 @@ public class MemberServiceImplementation implements MemberService{
 
     @Autowired
     MemberJpaRepository memberJpaRepository;
-
+    @Autowired
+    CountryJpaRepository countryJpaRepository;
 
     @Override
     public List<Member> getAllMember() {
@@ -71,9 +73,13 @@ public class MemberServiceImplementation implements MemberService{
             String countryName = locale.getDisplayCountry();
             if (!loadCountriesToServer.contains(countryName)){
                 loadCountriesToServer.add(new CountryEntity(countryName));
+                countryJpaRepository.save(new CountryEntity(countryName));
             }
         }
-        return loadCountriesToServer;
+
+        //return countryJpaRepository.saveAndFlush(loadCountriesToServer);
+
+        return countryJpaRepository.findAll();
     }
 
     /* Private assistant methods */

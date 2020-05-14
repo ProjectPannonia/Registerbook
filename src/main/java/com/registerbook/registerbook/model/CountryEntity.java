@@ -1,5 +1,7 @@
 package com.registerbook.registerbook.model;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,7 +16,9 @@ public class CountryEntity {
     @Column(name = "COUNTRYNAME")
     private String countryName;
 
+    public CountryEntity(){
 
+    }
     public CountryEntity(String countryName) {
         this.countryName = countryName;
     }
