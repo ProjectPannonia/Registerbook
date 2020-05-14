@@ -5,7 +5,6 @@ import com.registerbook.registerbook.service.statistics.specialObjectsForStatist
 import java.util.List;
 
 public interface MemberService {
-
     List<Member> getAllMember();
     void saveNewMember(Member member);
     Member findMemberById(Long id);
@@ -13,5 +12,4 @@ public interface MemberService {
     Member checkMemberWithThisNameAlreadyInDatabase(String name);
     List<Member> searchBySpecifiedProperty(String[] propertyAndValue);
     StatisticData getStatistics();
-
 }

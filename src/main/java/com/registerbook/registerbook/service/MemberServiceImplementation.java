@@ -14,31 +14,40 @@ public class MemberServiceImplementation implements MemberService{
 
     @Autowired
     MemberJpaRepository memberJpaRepository;
-    
+
+
+    @Override
     public List<Member> getAllMember() {
         return memberJpaRepository.findAll();
     }
 
+    @Override
     public void saveNewMember(Member member){
         memberJpaRepository.save(member);
     }
+
+    @Override
     public Member findMemberById(Long id) {
         return memberJpaRepository.findMemberById(id);
     }
 
+    @Override
     public void deleteMemberById(Long id) {
         memberJpaRepository.deleteById(id);
     }
 
+    @Override
     public Member checkMemberWithThisNameAlreadyInDatabase(String name) {
         return memberJpaRepository.findMemberByName(name);
     }
     // Specified search(propertyAndValue[0] = property, propertyAndValue[1] = searchedValue)
+    @Override
     public List<Member> searchBySpecifiedProperty(String[] propertyAndValue) {
         return specifier(propertyAndValue);
     }
 
     // Method to get statistics
+    @Override
     public StatisticData getStatistics(){
         int numberOfRegisteredMembers = memberJpaRepository.numberOfMembers();
         int numberOfRegisteredBands = memberJpaRepository.numberOfRegisteredBands();
