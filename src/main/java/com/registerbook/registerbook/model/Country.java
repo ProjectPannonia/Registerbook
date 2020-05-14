@@ -3,8 +3,8 @@ package com.registerbook.registerbook.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "RegisteredCountries")
-public class RegisteredCountries {
+@Table(name = "COUNTRY")
+public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

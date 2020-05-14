@@ -1,5 +1,6 @@
 package com.registerbook.registerbook.service;
 
+import com.registerbook.registerbook.model.Country;
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.StatisticData;
@@ -57,6 +58,11 @@ public class MemberServiceImplementation implements MemberService{
         StatisticData result = statistics.getAdvancedStatistics(numberOfRegisteredMembers,numberOfRegisteredBands,registeredCountries,memberPerCountry);
 
         return result;
+    }
+
+    @Override
+    public List<Country> loadCountriesToTheServer() {
+        return null;
     }
 
     /* Private assistant methods */
