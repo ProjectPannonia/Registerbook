@@ -2,7 +2,7 @@ package com.registerbook.registerbook;
 
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
-import com.registerbook.registerbook.service.MemberService;
+import com.registerbook.registerbook.service.MemberServiceImplementation;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +29,7 @@ public class ServiceTest {
     MemberJpaRepository memberJpaRepository;
 
     @InjectMocks
-    MemberService memberService;
+    MemberServiceImplementation memberServiceImplementation;
 
     @Before
     public void init(){
@@ -59,7 +59,7 @@ public class ServiceTest {
     @Test
     public void findAllTest(){
         when(memberJpaRepository.findAll()).thenReturn(testMemberList);
-        List<Member> resultAllMember = memberService.getAllMember();
+        List<Member> resultAllMember = memberServiceImplementation.getAllMember();
 
         assertEquals(testMemberList,resultAllMember);
         Member firstTestName = testMemberList.get(0);

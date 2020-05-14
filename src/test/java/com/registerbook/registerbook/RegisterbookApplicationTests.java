@@ -1,13 +1,7 @@
 package com.registerbook.registerbook;
 
-import com.registerbook.registerbook.model.Member;
-import com.registerbook.registerbook.service.MemberService;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,9 +15,9 @@ class RegisterbookApplicationTests {
 	}
 	/*@Test
 	public void testNameSeparations(){
-		MemberService memberService = new MemberService();
+		MemberServiceImplementation memberServiceImplementation = new MemberServiceImplementation();
 		String inputName = "Letenyei Adam";
-		String[] separated = memberService.separateName(inputName);
+		String[] separated = memberServiceImplementation.separateName(inputName);
 		String f = separated[0];
 		String l = separated[1];
 		System.out.println("Visszakapott vezetéknév: " + f);
@@ -38,7 +32,7 @@ class RegisterbookApplicationTests {
 	/*@Test
 	public void testGetMember(){
 		Member test = new Member();
-		MemberService ms = new MemberService();
+		MemberServiceImplementation ms = new MemberServiceImplementation();
 		test.setId(new Long(1));
 		test.setFirstName("Letenyei");
 		test.setLastName("Adam");

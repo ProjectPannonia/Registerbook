@@ -2,7 +2,7 @@ package com.registerbook.registerbook.controller;
 
 import com.registerbook.registerbook.errorHandler.CustomErrorType;
 import com.registerbook.registerbook.model.Member;
-import com.registerbook.registerbook.service.MemberService;
+import com.registerbook.registerbook.service.MemberServiceImplementation;
 import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.StatisticData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,11 +19,11 @@ import java.util.List;
 public class MainController {
     public static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
-    private MemberService memberMemberService;
+    private MemberServiceImplementation memberMemberServiceImplementation;
 
     @Autowired
-    public void setMemberMemberService(MemberService memberMemberService){
-        this.memberMemberService = memberMemberService;
+    public void setMemberMemberServiceImplementation(MemberServiceImplementation memberMemberServiceImplementation){
+        this.memberMemberServiceImplementation = memberMemberServiceImplementation;
     }
 
     /* BASIC REST FUNCTIONS */
@@ -31,7 +31,7 @@ public class MainController {
     // GET all basic musicians
     @GetMapping("/")
     public ResponseEntity<List<Member>> listAllMember(){
-        List<Member> allMembers = memberMemberService.getAllMember();
+        List<Member> allMembers = memberMemberServiceImplementation.getAllMember();
         if(allMembers.isEmpty()){
             return new ResponseEntity<List<Member>>(HttpStatus.NO_CONTENT);
         }
@@ -42,10 +42,10 @@ public class MainController {
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Member> createMember(@Valid @RequestBody final Member member){
         logger.info("Creating member: {}",member);
-        if(memberMemberService.checkMemberWithThisNameAlreadyInDatabase(member.getName()) != null){
+        if(memberMemberServiceImplementation.checkMemberWithThisNameAlreadyInDatabase(member.getName()) != null){
             return new ResponseEntity<Member>(new CustomErrorType("Unable to create new member. A member with name: " + member.getName()+ " already exist."),HttpStatus.CONFLICT);
         }
-        memberMemberService.saveNewMember(member);
+        memberMemberServiceImplementation.saveNewMember(member);
 
         return new ResponseEntity<Member>(member,HttpStatus.CREATED);
     }
@@ -53,7 +53,7 @@ public class MainController {
     // GET a musician by id
     @GetMapping("/{id}")
     public ResponseEntity<Member> getUserById(@PathVariable("id") final Long id){
-        Member member = memberMemberService.findMemberById(id);
+        Member member = memberMemberServiceImplementation.findMemberById(id);
         if(member == null){
             return new ResponseEntity<Member>(new CustomErrorType("Member with id " + id + " not found"),HttpStatus.NOT_FOUND);
         }
@@ -64,7 +64,7 @@ public class MainController {
     // PUT first search a musician by id, then update properties
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Member> updateMember(@PathVariable final Long id, @RequestBody Member member){
-        Member currentMember = memberMemberService.findMemberById(id);
+        Member currentMember = memberMemberServiceImplementation.findMemberById(id);
         if(currentMember == null){
             return new ResponseEntity<Member>(new CustomErrorType("Unable to update. Member with id " + id + " not found."),HttpStatus.NOT_FOUND);
         }
@@ -81,7 +81,7 @@ public class MainController {
     // DELETE  musician by id
     @DeleteMapping("/{id}")
     public ResponseEntity<Member> deleteMember(@PathVariable("id") final Long id){
-        memberMemberService.deleteMemberById(id);
+        memberMemberServiceImplementation.deleteMemberById(id);
         return new ResponseEntity<Member>(HttpStatus.NO_CONTENT);
     }
 
@@ -89,7 +89,7 @@ public class MainController {
 
     /*@GetMapping("/searchname/{name}")
     public ResponseEntity<List<Member>> getMemberByName(@PathVariable("name") final String name){
-        List<Member> members = memberMemberService.getMembersByName(name);
+        List<Member> members = memberMemberServiceImplementation.getMembersByName(name);
         return new ResponseEntity<List<Member>>(members,HttpStatus.OK);
     }
     */
@@ -97,13 +97,13 @@ public class MainController {
     // GET members by specified property
     @PostMapping(value = "/searchproperty", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Member>> getSpecifiedMembers(@RequestBody final String[] propertyAndValue){
-        List<Member> specifiedMembers = memberMemberService.searchBySpecifiedProperty(propertyAndValue);
+        List<Member> specifiedMembers = memberMemberServiceImplementation.searchBySpecifiedProperty(propertyAndValue);
         return new ResponseEntity<List<Member>>(specifiedMembers,HttpStatus.OK);
     }
     //GET statistics
     @GetMapping("/statistics")
     public ResponseEntity<StatisticData> getStatistics(){
-        StatisticData resultStatistics = memberMemberService.getStatistics();
+        StatisticData resultStatistics = memberMemberServiceImplementation.getStatistics();
         return new ResponseEntity<StatisticData>(resultStatistics,HttpStatus.OK);
     }
 }
