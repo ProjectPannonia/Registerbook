@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.service;
 
-import com.registerbook.registerbook.model.Country;
+import com.registerbook.registerbook.model.CountryEntity;
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.StatisticData;
 import java.util.List;
@@ -13,5 +13,5 @@ public interface MemberService {
     Member checkMemberWithThisNameAlreadyInDatabase(String name);
     List<Member> searchBySpecifiedProperty(String[] propertyAndValue);
     StatisticData getStatistics();
-    List<Country> loadCountriesToTheServer();
+    List<CountryEntity> loadCountriesToTheServer();
 }

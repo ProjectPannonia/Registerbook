@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.service;
 
-import com.registerbook.registerbook.model.Country;
+import com.registerbook.registerbook.model.CountryEntity;
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.StatisticData;
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class MemberServiceImplementation implements MemberService{
@@ -61,8 +62,18 @@ public class MemberServiceImplementation implements MemberService{
     }
 
     @Override
-    public List<Country> loadCountriesToTheServer() {
-        return null;
+    public List<CountryEntity> loadCountriesToTheServer() {
+        List<CountryEntity> loadCountriesToServer= new ArrayList<>();
+        String[] isoCountries = Locale.getISOCountries();
+
+        for (String country : isoCountries){
+            Locale locale = new Locale("en",country);
+            String countryName = locale.getDisplayCountry();
+            if (!loadCountriesToServer.contains(countryName)){
+                loadCountriesToServer.add(new CountryEntity(countryName));
+            }
+        }
+        return loadCountriesToServer;
     }
 
     /* Private assistant methods */
@@ -77,7 +88,7 @@ public class MemberServiceImplementation implements MemberService{
                 break;
             case "Instrument" : result = memberJpaRepository.getMemberByInstrument(value);
                 break;
-            case "Country" : result = memberJpaRepository.getMemberByCountry(value);
+            case "CountryEntity" : result = memberJpaRepository.getMemberByCountry(value);
                 break;
             case "City" : result = memberJpaRepository.getMemberByCity(value);
                 break;

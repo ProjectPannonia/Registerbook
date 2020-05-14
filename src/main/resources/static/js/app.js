@@ -19,6 +19,9 @@ app.config(function($routeProvider){
     }).when('/statistics',{
         templateUrl : 'template/teststat.html',
         controller : 'statistics'
+    }).when('/adminGuiPage',{
+        templateUrl : 'template/adminGui.html',
+        controller : 'admingui'
     }).otherwise({
        redirectTo : '/home',
        templateUrl : '/template/home.html'

@@ -1,6 +1,7 @@
 package com.registerbook.registerbook.controller;
 
 import com.registerbook.registerbook.errorHandler.CustomErrorType;
+import com.registerbook.registerbook.model.CountryEntity;
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.service.MemberServiceImplementation;
 import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.StatisticData;
@@ -85,15 +86,6 @@ public class MainController {
         return new ResponseEntity<Member>(HttpStatus.NO_CONTENT);
     }
 
-    // Get a member by name
-
-    /*@GetMapping("/searchname/{name}")
-    public ResponseEntity<List<Member>> getMemberByName(@PathVariable("name") final String name){
-        List<Member> members = memberMemberServiceImplementation.getMembersByName(name);
-        return new ResponseEntity<List<Member>>(members,HttpStatus.OK);
-    }
-    */
-
     // GET members by specified property
     @PostMapping(value = "/searchproperty", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Member>> getSpecifiedMembers(@RequestBody final String[] propertyAndValue){
@@ -105,5 +97,11 @@ public class MainController {
     public ResponseEntity<StatisticData> getStatistics(){
         StatisticData resultStatistics = memberMemberServiceImplementation.getStatistics();
         return new ResponseEntity<StatisticData>(resultStatistics,HttpStatus.OK);
+    }
+
+    @GetMapping("/adminGuiRest")
+    public ResponseEntity<List<CountryEntity>> loadCountriesToTheServer(){
+        List<CountryEntity> result = memberMemberServiceImplementation.loadCountriesToTheServer();
+        return new ResponseEntity<List<CountryEntity>>(result,HttpStatus.OK);
     }
 }

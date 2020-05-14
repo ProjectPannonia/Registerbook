@@ -1,0 +1,23 @@
+<div class = "container">
+    <div class = "panel panel-default">
+        <div class = "alert alert-info">
+            <span class="lead">All countries</span>
+        </div>
+        <div class="panel-body">
+            <div class = "table-responsive">
+                <table class = "table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Country</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat = "country in allCountries">
+                        <td>{{ country.countryName }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
