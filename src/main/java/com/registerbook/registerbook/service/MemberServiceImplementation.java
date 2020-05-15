@@ -65,21 +65,27 @@ public class MemberServiceImplementation implements MemberService{
 
     @Override
     public List<CountryEntity> loadCountriesToTheServer() {
-        List<CountryEntity> loadCountriesToServer= new ArrayList<>();
-        String[] isoCountries = Locale.getISOCountries();
 
-        for (String country : isoCountries){
-            Locale locale = new Locale("en",country);
-            String countryName = locale.getDisplayCountry();
-            if (!loadCountriesToServer.contains(countryName)){
-                loadCountriesToServer.add(new CountryEntity(countryName));
-                countryJpaRepository.save(new CountryEntity(countryName));
+        List<CountryEntity> countriesAlreadyOnServer = countryJpaRepository.findAll();
+
+        if (countriesAlreadyOnServer.isEmpty()){
+            List<CountryEntity> loadCountriesToServer= new ArrayList<>();
+            String[] isoCountries = Locale.getISOCountries();
+            for (String country : isoCountries){
+                Locale locale = new Locale("en",country);
+                String countryName = locale.getDisplayCountry();
+                if (!loadCountriesToServer.contains(countryName)){
+                    loadCountriesToServer.add(new CountryEntity(countryName));
+                    countryJpaRepository.save(new CountryEntity(countryName));
+                }
             }
         }
-
-        //return countryJpaRepository.saveAndFlush(loadCountriesToServer);
-
         return countryJpaRepository.findAll();
+    }
+
+    @Override
+    public void deleteAllCountries() {
+        countryJpaRepository.deleteAll();
     }
 
     /* Private assistant methods */

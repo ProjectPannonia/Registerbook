@@ -104,4 +104,8 @@ public class MainController {
         List<CountryEntity> result = memberMemberServiceImplementation.loadCountriesToTheServer();
         return new ResponseEntity<List<CountryEntity>>(result,HttpStatus.OK);
     }
+    @GetMapping("/deleteAllCountries")
+    public void deleteRegisteredCountries(){
+        memberMemberServiceImplementation.deleteAllCountries();
+    }
 }

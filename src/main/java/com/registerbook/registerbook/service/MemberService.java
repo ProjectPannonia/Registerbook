@@ -14,4 +14,5 @@ public interface MemberService {
     List<Member> searchBySpecifiedProperty(String[] propertyAndValue);
     StatisticData getStatistics();
     List<CountryEntity> loadCountriesToTheServer();
+    void deleteAllCountries();
 }
