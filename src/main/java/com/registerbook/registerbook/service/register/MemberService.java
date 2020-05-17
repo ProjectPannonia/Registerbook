@@ -1,6 +1,5 @@
 package com.registerbook.registerbook.service.register;
 
-import com.registerbook.registerbook.model.CountryEntity;
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.StatisticData;
 import java.util.List;

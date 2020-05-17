@@ -1,6 +1,5 @@
 package com.registerbook.registerbook.model;
 
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 
