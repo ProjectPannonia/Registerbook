@@ -3,9 +3,9 @@ app.controller('newmemberregistration',function($scope,$http,$location,$route){
     $scope.countrie = ['Germany','Sweden','Hungary','UK','USA','Norway','Finnland','Canada'];
         $http({
                 method : 'GET',
-                url : 'http://localhost:8080/register/member/adminGuiRest'
+                url : 'http://localhost:8080/register/member/getCountries'
         }).then(function(response){
-            $scope.countries = response.data();
+            $scope.countries = response.data;
         });
     $scope.submitMemberForm = function(){
             $http({

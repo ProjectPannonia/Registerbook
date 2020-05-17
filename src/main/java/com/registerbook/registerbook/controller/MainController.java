@@ -5,7 +5,7 @@ import com.registerbook.registerbook.model.CountryEntity;
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.service.countries.CountryServiceImplementation;
 import com.registerbook.registerbook.service.register.MemberServiceImplementation;
-import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.StatisticData;
+import com.registerbook.registerbook.service.register.specialObjectsForStatistics.StatisticData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,9 +110,9 @@ public class MainController {
         return new ResponseEntity<List<CountryEntity>>(result, HttpStatus.OK);
     }
     @GetMapping("/getCountries")
-    public ResponseEntity<List<CountryEntity>> getListOfCountries(){
-        List<CountryEntity> result = countryServiceImplementation.getListOfCountries();
-        return new ResponseEntity<List<CountryEntity>>(result,HttpStatus.OK);
+    public ResponseEntity<String[]> getListOfCountries(){
+        String[] result = countryServiceImplementation.getListOfCountries();
+        return new ResponseEntity<String[]>(result,HttpStatus.OK);
     }
     @DeleteMapping("/deleteAllCountries")
     public void deleteRegisteredCountries() {

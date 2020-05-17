@@ -2,8 +2,8 @@ package com.registerbook.registerbook.service.register;
 
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
-import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.StatisticData;
-import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.Statistics;
+import com.registerbook.registerbook.service.register.specialObjectsForStatistics.StatisticData;
+import com.registerbook.registerbook.service.register.specialObjectsForStatistics.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

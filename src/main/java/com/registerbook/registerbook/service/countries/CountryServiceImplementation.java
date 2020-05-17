@@ -5,6 +5,7 @@ import com.registerbook.registerbook.repository.CountryJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,7 +43,14 @@ public class CountryServiceImplementation implements CountryService {
     }
 
     @Override
-    public List<CountryEntity> getListOfCountries() {
-        return countryJpaRepository.getAllCountries();
+    public String[] getListOfCountries() {
+        List<CountryEntity> allCountries = countryJpaRepository.getAllCountries();
+        int lengthOfArray = allCountries.size();
+        String[] countries = new String[lengthOfArray];
+        for (int i = 0; i < countries.length;i++){
+            countries[i] = allCountries.get(i).getCountryName();
+        }
+        Arrays.sort(countries);
+        return countries;
     }
 }

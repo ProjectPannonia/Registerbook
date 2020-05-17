@@ -8,5 +8,5 @@ public interface CountryService {
     List<CountryEntity> loadCountriesToTheServer();
     void deleteAllCountries();
     void dropTable();
-    List<CountryEntity> getListOfCountries();
+    String[] getListOfCountries();
 }

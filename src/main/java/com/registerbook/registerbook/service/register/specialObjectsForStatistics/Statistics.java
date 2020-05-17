@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.service.statistics.specialObjectsForStatistics;
+package com.registerbook.registerbook.service.register.specialObjectsForStatistics;
 
 import com.registerbook.registerbook.model.Member;
 import java.util.ArrayList;
