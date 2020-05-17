@@ -1,24 +1,20 @@
-package com.registerbook.registerbook.service;
+package com.registerbook.registerbook.service.register;
 
-import com.registerbook.registerbook.model.CountryEntity;
 import com.registerbook.registerbook.model.Member;
-import com.registerbook.registerbook.repository.CountryJpaRepository;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.StatisticData;
 import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 @Service
-public class MemberServiceImplementation implements MemberService{
+public class MemberServiceImplementation implements MemberService {
 
     @Autowired
     MemberJpaRepository memberJpaRepository;
-    @Autowired
-    CountryJpaRepository countryJpaRepository;
 
     @Override
     public List<Member> getAllMember() {
@@ -63,30 +59,7 @@ public class MemberServiceImplementation implements MemberService{
         return result;
     }
 
-    @Override
-    public List<CountryEntity> loadCountriesToTheServer() {
 
-        List<CountryEntity> countriesAlreadyOnServer = countryJpaRepository.findAll();
-
-        if (countriesAlreadyOnServer.isEmpty()){
-            List<CountryEntity> loadCountriesToServer= new ArrayList<>();
-            String[] isoCountries = Locale.getISOCountries();
-            for (String country : isoCountries){
-                Locale locale = new Locale("en",country);
-                String countryName = locale.getDisplayCountry();
-                if (!loadCountriesToServer.contains(countryName)){
-                    loadCountriesToServer.add(new CountryEntity(countryName));
-                    countryJpaRepository.save(new CountryEntity(countryName));
-                }
-            }
-        }
-        return countryJpaRepository.findAll();
-    }
-
-    @Override
-    public void deleteAllCountries() {
-        countryJpaRepository.deleteAll();
-    }
 
     /* Private assistant methods */
     private List<Member> specifier(String[] content){

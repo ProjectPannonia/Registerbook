@@ -3,7 +3,8 @@ package com.registerbook.registerbook.controller;
 import com.registerbook.registerbook.errorHandler.CustomErrorType;
 import com.registerbook.registerbook.model.CountryEntity;
 import com.registerbook.registerbook.model.Member;
-import com.registerbook.registerbook.service.MemberServiceImplementation;
+import com.registerbook.registerbook.service.countries.CountryServiceImplementation;
+import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import com.registerbook.registerbook.service.statistics.specialObjectsForStatistics.StatisticData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,56 +19,59 @@ import java.util.List;
 @RestController
 @RequestMapping("/register/member")
 public class MainController {
-    public static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
+    public static final Logger logger = LoggerFactory.getLogger(MainController.class);
     private MemberServiceImplementation memberMemberServiceImplementation;
+    private CountryServiceImplementation countryServiceImplementation;
 
     @Autowired
-    public void setMemberMemberServiceImplementation(MemberServiceImplementation memberMemberServiceImplementation){
+    public void setMemberMemberServiceImplementation(MemberServiceImplementation memberMemberServiceImplementation) {
         this.memberMemberServiceImplementation = memberMemberServiceImplementation;
     }
-
-    /* BASIC REST FUNCTIONS */
-
-    // GET all basic musicians
-    @GetMapping("/")
-    public ResponseEntity<List<Member>> listAllMember(){
-        List<Member> allMembers = memberMemberServiceImplementation.getAllMember();
-        if(allMembers.isEmpty()){
-            return new ResponseEntity<List<Member>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<List<Member>>(allMembers,HttpStatus.OK);
+    @Autowired
+    public void setCountryServiceImplementation(CountryServiceImplementation countryServiceImplementation){
+        this.countryServiceImplementation = countryServiceImplementation;
     }
 
-    // POST a new musician to the database
+    /* GET all basic musicians */
+    @GetMapping("/")
+    public ResponseEntity<List<Member>> listAllMember() {
+        List<Member> allMembers = memberMemberServiceImplementation.getAllMember();
+        if (allMembers.isEmpty()) {
+            return new ResponseEntity<List<Member>>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<Member>>(allMembers, HttpStatus.OK);
+    }
+
+    /* POST a new musician to the database */
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Member> createMember(@Valid @RequestBody final Member member){
-        logger.info("Creating member: {}",member);
-        if(memberMemberServiceImplementation.checkMemberWithThisNameAlreadyInDatabase(member.getName()) != null){
-            return new ResponseEntity<Member>(new CustomErrorType("Unable to create new member. A member with name: " + member.getName()+ " already exist."),HttpStatus.CONFLICT);
+    public ResponseEntity<Member> createMember(@Valid @RequestBody final Member member) {
+        logger.info("Creating member: {}", member);
+        if (memberMemberServiceImplementation.checkMemberWithThisNameAlreadyInDatabase(member.getName()) != null) {
+            return new ResponseEntity<Member>(new CustomErrorType("Unable to create new member. A member with name: " + member.getName() + " already exist."), HttpStatus.CONFLICT);
         }
         memberMemberServiceImplementation.saveNewMember(member);
 
-        return new ResponseEntity<Member>(member,HttpStatus.CREATED);
+        return new ResponseEntity<Member>(member, HttpStatus.CREATED);
     }
 
-    // GET a musician by id
+    /* GET a musician by id */
     @GetMapping("/{id}")
-    public ResponseEntity<Member> getUserById(@PathVariable("id") final Long id){
+    public ResponseEntity<Member> getUserById(@PathVariable("id") final Long id) {
         Member member = memberMemberServiceImplementation.findMemberById(id);
-        if(member == null){
-            return new ResponseEntity<Member>(new CustomErrorType("Member with id " + id + " not found"),HttpStatus.NOT_FOUND);
+        if (member == null) {
+            return new ResponseEntity<Member>(new CustomErrorType("Member with id " + id + " not found"), HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<Member>(member,HttpStatus.OK);
+        return new ResponseEntity<Member>(member, HttpStatus.OK);
     }
 
-    // PUT first search a musician by id, then update properties
+    /* PUT first search a musician by id, then update properties */
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Member> updateMember(@PathVariable final Long id, @RequestBody Member member){
+    public ResponseEntity<Member> updateMember(@PathVariable final Long id, @RequestBody Member member) {
         Member currentMember = memberMemberServiceImplementation.findMemberById(id);
-        if(currentMember == null){
-            return new ResponseEntity<Member>(new CustomErrorType("Unable to update. Member with id " + id + " not found."),HttpStatus.NOT_FOUND);
+        if (currentMember == null) {
+            return new ResponseEntity<Member>(new CustomErrorType("Unable to update. Member with id " + id + " not found."), HttpStatus.NOT_FOUND);
         }
 
         currentMember.setName(member.getName());
@@ -76,36 +80,49 @@ public class MainController {
         currentMember.setEmail(member.getEmail());
         currentMember.setYearOfBirth(member.getYearOfBirth());
 
-        return new ResponseEntity<Member>(currentMember,HttpStatus.OK);
+        return new ResponseEntity<Member>(currentMember, HttpStatus.OK);
     }
 
-    // DELETE  musician by id
+    /* DELETE  musician by id */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Member> deleteMember(@PathVariable("id") final Long id){
+    public ResponseEntity<Member> deleteMember(@PathVariable("id") final Long id) {
         memberMemberServiceImplementation.deleteMemberById(id);
         return new ResponseEntity<Member>(HttpStatus.NO_CONTENT);
     }
 
-    // GET members by specified property
+    /* GET members by specified property */
     @PostMapping(value = "/searchproperty", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Member>> getSpecifiedMembers(@RequestBody final String[] propertyAndValue){
+    public ResponseEntity<List<Member>> getSpecifiedMembers(@RequestBody final String[] propertyAndValue) {
         List<Member> specifiedMembers = memberMemberServiceImplementation.searchBySpecifiedProperty(propertyAndValue);
-        return new ResponseEntity<List<Member>>(specifiedMembers,HttpStatus.OK);
+        return new ResponseEntity<List<Member>>(specifiedMembers, HttpStatus.OK);
     }
-    //GET statistics
+
+    /* GET statistics */
     @GetMapping("/statistics")
-    public ResponseEntity<StatisticData> getStatistics(){
+    public ResponseEntity<StatisticData> getStatistics() {
         StatisticData resultStatistics = memberMemberServiceImplementation.getStatistics();
-        return new ResponseEntity<StatisticData>(resultStatistics,HttpStatus.OK);
+        return new ResponseEntity<StatisticData>(resultStatistics, HttpStatus.OK);
     }
 
     @GetMapping("/adminGuiRest")
-    public ResponseEntity<List<CountryEntity>> loadCountriesToTheServer(){
-        List<CountryEntity> result = memberMemberServiceImplementation.loadCountriesToTheServer();
+    public ResponseEntity<List<CountryEntity>> loadCountriesToTheServer() {
+        List<CountryEntity> result = countryServiceImplementation.loadCountriesToTheServer();
+        return new ResponseEntity<List<CountryEntity>>(result, HttpStatus.OK);
+    }
+    @GetMapping("/getCountries")
+    public ResponseEntity<List<CountryEntity>> getListOfCountries(){
+        List<CountryEntity> result = countryServiceImplementation.getListOfCountries();
         return new ResponseEntity<List<CountryEntity>>(result,HttpStatus.OK);
     }
-    @GetMapping("/deleteAllCountries")
-    public void deleteRegisteredCountries(){
-        memberMemberServiceImplementation.deleteAllCountries();
+    @DeleteMapping("/deleteAllCountries")
+    public void deleteRegisteredCountries() {
+        countryServiceImplementation.deleteAllCountries();
+    }
+    @DeleteMapping("/drop")
+    public void drop(){
+        countryServiceImplementation.dropTable();
     }
 }
+
+
+

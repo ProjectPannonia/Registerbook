@@ -1,8 +1,9 @@
 package com.registerbook.registerbook;
 
 import com.registerbook.registerbook.model.CountryEntity;
-import com.registerbook.registerbook.repository.MemberJpaRepository;
-import com.registerbook.registerbook.service.MemberServiceImplementation;
+import com.registerbook.registerbook.repository.CountryJpaRepository;
+import com.registerbook.registerbook.service.countries.CountryServiceImplementation;
+import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,9 +22,9 @@ public class testLoadCountriesToTheServer {
     String[] isoCountries;
 
     @Mock
-    MemberJpaRepository memberJpaRepository;
+    CountryJpaRepository countryJpaRepository;
     @InjectMocks
-    MemberServiceImplementation memberServiceImplementation;
+    CountryServiceImplementation countryServiceImplementation;
 
     @Before
     public void init(){
@@ -33,7 +34,7 @@ public class testLoadCountriesToTheServer {
 
     @Test
     public void testLoadCountries(){
-        load = memberServiceImplementation.loadCountriesToTheServer();
+        load = countryServiceImplementation.loadCountriesToTheServer();
         for (CountryEntity c : load){
             System.out.println(c.getCountryName());
         }

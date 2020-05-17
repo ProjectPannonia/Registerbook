@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.service;
+package com.registerbook.registerbook.service.register;
 
 import com.registerbook.registerbook.model.CountryEntity;
 import com.registerbook.registerbook.model.Member;
@@ -13,6 +13,4 @@ public interface MemberService {
     Member checkMemberWithThisNameAlreadyInDatabase(String name);
     List<Member> searchBySpecifiedProperty(String[] propertyAndValue);
     StatisticData getStatistics();
-    List<CountryEntity> loadCountriesToTheServer();
-    void deleteAllCountries();
 }

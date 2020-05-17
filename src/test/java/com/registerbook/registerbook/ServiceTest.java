@@ -2,7 +2,7 @@ package com.registerbook.registerbook;
 
 import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
-import com.registerbook.registerbook.service.MemberServiceImplementation;
+import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
