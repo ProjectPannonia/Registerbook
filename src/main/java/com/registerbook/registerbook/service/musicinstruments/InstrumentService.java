@@ -11,4 +11,5 @@ public interface InstrumentService {
 
     List<MusicInstrument> getAllInstruments();
 
+    String isThisInstrumentAlreadiInDatabase(String instrumentName);
 }
