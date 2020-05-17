@@ -1,12 +1,19 @@
 app.controller('newmemberregistration',function($scope,$http,$location,$route){
-    $scope.instrument = ['Guitar','Bass Guitar','Drum','Singer','Violin','Harmonica','Rhythm guitar','Keyboard instruments'];
-    $scope.countrie = ['Germany','Sweden','Hungary','UK','USA','Norway','Finnland','Canada'];
+    $scope.instrumen = ['Guitar','Bass Guitar','Drum','Singer','Violin','Harmonica','Rhythm guitar','Keyboard instruments'];
+
         $http({
                 method : 'GET',
                 url : 'http://localhost:8080/register/member/getCountries'
         }).then(function(response){
             $scope.countries = response.data;
         });
+        $http({
+                method : 'GET',
+                url : 'http://localhost:8080/register/member/getInstruments'
+        }).then(function(response){
+                    $scope.instruments = response.data;
+        });
+
     $scope.submitMemberForm = function(){
             $http({
                     method : 'POST',

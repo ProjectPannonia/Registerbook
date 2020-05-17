@@ -29,7 +29,7 @@ public class CountryServiceImplementation implements CountryService {
                 }
             }
         }
-        return countryJpaRepository.findAll();
+        return countriesAlreadyOnServer;
     }
 
     @Override
