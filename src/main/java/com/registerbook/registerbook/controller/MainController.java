@@ -3,9 +3,7 @@ package com.registerbook.registerbook.controller;
 import com.registerbook.registerbook.errorHandler.CustomErrorType;
 import com.registerbook.registerbook.model.CountryEntity;
 import com.registerbook.registerbook.model.Member;
-import com.registerbook.registerbook.model.MusicInstrument;
 import com.registerbook.registerbook.service.countries.CountryServiceImplementation;
-import com.registerbook.registerbook.service.musicinstruments.InstrumentServiceImplementation;
 import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import com.registerbook.registerbook.service.register.specialObjectsForStatistics.StatisticData;
 import org.slf4j.Logger;
@@ -24,21 +22,14 @@ public class MainController {
 
     public static final Logger logger = LoggerFactory.getLogger(MainController.class);
     private MemberServiceImplementation memberMemberServiceImplementation;
-    private CountryServiceImplementation countryServiceImplementation;
-    private InstrumentServiceImplementation instrumentServiceImplementation;
+
 
     @Autowired
     public void setMemberMemberServiceImplementation(MemberServiceImplementation memberMemberServiceImplementation) {
         this.memberMemberServiceImplementation = memberMemberServiceImplementation;
     }
-    @Autowired
-    public void setCountryServiceImplementation(CountryServiceImplementation countryServiceImplementation){
-        this.countryServiceImplementation = countryServiceImplementation;
-    }
-    @Autowired
-    public void setInstrumentServiceImplementation(InstrumentServiceImplementation instrumentServiceImplementation){
-        this.instrumentServiceImplementation = instrumentServiceImplementation;
-    }
+
+
 
     /* GET all basic musicians */
     @GetMapping("/")
@@ -111,46 +102,9 @@ public class MainController {
         return new ResponseEntity<StatisticData>(resultStatistics, HttpStatus.OK);
     }
 
-    @GetMapping("/adminGuiRest")
-    public ResponseEntity<List<CountryEntity>> loadCountriesToTheServer() {
-        List<CountryEntity> result = countryServiceImplementation.loadCountriesToTheServer();
-        return new ResponseEntity<List<CountryEntity>>(result, HttpStatus.OK);
-    }
 
-    @GetMapping("/getCountries")
-    public ResponseEntity<String[]> getListOfCountries(){
-        String[] result = countryServiceImplementation.getListOfCountries();
-        return new ResponseEntity<String[]>(result,HttpStatus.OK);
-    }
 
-    @DeleteMapping("/deleteAllCountries")
-    public void deleteRegisteredCountries() {
-        countryServiceImplementation.deleteAllCountries();
-    }
-
-    @DeleteMapping("/drop")
-    public void drop(){
-        countryServiceImplementation.dropTable();
-    }
-
-    @GetMapping("/getInstruments")
-    public ResponseEntity<List<MusicInstrument>> getAllIstruments(){
-        List<MusicInstrument> allInstruments =  instrumentServiceImplementation.getAllInstruments();
-        return new ResponseEntity<List<MusicInstrument>>(allInstruments,HttpStatus.OK);
-    }
-
-    @PostMapping(value = "/createNewInstruemnt", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<MusicInstrument> createMember(@Valid @RequestBody final MusicInstrument musicInstrument) {
-        logger.info("Creating member: {}", musicInstrument);
-        if (instrumentServiceImplementation.isThisInstrumentAlreadiInDatabase(musicInstrument.getInstrumentName()) != null) {
-            //return new ResponseEntity<MusicInstrument>(new CustomErrorType("Unable to create new music instrument. A music instrument with name: " + musicInstrument.getInstrumentName() + " already exist."), HttpStatus.CONFLICT);
-        }
-        instrumentServiceImplementation.Save(musicInstrument);
-
-        return new ResponseEntity<MusicInstrument>(musicInstrument, HttpStatus.CREATED);
-    }
 
 }
-
 
 

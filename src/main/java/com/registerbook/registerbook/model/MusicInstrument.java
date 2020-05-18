@@ -8,10 +8,10 @@ public class MusicInstrument {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "ID")
     private Long id;
 
-    @Column(name = "instrument")
+    @Column(name = "INSTRUMENTNAME")
     private String instrumentName;
 
     public Long getId() {

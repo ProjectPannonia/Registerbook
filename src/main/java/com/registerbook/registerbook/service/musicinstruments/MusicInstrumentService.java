@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface InstrumentService {
+public interface MusicInstrumentService {
 
     List<MusicInstrument> getAllInstruments();
 
-    String isThisInstrumentAlreadiInDatabase(String instrumentName);
+    List<MusicInstrument> isThisInstrumentAlreadyInDatabase(String instrumentName);
 }
