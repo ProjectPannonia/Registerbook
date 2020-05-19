@@ -1,6 +1,7 @@
 package com.registerbook.registerbook.controllerTest;
 
 import com.registerbook.registerbook.repository.model.Member;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
@@ -9,47 +10,64 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MemberControllerTest extends AbstractTest{
+public class MemberControllerTest extends AbstractTest {
+
+    MvcResult mvcResult;
+    private int numberOfMembers;
+    private int maxIndex;
 
     @Before
-    public void setup(){
+    public void setup() {
         super.setup();
     }
 
     @Test
-    public void getMemberListTest() throws Exception{
+    public void getMemberListTest() throws Exception {
         String url = "/register/member/";
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
+        mvcResult = mvc.perform(MockMvcRequestBuilders
                 .get(url)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
         int status = mvcResult.getResponse().getStatus();
 
-        assertEquals(200,status);
+        assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
-        Member[] memberList = super.mapFromJson(content,Member[].class);
-        assertTrue(memberList.length>0);
+        Member[] memberList = super.mapFromJson(content, Member[].class);
+        numberOfMembers = memberList.length;
+        maxIndex = numberOfMembers - 1;
+
+        assertTrue(memberList.length > 0);
     }
+
     @Test
-    public void createNewMemberTest() throws Exception{
-        String url = "/register/member/";
+    public void createNewMemberTest() throws Exception {
+        System.out.println("Az adatbázisban: " + numberOfMembers + " db.");
+        System.out.println("Jelenlegi max index: " + maxIndex + ".");
         Member testMember = new Member();
-        testMember.setId(new Long(1));
-        testMember.setName("Adam");
+        testMember.setId(new Long(numberOfMembers));
+        System.out.println("Bemeneti member id: " + testMember.getId());
+        testMember.setName("Bela");
         testMember.setBand("Amon Amarth");
         testMember.setAddress("Bszh");
         testMember.setEmail("ld@ld.hu");
         testMember.setYearOfBirth(1989);
         testMember.setCountry("Hungary");
         testMember.setInstrument("Guitar");
+        String url = "/register/member/";
 
         String inputJson = super.mapToJson(testMember);
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
+        mvcResult = mvc.perform(MockMvcRequestBuilders
                 .post(url).contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(inputJson))
                 .andReturn();
         int status = mvcResult.getResponse().getStatus();
-        assertEquals(409,status);
+        assertEquals(201, status);
         String content = mvcResult.getResponse().getContentAsString();
-        assertEquals(content,"Product is created successfully");
+        assertEquals(inputJson,content);
     }
+    /*TO-DO*/
+    /*
+    * DELETE
+    * UPDATE
+    * GETBYID*/
+
 }

@@ -112,4 +112,5 @@ public class Member {
     public void setYearOfBirth(int yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }
+
 }

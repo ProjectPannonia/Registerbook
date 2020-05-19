@@ -20,14 +20,20 @@ import java.io.IOException;
 @SpringBootTest(classes = RegisterbookApplication.class)
 @WebAppConfiguration
 public class AbstractTest {
-    protected MockMvc mockMvc;
+
+    protected MockMvc mvc;
 
     @Autowired
     WebApplicationContext webApplicationContext;
 
     protected void setup(){
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
+    protected void killObjects(){
+        mvc = null;
+        webApplicationContext = null;
+    }
+
     protected String mapToJson(Object object) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
 
