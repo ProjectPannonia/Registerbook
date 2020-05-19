@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.errorHandler;
+package com.registerbook.registerbook.controller.errorHandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.service.register;
 
-import com.registerbook.registerbook.model.Member;
+import com.registerbook.registerbook.repository.model.Member;
 import com.registerbook.registerbook.service.register.specialObjectsForStatistics.StatisticData;
 import java.util.List;
 

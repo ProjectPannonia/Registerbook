@@ -1,12 +1,17 @@
 app.controller('admingui', function($scope,$http,$routeParams,$location,$route){
     $scope.allCountries;
-    
+
     $http({
            method : 'GET',
            url : 'http://localhost:8080/register/country/adminGuiRest'
            }).then(function(response){
               $scope.allCountries = response.data;
            });
+
+    $http({
+          method : 'GET',
+          url : 'http://localhost:8080/register/musicinstrument/getCountries'
+    });
     $scope.delete = function(){
         $http({
             method : 'DELETE',

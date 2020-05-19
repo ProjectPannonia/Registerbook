@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.errorHandler;
+package com.registerbook.registerbook.controller.errorHandler;
 
 import java.util.HashMap;
 import java.util.List;

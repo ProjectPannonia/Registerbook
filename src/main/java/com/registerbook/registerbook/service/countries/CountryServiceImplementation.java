@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.service.countries;
 
-import com.registerbook.registerbook.model.CountryEntity;
+import com.registerbook.registerbook.repository.model.CountryEntity;
 import com.registerbook.registerbook.repository.CountryJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

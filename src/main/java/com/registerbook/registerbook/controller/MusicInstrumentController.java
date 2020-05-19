@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.controller;
 
-import com.registerbook.registerbook.model.MusicInstrument;
+import com.registerbook.registerbook.repository.model.MusicInstrument;
 import com.registerbook.registerbook.service.musicinstruments.MusicInstrumentServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

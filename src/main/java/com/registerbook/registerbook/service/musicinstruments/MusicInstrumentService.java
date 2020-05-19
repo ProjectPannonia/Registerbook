@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.service.musicinstruments;
 
-import com.registerbook.registerbook.model.MusicInstrument;
+import com.registerbook.registerbook.repository.model.MusicInstrument;
 
 import org.springframework.stereotype.Service;
 

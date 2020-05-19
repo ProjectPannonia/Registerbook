@@ -1,9 +1,8 @@
 package com.registerbook.registerbook;
 
-import com.registerbook.registerbook.model.CountryEntity;
+import com.registerbook.registerbook.repository.model.CountryEntity;
 import com.registerbook.registerbook.repository.CountryJpaRepository;
 import com.registerbook.registerbook.service.countries.CountryServiceImplementation;
-import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
