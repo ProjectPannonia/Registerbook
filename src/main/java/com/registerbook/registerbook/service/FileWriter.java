@@ -8,7 +8,7 @@ import java.util.List;
 public class FileWriter {
 
     public static void writeToFile(List<Member> listToWriteJson,String fileName) {
-        File fout = new File(fileName + ".txt");
+        File fout = new File("D://" + fileName + ".txt");
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(fout);
