@@ -26,7 +26,8 @@ public class MemberControllerTest extends AbstractTest {
         String url = "/register/member/";
         mvcResult = mvc.perform(MockMvcRequestBuilders
                 .get(url)
-                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andReturn();
         int status = mvcResult.getResponse().getStatus();
 
         assertEquals(200, status);
@@ -36,6 +37,16 @@ public class MemberControllerTest extends AbstractTest {
         maxIndex = numberOfMembers - 1;
 
         assertTrue(memberList.length > 0);
+    }
+    @Test
+    public void getMemberByIdTest()throws Exception{
+        String url = "/register/member/3";
+        mvcResult = mvc.perform(MockMvcRequestBuilders
+                .get(url)
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(200,status);
     }
 
     @Test
@@ -69,5 +80,17 @@ public class MemberControllerTest extends AbstractTest {
     * DELETE
     * UPDATE
     * GETBYID*/
+
+    @Test
+    public void updateMemberTest(){
+
+    }
+
+
+
+    @Test
+    public void deleteMemberTest(){
+
+    }
 
 }
