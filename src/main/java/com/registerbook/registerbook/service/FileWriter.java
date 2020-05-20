@@ -7,17 +7,16 @@ import java.util.List;
 
 public class FileWriter {
 
-    public void writeToFile(List<Member> allMembers,String fileName) {
-        File fout = new File("MembersSaveList.txt");
+    public static void writeToFile(List<Member> listToWriteJson,String fileName) {
+        File fout = new File(fileName + ".txt");
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(fout);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        //String json = new Gson().toJson(foo );
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-        String json = new Gson().toJson(allMembers);
+        String json = new Gson().toJson(listToWriteJson);
 
             try {
                 bw.write(json);

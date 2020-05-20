@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.File;
 import java.util.List;
 
 @RestController
@@ -38,16 +39,17 @@ public class MainController {
         }
         return new ResponseEntity<List<Member>>(allMembers, HttpStatus.OK);
     }
-    @GetMapping("/writeMembersToFile")
-    public ResponseEntity<String> writeMembersToFile() {
+
+    // Create a text file from the registered members list with the given filename
+    @GetMapping(value = "/writeMembersToFile/{fileName}")
+    public ResponseEntity<String> writeMembersToFile(@PathVariable("fileName") final String fileName) {
         List<Member> allMembers = memberServiceImplementation.getAllMember();
         if (allMembers.isEmpty()) {
             return new ResponseEntity<String>("Database empty.",HttpStatus.NO_CONTENT);
         }
-        FileWriter fw = new FileWriter();
-        fw.writeToFile(allMembers,"Members");
-        System.out.println(allMembers);
-        return new ResponseEntity<String>("File writed.", HttpStatus.OK);
+
+        FileWriter.writeToFile(allMembers,fileName);
+        return new ResponseEntity<String>("File created. Name: " + fileName + ".txt!", HttpStatus.OK);
     }
 
     /* POST a new musician to the database */
