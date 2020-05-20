@@ -1,14 +1,13 @@
 package com.registerbook.registerbook.controllerTest;
 
 import com.registerbook.registerbook.repository.model.Member;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MemberControllerTest extends AbstractTest {
 
@@ -47,6 +46,17 @@ public class MemberControllerTest extends AbstractTest {
                 .andReturn();
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200,status);
+
+        String returnedJson = mvcResult.getResponse().getContentAsString();
+        System.out.println(returnedJson);
+        Member testMember = super.mapFromJson(returnedJson,Member.class);
+        assertNotEquals(null,testMember.getName());
+        assertNotEquals(null,testMember.getBand());
+        assertNotEquals(null,testMember.getCountry());
+        assertNotEquals(null,testMember.getEmail());
+        assertNotEquals(null,testMember.getAddress());
+        assertNotEquals(0,testMember.getYearOfBirth());
+        assertNotEquals(null,testMember.getInstrument());
     }
 
     @Test
