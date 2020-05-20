@@ -16,8 +16,18 @@ public class MemberControllerTest extends AbstractTest {
     private int maxIndex;
 
     @Before
-    public void setup() {
+    public void setup() throws Exception {
         super.setup();
+        String url = "/register/member/";
+        mvcResult = mvc.perform(MockMvcRequestBuilders
+                .get(url)
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andReturn();
+
+        String content = mvcResult.getResponse().getContentAsString();
+        Member[] memberList = super.mapFromJson(content, Member[].class);
+        numberOfMembers = memberList.length;
+        maxIndex = numberOfMembers - 1;
     }
 
     @Test
@@ -99,8 +109,16 @@ public class MemberControllerTest extends AbstractTest {
 
 
     @Test
-    public void deleteMemberTest(){
-
+    public void deleteMemberTest() throws Exception {
+        String url = "/register/member/" + maxIndex;
+        System.out.println(maxIndex);
+        mvcResult = mvc.perform(MockMvcRequestBuilders
+                .delete(url))
+                .andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(204,status);
+        String content = mvcResult.getResponse().getContentAsString();
+        assertEquals(content,"Product is deleted succesfully!");
     }
 
 }

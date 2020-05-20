@@ -113,4 +113,17 @@ public class Member {
         this.yearOfBirth = yearOfBirth;
     }
 
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", band='" + band + '\'' +
+                ", instrument='" + instrument + '\'' +
+                ", country='" + country + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", yearOfBirth=" + yearOfBirth +
+                '}';
+    }
 }

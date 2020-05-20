@@ -26,7 +26,7 @@ public class AbstractTest {
     @Autowired
     WebApplicationContext webApplicationContext;
 
-    protected void setup(){
+    protected void setup() throws Exception {
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
     protected void killObjects(){

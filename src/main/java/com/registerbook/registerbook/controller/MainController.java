@@ -2,6 +2,7 @@ package com.registerbook.registerbook.controller;
 
 import com.registerbook.registerbook.controller.errorHandler.CustomErrorType;
 import com.registerbook.registerbook.repository.model.Member;
+import com.registerbook.registerbook.service.FileWriter;
 import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import com.registerbook.registerbook.service.register.specialObjectsForStatistics.StatisticData;
 import org.slf4j.Logger;
@@ -36,6 +37,17 @@ public class MainController {
             return new ResponseEntity<List<Member>>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<Member>>(allMembers, HttpStatus.OK);
+    }
+    @GetMapping("/writeMembersToFile")
+    public ResponseEntity<String> writeMembersToFile() {
+        List<Member> allMembers = memberServiceImplementation.getAllMember();
+        if (allMembers.isEmpty()) {
+            return new ResponseEntity<String>("Database empty.",HttpStatus.NO_CONTENT);
+        }
+        FileWriter fw = new FileWriter();
+        fw.writeToFile(allMembers,"Members");
+        System.out.println(allMembers);
+        return new ResponseEntity<String>("File writed.", HttpStatus.OK);
     }
 
     /* POST a new musician to the database */
@@ -98,6 +110,7 @@ public class MainController {
         StatisticData resultStatistics = memberServiceImplementation.getStatistics();
         return new ResponseEntity<StatisticData>(resultStatistics, HttpStatus.OK);
     }
+
 }
 
 

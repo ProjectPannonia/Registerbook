@@ -38,25 +38,6 @@ public class Statistics {
         return stat;
     }
 
-    public StatisticData getStatitstics(List<Member> allMembers){
-        StatisticData statistic;
-        /*List<MembersOfSpecifiedCountry> numberOfMembersByCountry;
-
-        numberOfMembersByCountry = numberOfMembersByCountry(allMembers);
-        int registeredMembers = allMembers.size();
-        int numberOfBands = countBands(allMembers);
-        int canadian = numberOfMembersByCountry.get(0).getNumberFromThisCountry();
-        int finn = numberOfMembersByCountry.get(1).getNumberFromThisCountry();
-        int german = numberOfMembersByCountry.get(2).getNumberFromThisCountry();
-        int hungarian = numberOfMembersByCountry.get(3).getNumberFromThisCountry();
-        int norwegian = numberOfMembersByCountry.get(4).getNumberFromThisCountry();
-        int sweden = numberOfMembersByCountry.get(5).getNumberFromThisCountry();
-        int uk = numberOfMembersByCountry.get(6).getNumberFromThisCountry();
-        int usa = numberOfMembersByCountry.get(7).getNumberFromThisCountry();
-         */
-        return null;
-    }
-
     private int countBands(List<Member> allMembers){
         String[] result;
         List<String> filtered = new ArrayList<>();
