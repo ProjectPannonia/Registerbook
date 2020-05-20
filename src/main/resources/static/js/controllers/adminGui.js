@@ -12,17 +12,22 @@ app.controller('admingui', function($scope,$http,$routeParams,$location,$route){
           method : 'GET',
           url : 'http://localhost:8080/register/musicinstrument/getCountries'
     });
+
     $scope.delete = function(){
+
         $http({
             method : 'DELETE',
             url : 'http://localhost:8080/register/country/deleteAllCountries'
-        })
+        });
+
     };
     $scope.drop = function(){
+
         $http({
             method : 'DELETE',
             url : 'http://localhost:8080/register/country/drop'
-        })
+        });
+
     };
     $scope.addNewCountry = function(){
         let actualInstrument = $scope.newInstrument;
@@ -31,7 +36,18 @@ app.controller('admingui', function($scope,$http,$routeParams,$location,$route){
             method : 'POST',
             url : 'http://localhost:8080/register/musicinstrument/createNewInstruemnt',
             data : actualInstrument
-        })
+        });
+
         console.log(actualInstrument);
+    };
+
+    $scope.createFileFromMembers = function(){
+        $http({
+            method : 'GET',
+            url : 'http://localhost:8080/register/member/writeMembersToFile/' + $scope.savingPath
+        }).then(function(response){
+            $scope.message = response.data;
+            $scope.savingPath = null;
+        });
     };
 });
