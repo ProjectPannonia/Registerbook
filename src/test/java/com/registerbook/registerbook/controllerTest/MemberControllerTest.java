@@ -11,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MemberControllerTest extends AbstractTest {
 
-    public static Member lastMember;
+    private static Member lastMember;
+    private MvcResult mvcResult;
 
     @Before
     public void setup() throws Exception {
@@ -20,31 +21,37 @@ public class MemberControllerTest extends AbstractTest {
 
     @Test
     public void getMemberListTest() throws Exception {
+        Member[] memberList;
+        String content;
+        int status;
         String url = "/register/member/";
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
+
+        mvcResult = mvc.perform(MockMvcRequestBuilders
                 .get(url)
                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn();
-        int status = mvcResult.getResponse().getStatus();
 
+        status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
-        String content = mvcResult.getResponse().getContentAsString();
-        Member[] memberList = super.mapFromJson(content, Member[].class);
+
+        content = mvcResult.getResponse().getContentAsString();
+        memberList = super.mapFromJson(content, Member[].class);
         assertTrue(memberList.length > 0);
     }
     @Test
     public void getMemberByIdTest()throws Exception{
         String url = "/register/member/3";
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
+        int status;
+        String returnedJson;
+        Member testMember;
+        mvcResult = mvc.perform(MockMvcRequestBuilders
                 .get(url)
                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn();
-        int status = mvcResult.getResponse().getStatus();
-        assertEquals(200,status);
+        status = mvcResult.getResponse().getStatus();
+        returnedJson = mvcResult.getResponse().getContentAsString();
+        testMember = super.mapFromJson(returnedJson,Member.class);
 
-        String returnedJson = mvcResult.getResponse().getContentAsString();
-        System.out.println(returnedJson);
-        Member testMember = super.mapFromJson(returnedJson,Member.class);
         assertNotEquals(null,testMember.getName());
         assertNotEquals(null,testMember.getBand());
         assertNotEquals(null,testMember.getCountry());
@@ -52,11 +59,16 @@ public class MemberControllerTest extends AbstractTest {
         assertNotEquals(null,testMember.getAddress());
         assertNotEquals(0,testMember.getYearOfBirth());
         assertNotEquals(null,testMember.getInstrument());
+        assertEquals(200,status);
     }
 
     @Test
     public void createNewMemberTest() throws Exception {
+        String url = "/register/member/";
+        String inputJson;
+        int status;
         Member testMember = new Member();
+
         testMember.setId(new Long(900));
         testMember.setName("Jucus");
         testMember.setBand("Amon Amarth");
@@ -66,15 +78,14 @@ public class MemberControllerTest extends AbstractTest {
         testMember.setCountry("Hungary");
         testMember.setInstrument("Guitar");
 
-        String url = "/register/member/";
-        String inputJson = super.mapToJson(testMember);
+        inputJson = super.mapToJson(testMember);
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
+        mvcResult = mvc.perform(MockMvcRequestBuilders
                 .post(url).contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(inputJson))
                 .andReturn();
         lastMember = super.mapFromJson(mvcResult.getResponse().getContentAsString(),Member.class);
-        int status = mvcResult.getResponse().getStatus();
+        status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);
     }
     /*TO-DO*/
@@ -92,13 +103,13 @@ public class MemberControllerTest extends AbstractTest {
 
     @Test
     public void deleteMemberTest() throws Exception {
-        System.out.println(lastMember);
         String url = "/register/member/" + lastMember.getId();
+        int status;
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
+        mvcResult = mvc.perform(MockMvcRequestBuilders
                 .delete(url))
                 .andReturn();
-        int status = mvcResult.getResponse().getStatus();
+        status = mvcResult.getResponse().getStatus();
         assertEquals(204,status);
     }
 
