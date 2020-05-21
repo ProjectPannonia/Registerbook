@@ -1,6 +1,6 @@
 package com.registerbook.registerbook;
 
-import com.registerbook.registerbook.repository.model.CountryEntity;
+import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.repository.CountryJpaRepository;
 import com.registerbook.registerbook.service.countries.CountryServiceImplementation;
 import org.junit.Before;
@@ -17,7 +17,7 @@ import java.util.Locale;
 @RunWith(MockitoJUnitRunner.class)
 public class testLoadCountriesToTheServer {
 
-    List<CountryEntity> load;
+    List<Country> load;
     String[] isoCountries;
 
     @Mock
@@ -34,7 +34,7 @@ public class testLoadCountriesToTheServer {
     @Test
     public void testLoadCountries(){
         load = countryServiceImplementation.loadCountriesToTheServer();
-        for (CountryEntity c : load){
+        for (Country c : load){
             System.out.println(c.getCountryName());
         }
     }

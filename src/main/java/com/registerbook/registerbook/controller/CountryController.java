@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.controller;
 
-import com.registerbook.registerbook.repository.model.CountryEntity;
+import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.service.countries.CountryServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,9 +24,9 @@ public class CountryController {
     }
 
     @GetMapping("/adminGuiRest")
-    public ResponseEntity<List<CountryEntity>> loadCountriesToTheServer() {
-        List<CountryEntity> result = countryServiceImplementation.loadCountriesToTheServer();
-        return new ResponseEntity<List<CountryEntity>>(result, HttpStatus.OK);
+    public ResponseEntity<List<Country>> loadCountriesToTheServer() {
+        List<Country> result = countryServiceImplementation.loadCountriesToTheServer();
+        return new ResponseEntity<List<Country>>(result, HttpStatus.OK);
     }
 
     @GetMapping("/getCountries")

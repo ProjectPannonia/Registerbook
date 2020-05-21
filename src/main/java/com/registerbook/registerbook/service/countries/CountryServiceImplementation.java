@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.service.countries;
 
-import com.registerbook.registerbook.repository.model.CountryEntity;
+import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.repository.CountryJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,16 +16,16 @@ public class CountryServiceImplementation implements CountryService {
     CountryJpaRepository countryJpaRepository;
 
     @Override
-    public List<CountryEntity> loadCountriesToTheServer() {
-        List<CountryEntity> countriesAlreadyOnServer = countryJpaRepository.findAll();
+    public List<Country> loadCountriesToTheServer() {
+        List<Country> countriesAlreadyOnServer = countryJpaRepository.findAll();
         if(countriesAlreadyOnServer.isEmpty()) {
             String[] isoCountries = Locale.getISOCountries();
             for (String country : isoCountries) {
                 Locale locale = new Locale("en", country);
                 String countryName = locale.getDisplayCountry();
                 if (!countriesAlreadyOnServer.contains(countryName)) {
-                    countriesAlreadyOnServer.add(new CountryEntity(countryName));
-                    countryJpaRepository.save(new CountryEntity(countryName));
+                    countriesAlreadyOnServer.add(new Country(countryName));
+                    countryJpaRepository.save(new Country(countryName));
                 }
             }
         }
@@ -44,7 +44,7 @@ public class CountryServiceImplementation implements CountryService {
 
     @Override
     public String[] getListOfCountries() {
-        List<CountryEntity> allCountries = countryJpaRepository.getAllCountries();
+        List<Country> allCountries = countryJpaRepository.getAllCountries();
         int lengthOfArray = allCountries.size();
         String[] countries = new String[lengthOfArray];
         for (int i = 0; i < countries.length;i++){

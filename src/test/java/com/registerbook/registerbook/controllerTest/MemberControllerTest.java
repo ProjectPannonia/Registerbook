@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.controllerTest;
 
-import com.registerbook.registerbook.repository.model.Member;
+import com.registerbook.registerbook.model.entities.Member;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;

@@ -1,19 +1,19 @@
 package com.registerbook.registerbook.repository;
 
-import com.registerbook.registerbook.repository.model.CountryEntity;
+import com.registerbook.registerbook.model.entities.Country;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CountryJpaRepository extends JpaRepository<CountryEntity,Long> {
+public interface CountryJpaRepository extends JpaRepository<Country,Long> {
 
     @Override
-    <S extends CountryEntity> S save(S s);
+    <S extends Country> S save(S s);
 
     @Override
-    List<CountryEntity> findAll();
+    List<Country> findAll();
 
     @Query(value = "TRUNCATE TABLE country",nativeQuery = true)
     void clearTable();
@@ -22,5 +22,5 @@ public interface CountryJpaRepository extends JpaRepository<CountryEntity,Long> 
     void dropTable();
 
     @Query(value = "SELECT * FROM country",nativeQuery = true)
-    List<CountryEntity> getAllCountries();
+    List<Country> getAllCountries();
 }

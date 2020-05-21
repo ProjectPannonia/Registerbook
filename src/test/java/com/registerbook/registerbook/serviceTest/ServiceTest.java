@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.serviceTest;
 
-import com.registerbook.registerbook.repository.model.Member;
+import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import org.junit.Before;

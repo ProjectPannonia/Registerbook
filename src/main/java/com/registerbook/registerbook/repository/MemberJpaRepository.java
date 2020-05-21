@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.repository;
 
-import com.registerbook.registerbook.repository.model.Member;
+import com.registerbook.registerbook.model.entities.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

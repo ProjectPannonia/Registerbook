@@ -1,7 +1,7 @@
 package com.registerbook.registerbook.service.register;
 
-import com.registerbook.registerbook.repository.model.Member;
-import com.registerbook.registerbook.service.register.specialObjectsForStatistics.StatisticData;
+import com.registerbook.registerbook.model.entities.Member;
+import com.registerbook.registerbook.service.register.statistics.StatisticData;
 import java.util.List;
 
 public interface MemberService {
