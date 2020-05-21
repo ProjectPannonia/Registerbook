@@ -63,8 +63,15 @@ public class MemberServiceImplementation implements MemberService {
     @Override
     public void loadMembersFromFileToServer(String path) {
         List<Member> loadedMembersFromFile = MembersFileReader.readMembersFromFile(path);
+        Member checkItInDatabase;
+
         for (Member m : loadedMembersFromFile){
-            memberJpaRepository.save(m);
+            checkItInDatabase = memberJpaRepository.getMemberByName(m.getName());
+            if(checkItInDatabase == null){
+                memberJpaRepository.save(m);
+            }else {
+                continue;
+            }
         }
     }
 
