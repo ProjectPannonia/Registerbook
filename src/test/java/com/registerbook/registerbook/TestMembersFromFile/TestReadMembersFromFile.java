@@ -10,7 +10,7 @@ public class TestReadMembersFromFile {
     String testMemberLine = "Johan Söderberg,Amon Amarth,Guitar,Sweden,Göteborg,js@amonamarth.sw,1976";
 
     @Test
-    public void testMemberSeparate2(){
+    public void testMemberSeparate1(){
         List<Member> loaded = MembersFileReader.readMembersFromFile("D://LoadMembersToServer.txt");
         for (Member m : loaded){
             System.out.println(m.toString());

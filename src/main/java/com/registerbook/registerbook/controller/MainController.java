@@ -111,8 +111,8 @@ public class MainController {
         StatisticData resultStatistics = memberServiceImplementation.getStatistics();
         return new ResponseEntity<StatisticData>(resultStatistics, HttpStatus.OK);
     }
-    @GetMapping(value = "/loadMembersFromFile")
-    public ResponseEntity<String> loadMembersFromFile(){
+    @GetMapping(value = "/loadMembersFromFile/{filePath}")
+    public ResponseEntity<String> loadMembersFromFile(@PathVariable("filePath") final String filePath){
         memberServiceImplementation.loadMembersFromFileToServer("D://LoadMembersToServer.txt");
         return new ResponseEntity<String>("loaded",HttpStatus.OK);
     }
