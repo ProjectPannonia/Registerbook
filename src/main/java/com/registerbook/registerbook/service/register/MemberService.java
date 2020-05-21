@@ -12,4 +12,5 @@ public interface MemberService {
     Member checkMemberWithThisNameAlreadyInDatabase(String name);
     List<Member> searchBySpecifiedProperty(String[] propertyAndValue);
     StatisticData getStatistics();
+    void loadMembersFromFileToServer(String path);
 }

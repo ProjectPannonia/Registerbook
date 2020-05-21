@@ -2,6 +2,7 @@ package com.registerbook.registerbook.service.register;
 
 import com.registerbook.registerbook.repository.model.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
+import com.registerbook.registerbook.repository.model.fileReader.MembersFileReader;
 import com.registerbook.registerbook.service.register.specialObjectsForStatistics.StatisticData;
 import com.registerbook.registerbook.service.register.specialObjectsForStatistics.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,13 @@ public class MemberServiceImplementation implements MemberService {
         return result;
     }
 
+    @Override
+    public void loadMembersFromFileToServer(String path) {
+        List<Member> loadedMembersFromFile = MembersFileReader.readMembersFromFile(path);
+        for (Member m : loadedMembersFromFile){
+            memberJpaRepository.save(m);
+        }
+    }
 
 
     /* Private assistant methods */
