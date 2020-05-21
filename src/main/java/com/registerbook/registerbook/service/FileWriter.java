@@ -8,22 +8,24 @@ import java.util.List;
 public class FileWriter {
 
     public static void writeToFile(List<Member> listToWriteJson,String fileName) {
-        File fout = new File("D://" + fileName + ".txt");
+        File file = new File("C://testfiles//" + fileName + ".txt");
         FileOutputStream fos = null;
+        BufferedWriter bw;
         try {
-            fos = new FileOutputStream(fout);
+            fos = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+
+        bw = new BufferedWriter(new OutputStreamWriter(fos));
         String json = new Gson().toJson(listToWriteJson);
 
-            try {
-                bw.write(json);
-                bw.newLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            bw.write(json);
+            bw.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
             bw.close();

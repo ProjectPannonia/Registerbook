@@ -32,7 +32,7 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
     List<Member> getBandMembers(@Param("sband") String sband);
 
     @Query(value = "select s from Member s where s.name = :memberName")
-    List<Member> getMemberByName(@Param("memberName") String memberName);
+    Member getMemberByName(@Param("memberName") String memberName);
 
     @Query(value = "SELECT s FROM Member s WHERE s.address = :mCity")
     List<Member> getMemberByCity(@Param("mCity") String mCity);

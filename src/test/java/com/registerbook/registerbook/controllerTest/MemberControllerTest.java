@@ -11,29 +11,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MemberControllerTest extends AbstractTest {
 
-    MvcResult mvcResult;
-    private int numberOfMembers;
-    private int maxIndex;
+    public static Member lastMember;
 
     @Before
     public void setup() throws Exception {
         super.setup();
-        String url = "/register/member/";
-        mvcResult = mvc.perform(MockMvcRequestBuilders
-                .get(url)
-                .accept(MediaType.APPLICATION_JSON_VALUE))
-                .andReturn();
-
-        String content = mvcResult.getResponse().getContentAsString();
-        Member[] memberList = super.mapFromJson(content, Member[].class);
-        numberOfMembers = memberList.length;
-        maxIndex = numberOfMembers - 1;
     }
 
     @Test
     public void getMemberListTest() throws Exception {
         String url = "/register/member/";
-        mvcResult = mvc.perform(MockMvcRequestBuilders
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
                 .get(url)
                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn();
@@ -42,15 +30,12 @@ public class MemberControllerTest extends AbstractTest {
         assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
         Member[] memberList = super.mapFromJson(content, Member[].class);
-        numberOfMembers = memberList.length;
-        maxIndex = numberOfMembers - 1;
-
         assertTrue(memberList.length > 0);
     }
     @Test
     public void getMemberByIdTest()throws Exception{
         String url = "/register/member/3";
-        mvcResult = mvc.perform(MockMvcRequestBuilders
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
                 .get(url)
                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn();
@@ -71,29 +56,26 @@ public class MemberControllerTest extends AbstractTest {
 
     @Test
     public void createNewMemberTest() throws Exception {
-        System.out.println("Az adatbázisban: " + numberOfMembers + " db.");
-        System.out.println("Jelenlegi max index: " + maxIndex + ".");
         Member testMember = new Member();
-        testMember.setId(new Long(numberOfMembers));
-        System.out.println("Bemeneti member id: " + testMember.getId());
-        testMember.setName("Bela");
+        testMember.setId(new Long(900));
+        testMember.setName("Jucus");
         testMember.setBand("Amon Amarth");
         testMember.setAddress("Bszh");
         testMember.setEmail("ld@ld.hu");
         testMember.setYearOfBirth(1989);
         testMember.setCountry("Hungary");
         testMember.setInstrument("Guitar");
-        String url = "/register/member/";
 
+        String url = "/register/member/";
         String inputJson = super.mapToJson(testMember);
-        mvcResult = mvc.perform(MockMvcRequestBuilders
+
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
                 .post(url).contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(inputJson))
                 .andReturn();
+        lastMember = super.mapFromJson(mvcResult.getResponse().getContentAsString(),Member.class);
         int status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);
-        String content = mvcResult.getResponse().getContentAsString();
-        assertEquals(inputJson,content);
     }
     /*TO-DO*/
     /*
@@ -110,15 +92,14 @@ public class MemberControllerTest extends AbstractTest {
 
     @Test
     public void deleteMemberTest() throws Exception {
-        String url = "/register/member/" + maxIndex;
-        System.out.println(maxIndex);
-        mvcResult = mvc.perform(MockMvcRequestBuilders
+        System.out.println(lastMember);
+        String url = "/register/member/" + lastMember.getId();
+
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
                 .delete(url))
                 .andReturn();
         int status = mvcResult.getResponse().getStatus();
         assertEquals(204,status);
-        String content = mvcResult.getResponse().getContentAsString();
-        assertEquals(content,"Product is deleted succesfully!");
     }
 
 }

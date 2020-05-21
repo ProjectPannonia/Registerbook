@@ -67,7 +67,7 @@ public class MemberServiceImplementation implements MemberService {
         String property = content[0];
         String value = content[1];
         switch (property){
-            case "Name" :  result = memberJpaRepository.getMemberByName(value);
+            case "Name" :  result.add(memberJpaRepository.getMemberByName(value));
                 break;
             case "Band" : result = memberJpaRepository.getBandMembers(value);
                 break;
@@ -79,5 +79,9 @@ public class MemberServiceImplementation implements MemberService {
                 break;
         }
         return result;
+    }
+
+    public Member getMemberById(String name) {
+        return memberJpaRepository.getMemberByName(name);
     }
 }

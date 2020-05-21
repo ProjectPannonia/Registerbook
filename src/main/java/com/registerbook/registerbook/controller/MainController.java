@@ -12,9 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
-import java.io.File;
 import java.util.List;
 
 @RestController
@@ -30,7 +28,7 @@ public class MainController {
         this.memberServiceImplementation = memberServiceImplementation;
     }
 
-    /* GET all basic musicians */
+    /* GET all musicians */
     @GetMapping("/")
     public ResponseEntity<List<Member>> listAllMember() {
         List<Member> allMembers = memberServiceImplementation.getAllMember();
@@ -40,7 +38,7 @@ public class MainController {
         return new ResponseEntity<List<Member>>(allMembers, HttpStatus.OK);
     }
 
-    // Create a text file from the registered members list with the given filename
+    // Create a text file from the registered members list(in json format) with the given filename
     @GetMapping(value = "/writeMembersToFile/{fileName}")
     public ResponseEntity<String> writeMembersToFile(@PathVariable("fileName") final String fileName) {
         List<Member> allMembers = memberServiceImplementation.getAllMember();
@@ -61,7 +59,8 @@ public class MainController {
         }
         memberServiceImplementation.saveNewMember(member);
 
-        return new ResponseEntity<Member>(member, HttpStatus.CREATED);
+        Member result = memberServiceImplementation.getMemberById(member.getName());
+        return new ResponseEntity<Member>(result, HttpStatus.CREATED);
     }
 
     /* GET a musician by id */
