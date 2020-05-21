@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.service.register.specialObjectsForStatistics;
+package com.registerbook.registerbook.service.register.statistics;
 
 public class StatisticData {
 

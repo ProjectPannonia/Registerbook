@@ -1,7 +1,7 @@
 package com.registerbook.registerbook.TestMembersFromFile;
 
-import com.registerbook.registerbook.repository.model.Member;
-import com.registerbook.registerbook.repository.model.fileReader.MembersFileReader;
+import com.registerbook.registerbook.model.entities.Member;
+import com.registerbook.registerbook.service.register.fileOperation.fileReader.MembersFileReader;
 import org.junit.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

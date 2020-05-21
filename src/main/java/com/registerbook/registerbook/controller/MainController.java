@@ -1,10 +1,10 @@
 package com.registerbook.registerbook.controller;
 
 import com.registerbook.registerbook.controller.errorHandler.CustomErrorType;
-import com.registerbook.registerbook.repository.model.Member;
-import com.registerbook.registerbook.service.FileWriter;
+import com.registerbook.registerbook.model.entities.Member;
+import com.registerbook.registerbook.service.register.fileOperation.fileWriter.FileWriter;
 import com.registerbook.registerbook.service.register.MemberServiceImplementation;
-import com.registerbook.registerbook.service.register.specialObjectsForStatistics.StatisticData;
+import com.registerbook.registerbook.service.register.statistics.StatisticData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

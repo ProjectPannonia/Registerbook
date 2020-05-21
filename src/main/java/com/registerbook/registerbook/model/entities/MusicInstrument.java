@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.repository.model;
+package com.registerbook.registerbook.model.entities;
 
 import javax.persistence.*;
 

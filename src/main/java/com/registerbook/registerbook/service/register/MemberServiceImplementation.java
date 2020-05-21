@@ -1,10 +1,10 @@
 package com.registerbook.registerbook.service.register;
 
-import com.registerbook.registerbook.repository.model.Member;
+import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
-import com.registerbook.registerbook.repository.model.fileReader.MembersFileReader;
-import com.registerbook.registerbook.service.register.specialObjectsForStatistics.StatisticData;
-import com.registerbook.registerbook.service.register.specialObjectsForStatistics.Statistics;
+import com.registerbook.registerbook.service.register.fileOperation.fileReader.MembersFileReader;
+import com.registerbook.registerbook.service.register.statistics.StatisticData;
+import com.registerbook.registerbook.service.register.statistics.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -88,7 +88,7 @@ public class MemberServiceImplementation implements MemberService {
                 break;
             case "Instrument" : result = memberJpaRepository.getMemberByInstrument(value);
                 break;
-            case "CountryEntity" : result = memberJpaRepository.getMemberByCountry(value);
+            case "Country" : result = memberJpaRepository.getMemberByCountry(value);
                 break;
             case "City" : result = memberJpaRepository.getMemberByCity(value);
                 break;

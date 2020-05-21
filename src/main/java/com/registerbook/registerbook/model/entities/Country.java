@@ -1,11 +1,11 @@
-package com.registerbook.registerbook.repository.model;
+package com.registerbook.registerbook.model.entities;
 
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "COUNTRY")
-public class CountryEntity {
+public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,10 +15,10 @@ public class CountryEntity {
     @Column(name = "COUNTRYNAME")
     private String countryName;
 
-    public CountryEntity(){
+    public Country(){
 
     }
-    public CountryEntity(String countryName) {
+    public Country(String countryName) {
         this.countryName = countryName;
     }
 
