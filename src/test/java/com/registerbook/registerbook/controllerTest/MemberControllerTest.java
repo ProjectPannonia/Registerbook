@@ -85,18 +85,24 @@ public class MemberControllerTest extends AbstractTest {
                 .content(inputJson))
                 .andReturn();
         lastMember = super.mapFromJson(mvcResult.getResponse().getContentAsString(),Member.class);
+        System.out.println(lastMember.getId());
         status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);
     }
-    /*TO-DO*/
-    /*
-    * DELETE
-    * UPDATE
-    * GETBYID*/
 
     @Test
-    public void updateMemberTest(){
-
+    public void updateMemberTest() throws Exception{
+        String url = "/register/member/" + lastMember.getId();
+        System.out.println("Last member id: " + lastMember.getId());
+        Member testUpdateMember = new Member();
+        lastMember.setName("Bableves");
+        String inputJson = super.mapToJson(lastMember);
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
+                .put(url)
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson))
+                .andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(200,status);
     }
 
 
