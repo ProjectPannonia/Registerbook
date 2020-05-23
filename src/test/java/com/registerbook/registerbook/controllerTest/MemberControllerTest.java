@@ -2,17 +2,20 @@ package com.registerbook.registerbook.controllerTest;
 
 import com.registerbook.registerbook.model.entities.Member;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+
+import org.junit.runners.MethodSorters;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MemberControllerTest extends AbstractTest {
 
     private static Member lastMember;
-    private MvcResult mvcResult;
+    private static MvcResult mvcResult;
 
     @Before
     public void setup() throws Exception {
@@ -20,7 +23,7 @@ public class MemberControllerTest extends AbstractTest {
     }
 
     @Test
-    public void getMemberListTest() throws Exception {
+    public void A_getMemberListTest() throws Exception {
         Member[] memberList;
         String content;
         int status;
@@ -39,11 +42,12 @@ public class MemberControllerTest extends AbstractTest {
         assertTrue(memberList.length > 0);
     }
     @Test
-    public void getMemberByIdTest()throws Exception{
+    public void B_getMemberByIdTest()throws Exception{
         String url = "/register/member/3";
         int status;
         String returnedJson;
         Member testMember;
+
         mvcResult = mvc.perform(MockMvcRequestBuilders
                 .get(url)
                 .accept(MediaType.APPLICATION_JSON_VALUE))
@@ -63,13 +67,13 @@ public class MemberControllerTest extends AbstractTest {
     }
 
     @Test
-    public void createNewMemberTest() throws Exception {
+    public void C_createNewMemberTest() throws Exception {
         String url = "/register/member/";
         String inputJson;
         int status;
         Member testMember = new Member();
 
-        testMember.setId(new Long(900));
+        testMember.setId(new Long(52));
         testMember.setName("Jucus");
         testMember.setBand("Amon Amarth");
         testMember.setAddress("Bszh");
@@ -85,22 +89,33 @@ public class MemberControllerTest extends AbstractTest {
                 .content(inputJson))
                 .andReturn();
         lastMember = super.mapFromJson(mvcResult.getResponse().getContentAsString(),Member.class);
-        System.out.println(lastMember.getId());
+        System.out.println("Ezzel az id-vel lett elmentve"+lastMember.getId());
         status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);
     }
 
     @Test
-    public void updateMemberTest() throws Exception{
-        String url = "/register/member/" + lastMember.getId();
-        System.out.println("Last member id: " + lastMember.getId());
-        Member testUpdateMember = new Member();
-        lastMember.setName("Bableves");
-        String inputJson = super.mapToJson(lastMember);
+    public void D_updateMemberTest() throws Exception{
+        String url = "/register/member/" + lastMember.getId() ;
+        System.out.println("Ezzel az id-vel keresünk az update-ben: " + lastMember.getId());
+        Member testMember = new Member();
+        testMember.setId(new Long(999));
+        testMember.setName("Krumpli");
+        testMember.setBand("Amon Amarth");
+        testMember.setAddress("Bszh");
+        testMember.setEmail("ld@ld.hu");
+        testMember.setYearOfBirth(1989);
+        testMember.setCountry("Hungary");
+        testMember.setInstrument("Guitar");
+
+        String inputJson = super.mapToJson(testMember);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
                 .put(url)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson))
                 .andReturn();
+        lastMember = super.mapFromJson(mvcResult.getResponse().getContentAsString(),Member.class);
+        System.out.println(lastMember.toString());
+        System.out.println("Mvc result" + mvcResult.toString());
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200,status);
     }
@@ -108,8 +123,9 @@ public class MemberControllerTest extends AbstractTest {
 
 
     @Test
-    public void deleteMemberTest() throws Exception {
+    public void E_deleteMemberTest() throws Exception {
         String url = "/register/member/" + lastMember.getId();
+        System.out.println("Delete nél ennyi az értéke az id-nak" + lastMember.getId());
         int status;
 
         mvcResult = mvc.perform(MockMvcRequestBuilders
@@ -118,5 +134,4 @@ public class MemberControllerTest extends AbstractTest {
         status = mvcResult.getResponse().getStatus();
         assertEquals(204,status);
     }
-
 }

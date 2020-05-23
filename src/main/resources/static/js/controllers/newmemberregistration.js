@@ -3,13 +3,13 @@ app.controller('newmemberregistration',function($scope,$http,$location,$route){
 
         $http({
                 method : 'GET',
-                url : 'http://localhost:8080/register/member/getCountries'
+                url : 'http://localhost:8080/register/country/getCountries'
         }).then(function(response){
             $scope.countries = response.data;
         });
         $http({
                 method : 'GET',
-                url : 'http://localhost:8080/register/member/getInstruments'
+                url : 'http://localhost:8080/register/musicinstrument/getInstruments'
         }).then(function(response){
                     $scope.instruments = response.data;
         });
