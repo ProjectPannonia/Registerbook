@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.controllerTest;
 
-import com.registerbook.registerbook.model.entities.Country;
+import com.registerbook.registerbook.model.entities.MusicInstrument;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -8,13 +8,14 @@ import org.junit.runners.MethodSorters;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class CountryControllerTest extends AbstractTest{
+public class MusicInstrumentControllerTest extends AbstractTest {
 
-    private static MvcResult mvcResult;
+    MvcResult mvcResult;
 
     @Before
     public void setup() throws Exception {
@@ -22,22 +23,25 @@ public class CountryControllerTest extends AbstractTest{
     }
 
     @Test
-    public void A_getCountriesTest() throws Exception{
-        Country[] countryList;
+    public void A_getAllInstrumentsTest() throws Exception {
         int status;
+        MusicInstrument[] allMusicInstrument;
         String content;
-        String url = "/register/country/getCountries";
+        String url = "/register/musicinstrument/getInstruments";
 
         mvcResult = mvc.perform(MockMvcRequestBuilders
                 .get(url)
                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn();
-        status = mvcResult.getResponse().getStatus();
+        status = mvcResult
+                .getResponse()
+                .getStatus();
         assertEquals(200,status);
 
-        content = mvcResult.getResponse().getContentAsString();
-        countryList = super.mapFromJson(content, Country[].class);
-        assertTrue(countryList.length > 0);
+        content = mvcResult.getResponse()
+                .getContentAsString();
+        allMusicInstrument = super.mapFromJson(content,MusicInstrument[].class);
+        assertTrue(allMusicInstrument.length > 0);
     }
 
 }
