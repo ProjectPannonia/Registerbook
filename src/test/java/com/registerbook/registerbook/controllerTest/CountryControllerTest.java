@@ -1,5 +1,7 @@
 package com.registerbook.registerbook.controllerTest;
 
+import com.registerbook.registerbook.model.entities.Country;
+import com.registerbook.registerbook.service.countries.CountryService;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -8,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CountryControllerTest extends AbstractTest{
@@ -21,7 +24,7 @@ public class CountryControllerTest extends AbstractTest{
 
     @Test
     public void A_getCountriesTest() throws Exception{
-        String[] result;
+        Country[] countryList;
         int status;
         String url = "/register/country/getCountries";
         mvcResult = mvc.perform(MockMvcRequestBuilders
@@ -30,6 +33,9 @@ public class CountryControllerTest extends AbstractTest{
                 .andReturn();
         status = mvcResult.getResponse().getStatus();
         assertEquals(200,status);
+        String content = mvcResult.getResponse().getContentAsString();
+        countryList = super.mapFromJson(content, Country[].class);
+        assertTrue(countryList.length > 0);
     }
 
 }
