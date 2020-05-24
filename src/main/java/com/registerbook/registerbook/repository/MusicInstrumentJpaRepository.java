@@ -17,5 +17,13 @@ public interface MusicInstrumentJpaRepository extends JpaRepository<MusicInstrum
     <S extends MusicInstrument> S save(S s);
 
     @Query(value = "SELECT s FROM MusicInstrument s WHERE s.instrumentName = :name")
-    List<MusicInstrument> getInstrumentByName(@Param("name") String name);
+    MusicInstrument getInstrumentByName(@Param("name") String name);
+    @Query(value = "SELECT s FROM MusicInstrument s WHERE s.instrumentName = :name")
+    List<MusicInstrument> getInstrumentsListByName(@Param("name") String name);
+    /*
+    * DELETE FROM films
+  WHERE producer_id IN (SELECT id FROM producers WHERE name = 'foo');
+  *  Query query = em.createQuery("DELETE FROM Employee e WHERE e.name = :employeeName ");*/
+    @Query(value = "DELETE FROM MusicInstrument s WHERE s.instrumentName = :name")
+    void deleteByName(@Param("name") String name);
 }

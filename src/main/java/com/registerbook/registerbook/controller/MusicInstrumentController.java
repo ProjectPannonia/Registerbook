@@ -1,5 +1,6 @@
 package com.registerbook.registerbook.controller;
 
+import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
 import com.registerbook.registerbook.service.musicinstruments.MusicInstrumentServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,12 @@ public class MusicInstrumentController {
             //return new ResponseEntity<MusicInstrument>(new CustomErrorType("Unable to create new music instrument. A music instrument with name: " + musicInstrument.getInstrumentName() + " already exist."),HttpStatus.CONFLICT);
         }
         instrumentServiceImplementation.Save(musicInstrument);
-
-        return new ResponseEntity<>(musicInstrument, HttpStatus.CREATED);
+        MusicInstrument response = instrumentServiceImplementation.findByName(musicInstrument.getInstrumentName());
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<MusicInstrument> deleteMember(@PathVariable("id") final String name) {
+        instrumentServiceImplementation.deleteInstrument(name);
+        return new ResponseEntity<MusicInstrument>(HttpStatus.NO_CONTENT);
     }
 }

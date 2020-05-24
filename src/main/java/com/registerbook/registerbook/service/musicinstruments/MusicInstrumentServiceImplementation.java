@@ -20,7 +20,17 @@ public class MusicInstrumentServiceImplementation implements MusicInstrumentServ
 
     @Override
     public List<MusicInstrument> isThisInstrumentAlreadyInDatabase(String instrumentName) {
-        return musicInstrumentJpaRepository.getInstrumentByName(instrumentName);
+        return musicInstrumentJpaRepository.getInstrumentsListByName(instrumentName);
+    }
+
+    @Override
+    public MusicInstrument findByName(String name) {
+        return musicInstrumentJpaRepository.getInstrumentByName(name);
+    }
+
+    @Override
+    public void deleteInstrument(String name) {
+        musicInstrumentJpaRepository.deleteByName(name);
     }
 
     public void Save(MusicInstrument musicInstrument) {
