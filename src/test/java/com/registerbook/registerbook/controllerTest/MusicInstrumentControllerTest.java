@@ -21,7 +21,7 @@ public class MusicInstrumentControllerTest extends AbstractTest {
     public void setup() throws Exception {
         super.setup();
     }
-
+    
     @Test
     public void A_getAllInstrumentsTest() throws Exception {
         int status;
