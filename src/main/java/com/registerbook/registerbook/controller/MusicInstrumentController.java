@@ -30,6 +30,7 @@ public class MusicInstrumentController {
     @PostMapping(value = "/createNewInstruemnt", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<MusicInstrument> createMember(@Valid @RequestBody final MusicInstrument musicInstrument) {
         //logger.info("Creating music instrument: {}", musicInstrument);
+
         if (instrumentServiceImplementation.isThisInstrumentAlreadyInDatabase(musicInstrument.getInstrumentName()) != null) {
             //return new ResponseEntity<MusicInstrument>(new CustomErrorType("Unable to create new music instrument. A music instrument with name: " + musicInstrument.getInstrumentName() + " already exist."),HttpStatus.CONFLICT);
         }

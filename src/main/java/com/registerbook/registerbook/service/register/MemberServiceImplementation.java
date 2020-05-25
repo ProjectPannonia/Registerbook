@@ -3,9 +3,12 @@ package com.registerbook.registerbook.service.register;
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.register.fileOperation.fileReader.MembersFileReader;
+import com.registerbook.registerbook.service.register.fileOperation.fileWriter.FileWriter;
 import com.registerbook.registerbook.service.register.statistics.StatisticData;
 import com.registerbook.registerbook.service.register.statistics.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -73,6 +76,18 @@ public class MemberServiceImplementation implements MemberService {
                 continue;
             }
         }
+    }
+
+    @Override
+    public ResponseEntity<String> writeMembersToFile(String fileName) {
+        List<Member> membersInDatabase = memberJpaRepository.findAll();
+        String answerToFrontEnd = !membersInDatabase.isEmpty() ? "File created. Name: " + fileName + ".txt" : "Database empty.";
+        HttpStatus responseStatus = !membersInDatabase.isEmpty() ? HttpStatus.OK : HttpStatus.NO_CONTENT;
+
+        if (!membersInDatabase.isEmpty())
+            FileWriter.writeToFile(membersInDatabase,fileName);
+
+        return new ResponseEntity<String>(answerToFrontEnd,responseStatus);
     }
 
 

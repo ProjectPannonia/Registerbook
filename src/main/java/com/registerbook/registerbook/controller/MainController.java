@@ -22,32 +22,33 @@ public class MainController {
     public static final Logger logger = LoggerFactory.getLogger(MainController.class);
     private MemberServiceImplementation memberServiceImplementation;
 
-
     @Autowired
     public void setMemberServiceImplementation(MemberServiceImplementation memberServiceImplementation) {
         this.memberServiceImplementation = memberServiceImplementation;
     }
 
-    /* GET all musicians */
     @GetMapping("/")
     public ResponseEntity<List<Member>> listAllMember() {
         List<Member> allMembers = memberServiceImplementation.getAllMember();
-        if (allMembers.isEmpty()) {
-            return new ResponseEntity<List<Member>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<List<Member>>(allMembers, HttpStatus.OK);
+        HttpStatus status = allMembers.isEmpty() ?  HttpStatus.NO_CONTENT : HttpStatus.OK;
+        return new ResponseEntity<List<Member>>(allMembers, status);
     }
 
     // Create a text file from the registered members list(in json format) with the given filename
     @GetMapping(value = "/writeMembersToFile/{fileName}")
     public ResponseEntity<String> writeMembersToFile(@PathVariable("fileName") final String fileName) {
+        /*ResponseEntity<String> result = memberServiceImplementation.writeMembersToFile(fileName);
         List<Member> allMembers = memberServiceImplementation.getAllMember();
+        String answerToFrontEnd = !allMembers.isEmpty() ? "File created. Name: " + fileName + ".txt" : "Database empty.";
+
         if (allMembers.isEmpty()) {
-            return new ResponseEntity<String>("Database empty.",HttpStatus.NO_CONTENT);
+            return new ResponseEntity<String>(answerToFrontEnd,HttpStatus.NO_CONTENT);
         }
 
         FileWriter.writeToFile(allMembers,fileName);
-        return new ResponseEntity<String>("File created. Name: " + fileName + ".txt!", HttpStatus.OK);
+        return new ResponseEntity<String>(answerToFrontEnd, HttpStatus.OK);
+        */
+         return memberServiceImplementation.writeMembersToFile(fileName);
     }
 
     /* POST a new musician to the database */
@@ -90,8 +91,6 @@ public class MainController {
 
         return new ResponseEntity<Member>(currentMember, HttpStatus.OK);
     }
-
-    /* DELETE  musician by id */
     @DeleteMapping("/{id}")
     public ResponseEntity<Member> deleteMember(@PathVariable("id") final Long id) {
         memberServiceImplementation.deleteMemberById(id);
