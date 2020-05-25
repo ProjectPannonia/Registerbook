@@ -19,4 +19,8 @@ public interface MemberService {
     ResponseEntity<String> writeMembersToFile(String fileName);
 
     ResponseEntity getAllRegisteredMembers();
+
+    ResponseEntity<Member> saveNewMemberIfNotExist(Member member);
+
+    ResponseEntity<Member> findMemberByIdIfExist(Long id);
 }

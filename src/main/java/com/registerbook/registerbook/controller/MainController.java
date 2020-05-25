@@ -36,28 +36,23 @@ public class MainController {
          return memberServiceImplementation.writeMembersToFile(fileName);
     }
 
-    /* POST a new musician to the database */
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Member> createMember(@Valid @RequestBody final Member member) {
-        logger.info("Creating member: {}", member);
+        /*logger.info("Creating member: {}", member);
+        ResponseEntity<Member> saveThisMember = memberServiceImplementation.saveNewMemberIfNotExist(member.getName());
         if (memberServiceImplementation.checkMemberWithThisNameAlreadyInDatabase(member.getName()) != null) {
             return new ResponseEntity<Member>(new CustomErrorType("Unable to create new member. A member with name: " + member.getName() + " already exist."), HttpStatus.CONFLICT);
         }
         memberServiceImplementation.saveNewMember(member);
 
         Member result = memberServiceImplementation.getMemberById(member.getName());
-        return new ResponseEntity<Member>(result, HttpStatus.CREATED);
+        return new ResponseEntity<Member>(result, HttpStatus.CREATED);*/
+        return memberServiceImplementation.saveNewMemberIfNotExist(member);
     }
 
-    /* GET a musician by id */
     @GetMapping("/{id}")
-    public ResponseEntity<Member> getUserById(@PathVariable("id") final Long id) {
-        Member member = memberServiceImplementation.findMemberById(id);
-        if (member == null) {
-            return new ResponseEntity<Member>(new CustomErrorType("Member with id " + id + " not found"), HttpStatus.NOT_FOUND);
-        }
-
-        return new ResponseEntity<Member>(member, HttpStatus.OK);
+    public ResponseEntity<Member> getMemberById(@PathVariable("id") final Long id) {
+        return memberServiceImplementation.findMemberByIdIfExist(id);
     }
 
     /* PUT first search a musician by id, then update properties */

@@ -24,7 +24,38 @@ public class MemberServiceImplementation implements MemberService {
     public ResponseEntity getAllRegisteredMembers() {
         List<Member> allMembers = memberJpaRepository.findAll();
         HttpStatus responseStatus = !allMembers.isEmpty() ? HttpStatus.OK : HttpStatus.NO_CONTENT;
+
         return new ResponseEntity<List<Member>>(allMembers,responseStatus);
+    }
+
+    @Override
+    public ResponseEntity<String> writeMembersToFile(String fileName) {
+        List<Member> membersInDatabase = memberJpaRepository.findAll();
+        String answerToFrontEnd = !membersInDatabase.isEmpty() ? "File created. Name: " + fileName + ".txt" : "Database empty.";
+        HttpStatus responseStatus = !membersInDatabase.isEmpty() ? HttpStatus.OK : HttpStatus.NO_CONTENT;
+
+        if (!membersInDatabase.isEmpty())
+            FileWriter.writeToFile(membersInDatabase,fileName);
+
+        return new ResponseEntity<String>(answerToFrontEnd,responseStatus);
+    }
+
+    @Override
+    public ResponseEntity<Member> saveNewMemberIfNotExist(Member member) {
+        Member searchedMember = memberJpaRepository.findMemberByName(member.getName());
+        HttpStatus responseStatus = (searchedMember != null) ? HttpStatus.CONFLICT : HttpStatus.CREATED;
+
+        if (searchedMember == null)
+            memberJpaRepository.save(member);
+
+        return new ResponseEntity<Member>(searchedMember,responseStatus);
+    }
+
+    @Override
+    public ResponseEntity<Member> findMemberByIdIfExist(Long id) {
+        Member searchedMember = memberJpaRepository.findMemberById(id);
+        HttpStatus responseStatus = (searchedMember == null) ? HttpStatus.NOT_FOUND : HttpStatus.OK;
+        return new ResponseEntity<Member>(searchedMember,responseStatus);
     }
 
     @Override
@@ -85,17 +116,7 @@ public class MemberServiceImplementation implements MemberService {
         }
     }
 
-    @Override
-    public ResponseEntity<String> writeMembersToFile(String fileName) {
-        List<Member> membersInDatabase = memberJpaRepository.findAll();
-        String answerToFrontEnd = !membersInDatabase.isEmpty() ? "File created. Name: " + fileName + ".txt" : "Database empty.";
-        HttpStatus responseStatus = !membersInDatabase.isEmpty() ? HttpStatus.OK : HttpStatus.NO_CONTENT;
 
-        if (!membersInDatabase.isEmpty())
-            FileWriter.writeToFile(membersInDatabase,fileName);
-
-        return new ResponseEntity<String>(answerToFrontEnd,responseStatus);
-    }
 
 
 
