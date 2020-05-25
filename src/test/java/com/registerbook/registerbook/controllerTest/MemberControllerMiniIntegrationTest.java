@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.junit.jupiter.api.Assertions.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class MemberControllerTest extends AbstractTest {
+public class MemberControllerMiniIntegrationTest extends AbstractTest {
 
     private static Member lastMember;
     private static MvcResult mvcResult;

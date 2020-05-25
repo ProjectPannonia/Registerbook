@@ -48,7 +48,6 @@ public class Member {
     @Column(name = "YEAROFBIRTH")
     private int yearOfBirth;
 
-
     public Long getId() {
         return id;
     }
