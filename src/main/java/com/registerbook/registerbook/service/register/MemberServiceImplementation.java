@@ -21,6 +21,13 @@ public class MemberServiceImplementation implements MemberService {
     MemberJpaRepository memberJpaRepository;
 
     @Override
+    public ResponseEntity getAllRegisteredMembers() {
+        List<Member> allMembers = memberJpaRepository.findAll();
+        HttpStatus responseStatus = !allMembers.isEmpty() ? HttpStatus.OK : HttpStatus.NO_CONTENT;
+        return new ResponseEntity<List<Member>>(allMembers,responseStatus);
+    }
+
+    @Override
     public List<Member> getAllMember() {
         return memberJpaRepository.findAll();
     }
@@ -89,6 +96,8 @@ public class MemberServiceImplementation implements MemberService {
 
         return new ResponseEntity<String>(answerToFrontEnd,responseStatus);
     }
+
+
 
 
     /* Private assistant methods */

@@ -2,7 +2,6 @@ package com.registerbook.registerbook.controller;
 
 import com.registerbook.registerbook.controller.errorHandler.CustomErrorType;
 import com.registerbook.registerbook.model.entities.Member;
-import com.registerbook.registerbook.service.register.fileOperation.fileWriter.FileWriter;
 import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import com.registerbook.registerbook.service.register.statistics.StatisticData;
 import org.slf4j.Logger;
@@ -28,26 +27,12 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<Member>> listAllMember() {
-        List<Member> allMembers = memberServiceImplementation.getAllMember();
-        HttpStatus status = allMembers.isEmpty() ?  HttpStatus.NO_CONTENT : HttpStatus.OK;
-        return new ResponseEntity<List<Member>>(allMembers, status);
+    public ResponseEntity<List<Member>> sendRegisteredMembersToFrontEnd() {
+        return memberServiceImplementation.getAllRegisteredMembers();
     }
 
-    // Create a text file from the registered members list(in json format) with the given filename
     @GetMapping(value = "/writeMembersToFile/{fileName}")
     public ResponseEntity<String> writeMembersToFile(@PathVariable("fileName") final String fileName) {
-        /*ResponseEntity<String> result = memberServiceImplementation.writeMembersToFile(fileName);
-        List<Member> allMembers = memberServiceImplementation.getAllMember();
-        String answerToFrontEnd = !allMembers.isEmpty() ? "File created. Name: " + fileName + ".txt" : "Database empty.";
-
-        if (allMembers.isEmpty()) {
-            return new ResponseEntity<String>(answerToFrontEnd,HttpStatus.NO_CONTENT);
-        }
-
-        FileWriter.writeToFile(allMembers,fileName);
-        return new ResponseEntity<String>(answerToFrontEnd, HttpStatus.OK);
-        */
          return memberServiceImplementation.writeMembersToFile(fileName);
     }
 

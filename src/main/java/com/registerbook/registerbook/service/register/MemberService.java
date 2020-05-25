@@ -17,4 +17,6 @@ public interface MemberService {
     void loadMembersFromFileToServer(String path);
 
     ResponseEntity<String> writeMembersToFile(String fileName);
+
+    ResponseEntity getAllRegisteredMembers();
 }
