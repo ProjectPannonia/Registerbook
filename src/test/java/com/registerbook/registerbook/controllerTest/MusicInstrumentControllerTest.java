@@ -8,7 +8,6 @@ import org.junit.runners.MethodSorters;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,7 +26,7 @@ public class MusicInstrumentControllerTest extends AbstractTest {
         String content;
         String url = "/register/musicinstrument/createNewInstruemnt";
         MusicInstrument testInstrument = new MusicInstrument();
-        testInstrument.setInstrumentName("Guiatar");
+        testInstrument.setInstrumentName("Guitar");
         content = super.mapToJson(testInstrument);
 
         mvcResult = mvc.perform(MockMvcRequestBuilders
@@ -66,7 +65,7 @@ public class MusicInstrumentControllerTest extends AbstractTest {
     public void C_deleteInstrumentByNameTest() throws Exception {
         int status;
         String content;
-        String url = "/register/musicinstrument/Guiatar";
+        String url = "/register/musicinstrument/Guitar";
         mvcResult = mvc.perform(MockMvcRequestBuilders.delete(url)).andReturn();
         status = mvcResult.getResponse().getStatus();
         assertEquals(204,status);

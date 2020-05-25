@@ -1,6 +1,5 @@
 package com.registerbook.registerbook.controller;
 
-import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
 import com.registerbook.registerbook.service.musicinstruments.MusicInstrumentServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
