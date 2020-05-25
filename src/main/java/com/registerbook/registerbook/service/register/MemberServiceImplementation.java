@@ -59,6 +59,14 @@ public class MemberServiceImplementation implements MemberService {
     }
 
     @Override
+    public ResponseEntity<Member> updateMemberIfExist(Long id, Member member) {
+        Member searchedToUpdate = memberJpaRepository.findMemberById(id);
+        HttpStatus responseStatus = (searchedToUpdate != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        Member updatedMember = null;
+        return null;//new ResponseEntity<Member>();
+    }
+
+    @Override
     public List<Member> getAllMember() {
         return memberJpaRepository.findAll();
     }

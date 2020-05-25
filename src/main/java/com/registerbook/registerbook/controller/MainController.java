@@ -58,6 +58,7 @@ public class MainController {
     /* PUT first search a musician by id, then update properties */
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Member> updateMember(@PathVariable final Long id, @RequestBody Member member) {
+        ResponseEntity<Member> toUpdateMember = memberServiceImplementation.updateMemberIfExist(id,member);
         Member currentMember = memberServiceImplementation.findMemberById(id);
         if (currentMember == null) {
             return new ResponseEntity<Member>(new CustomErrorType("Unable to update. Member with id " + id + " not found."), HttpStatus.NOT_FOUND);
@@ -68,7 +69,8 @@ public class MainController {
         currentMember.setAddress(member.getAddress());
         currentMember.setEmail(member.getEmail());
         currentMember.setYearOfBirth(member.getYearOfBirth());
-
+        memberServiceImplementation.saveNewMember(currentMember);
+        
         return new ResponseEntity<Member>(currentMember, HttpStatus.OK);
     }
     @DeleteMapping("/{id}")
