@@ -9,8 +9,8 @@ app.controller('memberdetailscontroller', function($scope,$http,$routeParams,$lo
 
     $scope.submitMemberForm = function(){
         $http({
-                method : 'POST',
-                url : 'http://localhost:8080/register/member/',
+                method : 'PUT',
+                url : 'http://localhost:8080/register/member/' + $scope.memberId,
                 data : $scope.member,
         }).then(function(response){
                 $location.path("/list-all-members");
