@@ -38,7 +38,7 @@ public class MainController {
 
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Member> createMember(@Valid @RequestBody final Member member) {
-        logger.info("Creating member: {}", member);
+        /*logger.info("Creating member: {}", member);
         //ResponseEntity<Member> saveThisMember = memberServiceImplementation.saveNewMemberIfNotExist(member.getName());
         if (memberServiceImplementation.checkMemberWithThisNameAlreadyInDatabase(member.getName()) != null) {
             return new ResponseEntity<Member>(new CustomErrorType("Unable to create new member. A member with name: " + member.getName() + " already exist."), HttpStatus.CONFLICT);
@@ -47,7 +47,9 @@ public class MainController {
 
         Member result = memberServiceImplementation.getMemberById(member.getName());
         return new ResponseEntity<Member>(result, HttpStatus.CREATED);
-        //return memberServiceImplementation.saveNewMemberIfNotExist(member);
+
+*/
+        return memberServiceImplementation.saveNewMemberIfNotExist(member);
     }
 
     @GetMapping("/{id}")
@@ -58,8 +60,8 @@ public class MainController {
     /* PUT first search a musician by id, then update properties */
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Member> updateMember(@PathVariable final Long id, @RequestBody Member member) {
-        //ResponseEntity<Member> toUpdateMember = memberServiceImplementation.updateMemberIfExist(id,member);
-        /*Member currentMember = memberServiceImplementation.findMemberById(id);
+        /*ResponseEntity<Member> toUpdateMember = memberServiceImplementation.updateMemberIfExist(id,member);
+        Member currentMember = memberServiceImplementation.findMemberById(id);
         if (currentMember == null) {
             return new ResponseEntity<Member>(new CustomErrorType("Unable to update. Member with id " + id + " not found."), HttpStatus.NOT_FOUND);
         }

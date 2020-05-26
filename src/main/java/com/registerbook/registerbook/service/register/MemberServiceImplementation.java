@@ -85,12 +85,10 @@ public class MemberServiceImplementation implements MemberService {
     public void saveNewMember(Member member){
         memberJpaRepository.save(member);
     }
-
     @Override
     public Member findMemberById(Long id) {
         return memberJpaRepository.findMemberById(id);
     }
-
     @Override
     public void deleteMemberById(Long id) {
         memberJpaRepository.deleteById(id);

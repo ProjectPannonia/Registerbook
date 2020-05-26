@@ -29,16 +29,12 @@ public class AbstractTest {
     protected void setup() throws Exception {
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
-    protected void killObjects(){
-        mvc = null;
-        webApplicationContext = null;
-    }
 
     protected String mapToJson(Object object) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-
         return objectMapper.writeValueAsString(object);
     }
+
     protected <T>T mapFromJson(String json, Class<T> clazz) throws JsonParseException,JsonMappingException, IOException{
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(json,clazz);

@@ -78,27 +78,27 @@ public class MemberControllerMiniIntegrationTest extends AbstractTest {
     @Test
     public void C_createNewMemberTest() throws Exception {
         String url = "/register/member/";
-        String inputJson;
         int status;
         Member testMember = new Member();
 
-        testMember.setId(new Long(52));
-        testMember.setName("Jucus");
-        testMember.setBand("Amon Amarth");
+        testMember.setId(52L);
+        testMember.setName("XYZ");
+        testMember.setBand("TestBand");
         testMember.setAddress("Bszh");
         testMember.setEmail("ld@ld.hu");
         testMember.setYearOfBirth(1989);
         testMember.setCountry("Hungary");
         testMember.setInstrument("Guitar");
 
-        inputJson = super.mapToJson(testMember);
-
+        String inputJson = super.mapToJson(testMember);
+        System.out.println("InputJson: " + inputJson);
         mvcResult = mvc.perform(MockMvcRequestBuilders
                 .post(url).contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(inputJson))
                 .andReturn();
-        lastMember = super.mapFromJson(mvcResult
-                .getResponse()
+        String mResult = mvcResult.getResponse().getContentAsString();
+        System.out.println("Ez jött vissza: " + mResult);
+        lastMember = super.mapFromJson(mvcResult.getResponse()
                 .getContentAsString(),Member.class);
         System.out.println("Ezzel az id-vel lett elmentve"+lastMember.getId());
         status = mvcResult
