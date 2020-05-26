@@ -62,8 +62,18 @@ public class MemberServiceImplementation implements MemberService {
     public ResponseEntity<Member> updateMemberIfExist(Long id, Member member) {
         Member searchedToUpdate = memberJpaRepository.findMemberById(id);
         HttpStatus responseStatus = (searchedToUpdate != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-        Member updatedMember = null;
-        return null;//new ResponseEntity<Member>();
+
+        searchedToUpdate.setName(member.getName());
+        searchedToUpdate.setInstrument(member.getInstrument());
+        searchedToUpdate.setCountry(member.getCountry());
+        searchedToUpdate.setYearOfBirth(member.getYearOfBirth());
+        searchedToUpdate.setEmail(member.getEmail());
+        searchedToUpdate.setBand(member.getBand());
+        searchedToUpdate.setAddress(member.getAddress());
+
+        memberJpaRepository.save(searchedToUpdate);
+
+        return new ResponseEntity<Member>(searchedToUpdate,responseStatus);
     }
 
     @Override
@@ -123,11 +133,6 @@ public class MemberServiceImplementation implements MemberService {
             }
         }
     }
-
-
-
-
-
 
     /* Private assistant methods */
     private List<Member> specifier(String[] content){
