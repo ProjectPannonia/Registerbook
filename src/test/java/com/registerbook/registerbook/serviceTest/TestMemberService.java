@@ -11,32 +11,30 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TestMemberService {
 
     @Mock
-    MemberJpaRepository mjp;
+    MemberJpaRepository memberJpaRepository;
 
     @InjectMocks
-    MemberServiceImplementation msi;
+    MemberServiceImplementation memberService;
 
-    protected ArrayList<Member> emptyResponse;
-    protected ArrayList<Member> normalResponse;
+    protected ArrayList<Member> blankDbResponse;
+    protected ArrayList<Member> nonBlankDbResponse;
     protected Member testMember1;
     protected Member testMember2;
     protected Member testMember3;
 
     @Before
     public void init(){
-        emptyResponse = new ArrayList<>();
+        blankDbResponse = new ArrayList<>();
         testMember1 = new Member();
         testMember1.setId(new Long(1));
         testMember1.setName("Ádám");
@@ -67,32 +65,120 @@ public class TestMemberService {
         testMember3.setYearOfBirth(1900);
         testMember3.setAddress("Budatest");
 
-        normalResponse = new ArrayList<>();
-        normalResponse.add(testMember1);
-        normalResponse.add(testMember2);
-        normalResponse.add(testMember3);
+        nonBlankDbResponse = new ArrayList<>();
+        nonBlankDbResponse.add(testMember1);
+        nonBlankDbResponse.add(testMember2);
+        nonBlankDbResponse.add(testMember3);
 
     }
 
     @Test
     public void testGetAllMembersWithEmptyDatabase(){
+        when(memberJpaRepository.findAll()).thenReturn(blankDbResponse);
+
         HttpStatus expectedResponseStatus = HttpStatus.NO_CONTENT;
         List<Member> expectedListOfMembers = new ArrayList<>();
-        when(mjp.findAll()).thenReturn(emptyResponse);
 
-        ResponseEntity allRegisteredMembers = msi.getAllRegisteredMembers();
+        ResponseEntity allRegisteredMembers = memberService.getAllRegisteredMembers();
 
         assertEquals(expectedResponseStatus,allRegisteredMembers.getStatusCode());
         assertEquals(expectedListOfMembers,allRegisteredMembers.getBody());
         assertNotEquals(null,allRegisteredMembers.getBody());
+
+        verify(memberJpaRepository,times(1)).findAll();
     }
     @Test
     public void testGetAllMembersWithNotEmptyDatabase(){
-        when(mjp.findAll()).thenReturn(normalResponse);
+        when(memberJpaRepository.findAll()).thenReturn(nonBlankDbResponse);
+
         HttpStatus expectedResponseStatus = HttpStatus.OK;
         List<Member> notExpectedList = new ArrayList<>();
-        ResponseEntity responseFromDb = msi.getAllRegisteredMembers();
+
+        ResponseEntity responseFromDb = memberService.getAllRegisteredMembers();
+
         assertEquals(expectedResponseStatus,responseFromDb.getStatusCode());
         assertNotEquals(HttpStatus.NO_CONTENT,responseFromDb.getStatusCode());
+        assertNotEquals(notExpectedList,responseFromDb.getBody());
+
+        verify(memberJpaRepository,times(1)).findAll();
+    }
+    @Test
+    public void testWriteMembersToFileWithEmptyDb(){
+        when(memberJpaRepository.findAll()).thenReturn(blankDbResponse);
+
+        String expectedResponseText = "Database empty.";
+        HttpStatus expectedStatus = HttpStatus.NO_CONTENT;
+
+        ResponseEntity responseFromDb = memberService
+                .writeMembersToFile("TestFilename");
+        String resultResponseText = responseFromDb.getBody().toString();
+        HttpStatus resultStatus = responseFromDb.getStatusCode();
+
+        assertEquals(expectedResponseText,resultResponseText);
+        assertEquals(expectedStatus,resultStatus);
+        verify(memberJpaRepository,times(1)).findAll();
+    }
+    @Test
+    public void testWriteMembersToFileWithNotEmptyDb(){
+        when(memberJpaRepository.findAll()).thenReturn(nonBlankDbResponse);
+
+        String testFileName = "TestFile";
+        String expectedResponseText = "File created. Name: " + testFileName + ".txt";
+
+        HttpStatus expectedStatus = HttpStatus.OK;
+        ResponseEntity resultResponseFromDb = memberService
+                .writeMembersToFile(testFileName);
+
+        HttpStatus resultStatus = resultResponseFromDb.getStatusCode();
+        String resultResponseText = resultResponseFromDb.getBody().toString();
+
+        assertEquals(expectedResponseText,resultResponseText);
+        assertEquals(expectedStatus,resultStatus);
+        verify(memberJpaRepository,times(1)).findAll();
+    }
+    @Test
+    public void testWithAnExistingMember_SaveNewMemberIfNotExist(){
+        when(memberJpaRepository.findMemberByName("Ádám")).thenReturn(testMember1);
+
+        HttpStatus expectedStatus = HttpStatus.CONFLICT;
+        Member expectedMember = testMember1;
+
+        ResponseEntity resultResponse = memberService.saveNewMemberIfNotExist(testMember1);
+        HttpStatus resultStatus = resultResponse.getStatusCode();
+        Member resultMember = (Member) resultResponse.getBody();
+
+        assertEquals(expectedStatus,resultStatus);
+        assertEquals(expectedMember,resultMember);
+
+        verify(memberJpaRepository,times(1)).findMemberByName(anyString());
+    }
+    @Test
+    public void testWithNonRegisteredUser_SaveNewMemberIfNotExist(){
+        when(memberJpaRepository.findMemberByName(anyString())).thenReturn(null).thenReturn(testMember1);
+
+        HttpStatus expectedStatus = HttpStatus.CREATED;
+        Member expectedMember = testMember1;
+
+        ResponseEntity resultResponse = memberService.saveNewMemberIfNotExist(testMember1);
+        Member responseMemberFromDb = (Member) resultResponse.getBody();
+        HttpStatus responseStatusFromDb = resultResponse.getStatusCode();
+
+        assertEquals(testMember1.getName(),responseMemberFromDb.getName());
+        assertEquals(testMember1.getCountry(),responseMemberFromDb.getCountry());
+        assertEquals(testMember1.getBand(),responseMemberFromDb.getBand());
+        assertEquals(testMember1.getAddress(),responseMemberFromDb.getAddress());
+        assertEquals(testMember1.getEmail(),responseMemberFromDb.getEmail());
+        assertEquals(testMember1.getInstrument(),responseMemberFromDb.getInstrument());
+        assertEquals(testMember1.getYearOfBirth(),responseMemberFromDb.getYearOfBirth());
+
+        assertEquals(expectedMember,responseMemberFromDb);
+        assertEquals(expectedStatus,responseStatusFromDb);
+
+        verify(memberJpaRepository,times(1)).save(testMember1);
+        verify(memberJpaRepository,times(2)).findMemberByName(anyString());
+    }
+    @Test
+    public void testWithNonExistMember_findMemberByIdIfExist(){
+
     }
 }

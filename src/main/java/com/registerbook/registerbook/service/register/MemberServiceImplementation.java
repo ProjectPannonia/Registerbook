@@ -25,7 +25,7 @@ public class MemberServiceImplementation implements MemberService {
         List<Member> allMembers = memberJpaRepository.findAll();
         HttpStatus responseStatus = !allMembers.isEmpty() ? HttpStatus.OK : HttpStatus.NO_CONTENT;
 
-        return new ResponseEntity<List<Member>>(allMembers,responseStatus);
+        return new ResponseEntity<>(allMembers,responseStatus);
     }
 
     @Override
@@ -37,18 +37,20 @@ public class MemberServiceImplementation implements MemberService {
         if (!membersInDatabase.isEmpty())
             FileWriter.writeToFile(membersInDatabase,fileName);
 
-        return new ResponseEntity<String>(answerToFrontEnd,responseStatus);
+        return new ResponseEntity<>(answerToFrontEnd,responseStatus);
     }
 
     @Override
     public ResponseEntity<Member> saveNewMemberIfNotExist(Member member) {
         Member searchedMember = memberJpaRepository.findMemberByName(member.getName());
-        HttpStatus responseStatus = (searchedMember != null) ? HttpStatus.CONFLICT : HttpStatus.CREATED;
+        HttpStatus responseStatus = (searchedMember == null) ?  HttpStatus.CREATED : HttpStatus.CONFLICT;
 
-        if (searchedMember == null)
+        if (searchedMember == null){
             memberJpaRepository.save(member);
+            searchedMember = memberJpaRepository.findMemberByName(member.getName());
+        }
 
-        return new ResponseEntity<Member>(searchedMember,responseStatus);
+        return new ResponseEntity<>(searchedMember,responseStatus);
     }
 
     @Override
