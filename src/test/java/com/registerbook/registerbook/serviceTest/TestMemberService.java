@@ -211,4 +211,8 @@ public class TestMemberService {
 
         verify(memberJpaRepository,times(1)).findMemberById(0L);
     }
+    @Test
+    public void test_searchBySpecifiedProperty(){
+       
+    }
 }
