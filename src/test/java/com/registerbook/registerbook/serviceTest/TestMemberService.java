@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.internal.matchers.InstanceOf;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -182,16 +183,32 @@ public class TestMemberService {
     public void testWithNonExistMember_findMemberByIdIfExist(){
         when(memberJpaRepository.findMemberById(anyLong())).thenReturn(null);
 
-        HttpStatus expectedResultStatus = HttpStatus.NOT_FOUND;
+        HttpStatus expectedStatus = HttpStatus.NOT_FOUND;
 
         ResponseEntity resultResponse = memberService.findMemberByIdIfExist(0L);
         HttpStatus responseStatus = resultResponse.getStatusCode();
         Member responseMember = (Member) resultResponse.getBody();
 
-        assertEquals(expectedResultStatus,responseStatus);
+        assertEquals(expectedStatus,responseStatus);
         assertEquals(null,responseMember);
 
         verify(memberJpaRepository,times(1)).findMemberById(0L);
     }
+    @Test
+    public void testWithExistingMember_findMemberByIdIfExist(){
+        when(memberJpaRepository.findMemberById(anyLong())).thenReturn(testMember2);
 
+        HttpStatus expectedStatus = HttpStatus.OK;
+
+        ResponseEntity resultResponse = memberService.findMemberByIdIfExist(0L);
+        HttpStatus responseStatus = resultResponse.getStatusCode();
+        Member responseMember = (Member) resultResponse.getBody();
+
+        assertTrue(responseStatus instanceof HttpStatus);
+        assertTrue(responseMember instanceof Member);
+        assertEquals(expectedStatus,responseStatus);
+        assertEquals(testMember2,responseMember);
+
+        verify(memberJpaRepository,times(1)).findMemberById(0L);
+    }
 }
