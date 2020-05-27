@@ -2,6 +2,7 @@ package com.registerbook.registerbook.serviceTest;
 
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
+import com.registerbook.registerbook.service.register.MemberService;
 import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import org.junit.Before;
 import org.junit.Test;
@@ -153,7 +154,7 @@ public class TestMemberService {
         verify(memberJpaRepository,times(1)).findMemberByName(anyString());
     }
     @Test
-    public void testWithNonRegisteredUser_SaveNewMemberIfNotExist(){
+    public void testWithNonRegisteredMember_SaveNewMemberIfNotExist(){
         when(memberJpaRepository.findMemberByName(anyString())).thenReturn(null).thenReturn(testMember1);
 
         HttpStatus expectedStatus = HttpStatus.CREATED;
@@ -179,6 +180,18 @@ public class TestMemberService {
     }
     @Test
     public void testWithNonExistMember_findMemberByIdIfExist(){
+        when(memberJpaRepository.findMemberById(anyLong())).thenReturn(null);
 
+        HttpStatus expectedResultStatus = HttpStatus.NOT_FOUND;
+
+        ResponseEntity resultResponse = memberService.findMemberByIdIfExist(0L);
+        HttpStatus responseStatus = resultResponse.getStatusCode();
+        Member responseMember = (Member) resultResponse.getBody();
+
+        assertEquals(expectedResultStatus,responseStatus);
+        assertEquals(null,responseMember);
+
+        verify(memberJpaRepository,times(1)).findMemberById(0L);
     }
+
 }
