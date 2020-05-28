@@ -6,11 +6,13 @@ import java.util.List;
 
 public interface MusicInstrumentService {
 
-    List<MusicInstrument> getAllInstruments();
+    String[] getAllInstruments();
 
     List<MusicInstrument> isThisInstrumentAlreadyInDatabase(String instrumentName);
 
     MusicInstrument findByName(String name);
 
     void deleteInstrument(String name);
+
+    String clearTable();
 }

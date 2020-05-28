@@ -10,8 +10,10 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
 
     $http({
           method : 'GET',
-          url : 'http://localhost:8080/register/musicinstrument/getCountries'
-    });
+          url : 'http://localhost:8080/register/musicinstrument/getInstruments'
+          )}.then(function(response)){
+            $scope.allInstruments = response.data;
+          });
 
     $scope.delete = function(){
         $http({

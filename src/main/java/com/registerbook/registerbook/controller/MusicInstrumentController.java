@@ -22,9 +22,14 @@ public class MusicInstrumentController {
     }
 
     @GetMapping("/getInstruments")
-    public ResponseEntity<List<MusicInstrument>> getAllIstruments(){
-        List<MusicInstrument> allInstruments =  instrumentServiceImplementation.getAllInstruments();
-        return new ResponseEntity<List<MusicInstrument>>(allInstruments, HttpStatus.OK);
+    public ResponseEntity<String[]> getAllIstruments(){
+        String[] allInstruments =  instrumentServiceImplementation.getAllInstruments();
+        return new ResponseEntity<String[]>(allInstruments, HttpStatus.OK);
+    }
+    @GetMapping("/dropInstruments")
+    public ResponseEntity<String> dropInstrumentsTable(){
+        String response = instrumentServiceImplementation.clearTable();
+        return new ResponseEntity<String>(response,HttpStatus.OK);
     }
 
     @PostMapping(value = "/createNewInstrument", consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -29,4 +29,8 @@ public interface MusicInstrumentJpaRepository extends JpaRepository<MusicInstrum
     @Modifying
     void deleteByName(@Param("name") String name);
 
+    @Transactional
+    @Query(value = "DELETE FROM MusicInstrument m")
+    @Modifying
+    void dropTable();
 }

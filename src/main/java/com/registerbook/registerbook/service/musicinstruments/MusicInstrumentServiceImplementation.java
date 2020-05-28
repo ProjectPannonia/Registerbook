@@ -14,8 +14,12 @@ public class MusicInstrumentServiceImplementation implements MusicInstrumentServ
     MusicInstrumentJpaRepository musicInstrumentJpaRepository;
 
     @Override
-    public List<MusicInstrument> getAllInstruments() {
-        return musicInstrumentJpaRepository.findAll();
+    public String[] getAllInstruments() {
+        List<MusicInstrument> instrumentList = musicInstrumentJpaRepository.findAll();
+        String[] instrumentArray = new String[instrumentList.size()];
+        for (int i = 0; i < instrumentArray.length; i++)
+            instrumentArray[i] = instrumentList.get(i).getInstrumentName();
+        return instrumentArray;
     }
 
     @Override
@@ -31,6 +35,20 @@ public class MusicInstrumentServiceImplementation implements MusicInstrumentServ
     @Override
     public void deleteInstrument(String name) {
         musicInstrumentJpaRepository.deleteByName(name);
+    }
+
+    @Override
+    public String clearTable() {
+        musicInstrumentJpaRepository.dropTable();
+        String response;
+        int numberOfMembers = musicInstrumentJpaRepository.findAll().size();
+        if (numberOfMembers == 0){
+            response = "Database cleared";
+        }else {
+            response = "Problem with clearing table!";
+        }
+
+        return response;
     }
 
     public void Save(MusicInstrument musicInstrument) {
