@@ -31,5 +31,4 @@ app.controller('statistics',function($scope,$http,$location,$route){
           });
 
           console.log("A nation értéke: " + nation);
-
 });
