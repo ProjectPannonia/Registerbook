@@ -1,4 +1,4 @@
-app.controller('newmemberregistration',function($scope,$http,$location,$route){
+app.controller('memberRegistration',function($scope,$http,$location,$route){
     $scope.instrumen = ['Guitar','Bass Guitar','Drum','Singer','Violin','Harmonica','Rhythm guitar','Keyboard instruments'];
 
         $http({

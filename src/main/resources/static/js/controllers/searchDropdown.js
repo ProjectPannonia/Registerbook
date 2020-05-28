@@ -1,4 +1,4 @@
-app.controller('searchdropdown',function($scope,$http,$location,$route){
+app.controller('searchDropdown',function($scope,$http,$location,$route){
     $scope.names = ["Name","Band","City","Country","Instrument"];
 
     $scope.push = function(){

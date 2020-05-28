@@ -10,8 +10,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 public class MemberControllerJunitTests extends AbstractTest {
 
@@ -85,22 +83,43 @@ public class MemberControllerJunitTests extends AbstractTest {
         }
     }
     @Test
-    public void testCreateMember() throws Exception {
-        String url = "/register/member/";
+    public void CreateUpdateDeleteTest() throws Exception {
+        String urlToCreate = "/register/member/";
 
         String inputJson = super.mapToJson(testMemberToCreate);
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
-                .post(url).contentType(MediaType.APPLICATION_JSON_VALUE)
+        MvcResult mvcCreateResult = mvc.perform(MockMvcRequestBuilders
+                .post(urlToCreate).contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(inputJson))
                 .andReturn();
 
-        Member responseFromDatabaseMember = super.mapFromJson(mvcResult.getResponse()
+        Member responseFromDatabaseMember = super.mapFromJson(mvcCreateResult.getResponse()
                 .getContentAsString(),Member.class);
 
-        int status = mvcResult.getResponse().getStatus();
+        int responseStatus = mvcCreateResult
+                .getResponse()
+                .getStatus();
 
-        assertEquals(201, status);
+        assertTrue(responseFromDatabaseMember instanceof Member);
+        assertEquals(201, responseStatus);
+
+        // UPDATE test
+        Long lastRegisteredId = responseFromDatabaseMember.getId();
+        String urlToUpdate = "/register/member/" + lastRegisteredId;
+        String inputToJsonUpdate = super.mapToJson(testMemberToUpdate);
+
+        MvcResult mvcUpdateResult = mvc.perform(MockMvcRequestBuilders.put(urlToUpdate)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(inputToJsonUpdate))
+                .andReturn();
+
+        Member memberAfterUpdate = super.mapFromJson(mvcUpdateResult
+                .getResponse()
+                .getContentAsString(),Member.class);
+        assertTrue(memberAfterUpdate != null);
+        assertTrue(memberAfterUpdate instanceof Member);
+        assertEquals(testMemberToUpdate.getName(),memberAfterUpdate.getName());
+
     }
     @Test
     public void testGetMemberById(){

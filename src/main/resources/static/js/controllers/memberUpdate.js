@@ -1,4 +1,4 @@
-app.controller('memberdetailscontroller', function($scope,$http,$routeParams,$location,$route){
+app.controller('memberUpdate', function($scope,$http,$routeParams,$location,$route){
     $scope.memberId = $routeParams.id;
     $http({
             method : 'GET',

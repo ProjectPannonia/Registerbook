@@ -2,26 +2,23 @@ var app = angular.module('memberregistrationsystem',['ngRoute','ngResource']);
 
 app.config(function($routeProvider){
     $routeProvider.when('/list-all-members',{
-        templateUrl : '/template/listmember.html',
-        controller : 'listmembercontroller'
-    }).when('/register-new-member',{
-        templateUrl : '/template/memberregistration.html',
-        controller : 'registermembercontroller'
+        templateUrl : '/template/listMembers.html',
+        controller : 'listMembers'
     }).when('/update-member/:id',{
-        templateUrl : '/template/memberupdate.html',
-        controller : 'memberdetailscontroller'
+        templateUrl : '/template/memberUpdate.html',
+        controller : 'memberUpdate'
     }).when('/search-drop-down',{
-        templateUrl : 'template/searchdropdown.html',
-        controller : 'searchdropdown'
+        templateUrl : 'template/searchDropdown.html',
+        controller : 'searchDropdown'
     }).when('/new-member-registration',{
-        templateUrl : 'template/newmemberregistration.html',
-        controller : 'newmemberregistration'
+        templateUrl : 'template/memberRegistration.html',
+        controller : 'memberRegistration'
     }).when('/statistics',{
-        templateUrl : 'template/teststat.html',
+        templateUrl : 'template/statistics.html',
         controller : 'statistics'
     }).when('/adminGuiPage',{
-        templateUrl : 'template/adminGui.html',
-        controller : 'admingui'
+        templateUrl : 'template/adminFunctions.html',
+        controller : 'adminFunctions'
     }).otherwise({
        redirectTo : '/home',
        templateUrl : '/template/home.html'

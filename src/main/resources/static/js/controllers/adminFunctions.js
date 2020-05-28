@@ -1,4 +1,4 @@
-app.controller('admingui', function($scope,$http,$routeParams,$location,$route){
+app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$route){
     $scope.allCountries;
 
     $http({
