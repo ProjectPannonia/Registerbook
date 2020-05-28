@@ -1,4 +1,6 @@
-package com.registerbook.registerbook.controllerTest;
+package com.registerbook.registerbook.controllerTest.memberControllerTests;
+
+import com.registerbook.registerbook.controllerTest.AbstractTest;
 import com.registerbook.registerbook.model.entities.Member;
 import org.junit.After;
 import org.junit.Before;
@@ -6,10 +8,12 @@ import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MemberControllerJunitTests extends AbstractTest{
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+public class MemberControllerJunitTests extends AbstractTest {
 
     private static Member testMemberToGet;
     private static Member testMemberToCreate;
@@ -18,6 +22,7 @@ public class MemberControllerJunitTests extends AbstractTest{
 
     @Before
     public void setup()throws Exception{
+
         super.setup();
 
         testMemberToGet = new Member();
@@ -59,29 +64,25 @@ public class MemberControllerJunitTests extends AbstractTest{
 
     @Test
     public void testGetAllMembers() throws Exception {
-        Member[] memberList;
-        String content;
-        int status;
-        MvcResult mvcResult;
         String url = "/register/member/";
-
-        mvcResult = mvc.perform(MockMvcRequestBuilders
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
                 .get(url)
                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn();
+        int responseStatus = mvcResult.getResponse().getStatus();
 
-        status = mvcResult
-                .getResponse()
-                .getStatus();
+        assertEquals(200, responseStatus);
 
-        assertEquals(200, status);
-
-        content = mvcResult
+        String responseContent = mvcResult
                 .getResponse()
                 .getContentAsString();
 
-        memberList = super.mapFromJson(content, Member[].class);
+        Member[] memberList = super.mapFromJson(responseContent, Member[].class);
         assertTrue(memberList.length > 0);
+
+        for (Member m : memberList){
+            assertNotEquals(null,m);
+        }
     }
     @Test
     public void testCreateMember() throws Exception {

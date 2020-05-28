@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.serviceTest;
+package com.registerbook.registerbook.serviceTest.memberServiceTests;
 
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
@@ -213,6 +213,19 @@ public class TestMemberService {
     }
     @Test
     public void test_searchBySpecifiedProperty(){
-       
+        when(memberJpaRepository.getMemberByName(anyString()))
+                .thenReturn(testMember1)
+                .thenReturn(testMember2);
+
+        String[] testPropertyAndValue = {"Name","Ádám"};
+        int expectedMembersNumber = 1;
+
+        List<Member> responseFromDb = memberService.searchBySpecifiedProperty(testPropertyAndValue);
+
+        assertTrue(responseFromDb.get(0) instanceof Member);
+        assertTrue(responseFromDb.size() == expectedMembersNumber);
+        assertTrue(responseFromDb.get(0) != null);
+
+        verify(memberJpaRepository,times(1)).getMemberByName(anyString());
     }
 }

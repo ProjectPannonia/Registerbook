@@ -1,5 +1,6 @@
-package com.registerbook.registerbook.controllerTest;
+package com.registerbook.registerbook.controllerTest.musicInstrumentControllerTests;
 
+import com.registerbook.registerbook.controllerTest.AbstractTest;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
 import org.junit.Before;
 import org.junit.FixMethodOrder;

@@ -1,4 +1,4 @@
-package com.registerbook.registerbook;
+package com.registerbook.registerbook.serviceTest.countryServiceTests;
 
 import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.repository.CountryJpaRepository;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Locale;
 
 @RunWith(MockitoJUnitRunner.class)
-public class testLoadCountriesToTheServer {
+public class TestLoadCountriesToTheServer {
 
     List<Country> load;
     String[] isoCountries;

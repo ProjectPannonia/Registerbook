@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.TestMembersFromFile;
+package com.registerbook.registerbook.serviceTest.memberServiceTests.testMembersFromFile;
 
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.service.register.fileOperation.fileReader.MembersFileReader;

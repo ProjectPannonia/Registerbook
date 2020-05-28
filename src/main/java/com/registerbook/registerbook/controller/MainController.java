@@ -1,6 +1,5 @@
 package com.registerbook.registerbook.controller;
 
-import com.registerbook.registerbook.controller.errorHandler.CustomErrorType;
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import com.registerbook.registerbook.service.register.statistics.StatisticData;
@@ -20,7 +19,6 @@ public class MainController {
 
     public static final Logger logger = LoggerFactory.getLogger(MainController.class);
     private MemberServiceImplementation memberServiceImplementation;
-
     @Autowired
     public void setMemberServiceImplementation(MemberServiceImplementation memberServiceImplementation) {
         this.memberServiceImplementation = memberServiceImplementation;

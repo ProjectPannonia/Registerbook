@@ -1,5 +1,6 @@
-package com.registerbook.registerbook.controllerTest;
+package com.registerbook.registerbook.controllerTest.countryControllerTests;
 
+import com.registerbook.registerbook.controllerTest.AbstractTest;
 import com.registerbook.registerbook.model.entities.Country;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class CountryControllerTest extends AbstractTest{
+public class CountryControllerTest extends AbstractTest {
 
     private static MvcResult mvcResult;
 
