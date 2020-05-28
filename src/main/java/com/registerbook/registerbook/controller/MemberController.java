@@ -15,9 +15,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/register/member")
-public class MainController {
+public class MemberController {
 
-    public static final Logger logger = LoggerFactory.getLogger(MainController.class);
+    public static final Logger logger = LoggerFactory.getLogger(MemberController.class);
     private MemberServiceImplementation memberServiceImplementation;
     @Autowired
     public void setMemberServiceImplementation(MemberServiceImplementation memberServiceImplementation) {
