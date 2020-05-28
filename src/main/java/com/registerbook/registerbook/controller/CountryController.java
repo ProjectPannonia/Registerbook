@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,7 @@ public class CountryController {
         this.countryServiceImplementation = countryServiceImplementation;
     }
 
-    @GetMapping("/adminGuiRest")
+    @GetMapping("/getAllCountries")
     public ResponseEntity<List<Country>> loadCountriesToTheServer() {
         List<Country> result = countryServiceImplementation.loadCountriesToTheServer();
         return new ResponseEntity<List<Country>>(result, HttpStatus.OK);

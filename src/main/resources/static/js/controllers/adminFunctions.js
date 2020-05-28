@@ -3,15 +3,15 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
 
     $http({
            method : 'GET',
-           url : 'http://localhost:8080/register/country/adminGuiRest'
-           }).then(function(response){
+           url : 'http://localhost:8080/register/country/getAllCountries'
+          }).then(function(response){
               $scope.allCountries = response.data;
-           });
+          });
 
     $http({
           method : 'GET',
           url : 'http://localhost:8080/register/musicinstrument/getInstruments'
-          )}.then(function(response)){
+          }).then(function(response){
             $scope.allInstruments = response.data;
           });
 
