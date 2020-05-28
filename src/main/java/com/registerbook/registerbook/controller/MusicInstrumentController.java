@@ -24,29 +24,24 @@ public class MusicInstrumentController {
     @GetMapping("/getInstruments")
     public ResponseEntity<String[]> getAllIstruments(){
         String[] allInstruments =  instrumentServiceImplementation.getAllInstruments();
-        return new ResponseEntity<String[]>(allInstruments, HttpStatus.OK);
+        return new ResponseEntity<>(allInstruments, HttpStatus.OK);
     }
     @GetMapping("/dropInstruments")
     public ResponseEntity<String> dropInstrumentsTable(){
         String response = instrumentServiceImplementation.clearTable();
-        return new ResponseEntity<String>(response,HttpStatus.OK);
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
     @PostMapping(value = "/createNewInstrument", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> createNewInstrumentIfNotExist(@Valid @RequestBody final MusicInstrument musicInstrument) {
-        //logger.info("Creating music instrument: {}", musicInstrument);
-        /*if (instrumentServiceImplementation.isThisInstrumentAlreadyInDatabase(musicInstrument.getInstrumentName()) != null) {
-            //return new ResponseEntity<MusicInstrument>(new CustomErrorType("Unable to create new music instrument. A music instrument with name: " + musicInstrument.getInstrumentName() + " already exist."),HttpStatus.CONFLICT);
-        }
-        instrumentServiceImplementation.Save(musicInstrument);
-        MusicInstrument response = instrumentServiceImplementation.findByName(musicInstrument.getInstrumentName());
-        */
         String response = instrumentServiceImplementation.saveInstrumentIfNotExist(musicInstrument);
-        return new ResponseEntity<String>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<MusicInstrument> deleteMember(@PathVariable("id") final String name) {
         instrumentServiceImplementation.deleteInstrument(name);
-        return new ResponseEntity<MusicInstrument>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

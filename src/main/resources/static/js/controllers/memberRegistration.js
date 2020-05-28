@@ -1,6 +1,4 @@
 app.controller('memberRegistration',function($scope,$http,$location,$route){
-    $scope.instrumen = ['Guitar','Bass Guitar','Drum','Singer','Violin','Harmonica','Rhythm guitar','Keyboard instruments'];
-
         $http({
                 method : 'GET',
                 url : 'http://localhost:8080/register/country/getCountries'
@@ -26,7 +24,8 @@ app.controller('memberRegistration',function($scope,$http,$location,$route){
                     $scope.errorMessage = errResponse.data.errorMessage;
             });
     };
-        $scope.resetForm = function(){
+
+    $scope.resetForm = function(){
             $scope.member = null;
-        }
+    };
 });
