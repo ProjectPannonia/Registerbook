@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -17,8 +16,9 @@ public class CountryServiceImplementation implements CountryService {
     CountryJpaRepository countryJpaRepository;
 
     @Override
-    public List<Country> loadCountriesToTheServer() {
+    public String[] loadCountriesToTheServer() {
         List<Country> countriesAlreadyOnServer = countryJpaRepository.findAll();
+        String[] countriesOnServerArray;
         if(countriesAlreadyOnServer.isEmpty()) {
             String[] isoCountries = Locale.getISOCountries();
             for (String country : isoCountries) {
@@ -30,8 +30,13 @@ public class CountryServiceImplementation implements CountryService {
                 }
             }
         }
-        
-        return countriesAlreadyOnServer;
+        countriesOnServerArray = new String[countriesAlreadyOnServer.size()];
+        for (int i = 0; i < countriesOnServerArray.length;i++)
+            countriesOnServerArray[i] = countriesAlreadyOnServer.get(i).getCountryName();
+
+        Arrays.sort(countriesOnServerArray);
+
+        return countriesOnServerArray;
     }
 
     @Override

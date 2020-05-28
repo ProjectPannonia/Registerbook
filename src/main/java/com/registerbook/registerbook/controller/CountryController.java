@@ -25,9 +25,9 @@ public class CountryController {
     }
 
     @GetMapping("/getAllCountries")
-    public ResponseEntity<List<Country>> loadCountriesToTheServer() {
-        List<Country> result = countryServiceImplementation.loadCountriesToTheServer();
-        return new ResponseEntity<List<Country>>(result, HttpStatus.OK);
+    public ResponseEntity<String[]> loadCountriesToTheServer() {
+        String[] result = countryServiceImplementation.loadCountriesToTheServer();
+        return new ResponseEntity<String[]>(result, HttpStatus.OK);
     }
 
     @GetMapping("/getCountries")

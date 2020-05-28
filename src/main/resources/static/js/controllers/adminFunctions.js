@@ -23,22 +23,18 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
 
     };
     $scope.drop = function(){
-
         $http({
             method : 'DELETE',
             url : 'http://localhost:8080/register/country/drop'
         });
-
     };
     $scope.addNewInstrument = function(){
-
         $http({
             method : 'POST',
             url : 'http://localhost:8080/register/musicinstrument/createNewInstrument',
             data : $scope.musicinstrument
         });
-
-        console.log($scope.newInstrument);
+        $scope.musicinstrument = null;
     };
 
     $scope.createFileFromMembers = function(){

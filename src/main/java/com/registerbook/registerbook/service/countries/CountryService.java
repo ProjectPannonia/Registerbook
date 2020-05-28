@@ -5,7 +5,7 @@ import com.registerbook.registerbook.model.entities.Country;
 import java.util.List;
 
 public interface CountryService {
-    List<Country> loadCountriesToTheServer();
+    String[] loadCountriesToTheServer();
     void deleteAllCountries();
     void dropTable();
     String[] getListOfCountries();

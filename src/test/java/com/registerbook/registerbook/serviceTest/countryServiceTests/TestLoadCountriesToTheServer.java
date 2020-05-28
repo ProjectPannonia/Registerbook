@@ -17,7 +17,7 @@ import java.util.Locale;
 @RunWith(MockitoJUnitRunner.class)
 public class TestLoadCountriesToTheServer {
 
-    List<Country> load;
+    String[] load;
     String[] isoCountries;
 
     @Mock
@@ -27,15 +27,15 @@ public class TestLoadCountriesToTheServer {
 
     @Before
     public void init(){
-        load = new ArrayList<>();
+        //load = String[];
         isoCountries = Locale.getISOCountries();
     }
 
     @Test
     public void testLoadCountries(){
         load = countryServiceImplementation.loadCountriesToTheServer();
-        for (Country c : load){
-            System.out.println(c.getCountryName());
+        for (String c : load){
+            //System.out.println(c.getCountryName());
         }
     }
 }
