@@ -14,7 +14,6 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
     });
 
     $scope.delete = function(){
-
         $http({
             method : 'DELETE',
             url : 'http://localhost:8080/register/country/deleteAllCountries'
@@ -29,16 +28,15 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
         });
 
     };
-    $scope.addNewCountry = function(){
-        let actualInstrument = $scope.newInstrument;
+    $scope.addNewInstrument = function(){
 
         $http({
             method : 'POST',
-            url : 'http://localhost:8080/register/musicinstrument/createNewInstruemnt',
-            data : actualInstrument
+            url : 'http://localhost:8080/register/musicinstrument/createNewInstrument',
+            data : $scope.musicinstrument
         });
 
-        console.log(actualInstrument);
+        console.log($scope.newInstrument);
     };
 
     $scope.createFileFromMembers = function(){

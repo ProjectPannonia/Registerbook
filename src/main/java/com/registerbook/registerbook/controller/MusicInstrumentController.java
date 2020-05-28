@@ -27,7 +27,7 @@ public class MusicInstrumentController {
         return new ResponseEntity<List<MusicInstrument>>(allInstruments, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/createNewInstruemnt", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/createNewInstrument", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<MusicInstrument> createMember(@Valid @RequestBody final MusicInstrument musicInstrument) {
         //logger.info("Creating music instrument: {}", musicInstrument);
 
