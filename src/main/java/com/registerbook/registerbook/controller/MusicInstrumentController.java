@@ -33,15 +33,16 @@ public class MusicInstrumentController {
     }
 
     @PostMapping(value = "/createNewInstrument", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<MusicInstrument> createMember(@Valid @RequestBody final MusicInstrument musicInstrument) {
+    public ResponseEntity<String> createNewInstrumentIfNotExist(@Valid @RequestBody final MusicInstrument musicInstrument) {
         //logger.info("Creating music instrument: {}", musicInstrument);
-
-        if (instrumentServiceImplementation.isThisInstrumentAlreadyInDatabase(musicInstrument.getInstrumentName()) != null) {
+        /*if (instrumentServiceImplementation.isThisInstrumentAlreadyInDatabase(musicInstrument.getInstrumentName()) != null) {
             //return new ResponseEntity<MusicInstrument>(new CustomErrorType("Unable to create new music instrument. A music instrument with name: " + musicInstrument.getInstrumentName() + " already exist."),HttpStatus.CONFLICT);
         }
         instrumentServiceImplementation.Save(musicInstrument);
         MusicInstrument response = instrumentServiceImplementation.findByName(musicInstrument.getInstrumentName());
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        */
+        String response = instrumentServiceImplementation.saveInstrumentIfNotExist(musicInstrument);
+        return new ResponseEntity<String>(response, HttpStatus.CREATED);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<MusicInstrument> deleteMember(@PathVariable("id") final String name) {

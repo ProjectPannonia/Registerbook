@@ -15,4 +15,6 @@ public interface MusicInstrumentService {
     void deleteInstrument(String name);
 
     String clearTable();
+
+    String saveInstrumentIfNotExist(MusicInstrument musicInstrument);
 }

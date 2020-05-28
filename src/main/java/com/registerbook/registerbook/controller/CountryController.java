@@ -1,6 +1,5 @@
 package com.registerbook.registerbook.controller;
 
-import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.service.countries.CountryServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,9 +8,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Arrays;
-import java.util.List;
 
 @RestController
 @RequestMapping("/register/country")
@@ -27,13 +23,13 @@ public class CountryController {
     @GetMapping("/getAllCountries")
     public ResponseEntity<String[]> loadCountriesToTheServer() {
         String[] result = countryServiceImplementation.loadCountriesToTheServer();
-        return new ResponseEntity<String[]>(result, HttpStatus.OK);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping("/getCountries")
     public ResponseEntity<String[]> getListOfCountries(){
         String[] result = countryServiceImplementation.getListOfCountries();
-        return new ResponseEntity<String[]>(result,HttpStatus.OK);
+        return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteAllCountries")
