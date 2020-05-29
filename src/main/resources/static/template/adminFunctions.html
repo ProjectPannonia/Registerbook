@@ -3,15 +3,31 @@
         <div class = "alert alert-info">
             <span class="lead">All countries</span>
         </div>
+            <div class = "table-responsive">
+                <table class = "table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Instrument</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat = "instrument in registeredInstruments">
+                        <td> {{ instrument }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <input type="text" ng-model = "musicinstrument.instrumentName">
+                <button type="button" ng-click="addNewInstrument()"
+                        class="btn btn-warning btn-sm">Add new instrument</button>
+            </div>
+        <div class="panel-body">
+            <input type="text" ng-model = "savingPath">
+
+            <button type="button" ng-click="createFileFromMembers()"
+                    class="btn btn-warning btn-sm">Save members</button>
+        </div>
         <div class="panel-body">
             <div class = "table-responsive">
-                <button type="button" ng-click="delete()"
-                        class="btn btn-warning btn-sm">Delete all</button>
-                <button type="button" ng-click = "load()"
-                        class="btn btn-warning btn-sm">Load data</button>
-                <button type="button" ng-click = "drop()"
-                        class="btn btn-warning btn-sm">Drop table</button>
-
                 <table class = "table table-hover table-bordered">
 
                     <thead>
@@ -26,27 +42,12 @@
                     </tbody>
                 </table>
             </div>
-            <div class = "table-responsive">
-                <input type="text" ng-model = "musicinstrument.instrumentName">
-                <button type="button" ng-click="addNewInstrument()"
-                        class="btn btn-warning btn-sm">Add new instrument</button>
-                <table class = "table table-hover table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Instrument</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat = "instrument in registeredInstruments">
-                        <td> {{ instrument.instrumentName }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <input type="text" ng-model = "savingPath">
-
-            <button type="button" ng-click="createFileFromMembers()"
-                    class="btn btn-warning btn-sm">Save members</button>
+            <button type="button" ng-click="delete()"
+                    class="btn btn-warning btn-sm">Delete all</button>
+            <button type="button" ng-click = "load()"
+                    class="btn btn-warning btn-sm">Load data</button>
+            <button type="button" ng-click = "drop()"
+                    class="btn btn-warning btn-sm">Drop table</button>
         </div>
     </div>
 </div>

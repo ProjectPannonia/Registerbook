@@ -21,6 +21,9 @@ public interface MusicInstrumentJpaRepository extends JpaRepository<MusicInstrum
     @Query(value = "SELECT s FROM MusicInstrument s WHERE s.instrumentName = :name")
     MusicInstrument getInstrumentByName(@Param("name") String name);
 
+    @Query(value = "SELECT s FROM MusicInstrument s WHERE LOWER(s.instrumentName) = :name")
+    MusicInstrument getInstrumentByInsensitiveCaseName(@Param("name") String name);
+
     @Query(value = "SELECT s FROM MusicInstrument s WHERE s.instrumentName = :name")
     List<MusicInstrument> getInstrumentsListByName(@Param("name") String name);
 

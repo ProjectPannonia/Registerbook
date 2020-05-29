@@ -19,6 +19,9 @@ app.config(function($routeProvider){
     }).when('/adminGuiPage',{
         templateUrl : 'template/adminFunctions.html',
         controller : 'adminFunctions'
+    }).when('/loginPage',{
+        templateUrl : 'template/loginPage.html',
+        controller : 'loginPage'
     }).otherwise({
        redirectTo : '/home',
        templateUrl : '/template/home.html'

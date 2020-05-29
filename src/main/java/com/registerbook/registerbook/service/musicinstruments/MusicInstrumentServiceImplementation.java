@@ -53,7 +53,7 @@ public class MusicInstrumentServiceImplementation implements MusicInstrumentServ
 
     @Override
     public String saveInstrumentIfNotExist(MusicInstrument musicInstrument) {
-        MusicInstrument isInstrumentExist = musicInstrumentJpaRepository.getInstrumentByName(musicInstrument.getInstrumentName());
+        MusicInstrument isInstrumentExist = musicInstrumentJpaRepository.getInstrumentByInsensitiveCaseName(musicInstrument.getInstrumentName().toLowerCase());
         String response = "This instrument: " + musicInstrument.getInstrumentName() + " already exist!";
 
         if (isInstrumentExist == null){
