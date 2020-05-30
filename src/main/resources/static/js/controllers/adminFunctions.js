@@ -33,8 +33,10 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
             method : 'POST',
             url : 'http://localhost:8080/register/musicinstrument/createNewInstrument',
             data : $scope.musicinstrument
+        }).then(function(response){
+            $scope.musicinstrument = response.data;
         });
-        $scope.musicinstrument = null;
+
     };
 
     $scope.createFileFromMembers = function(){
