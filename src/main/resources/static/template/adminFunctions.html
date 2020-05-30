@@ -1,84 +1,5 @@
-<!--<div class = "container">
-    <div class = "panel panel-default">
-        <div class = "alert alert-info">
-            <span class="lead">Music instruments</span>
-        </div>
-        <div class = "table-responsive">
-            <table class = "table table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <th>Registered instruments</th>
-                        <th>Register instrument</th>
-                        <th>Delete instrument</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat = "instrument in allInstruments">
-                        <td> {{ instrument }}</td>
-                        <td>blabla</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class = "table-responsive">
-            <table class = "table table-hover table-bordered">
-                <tr>
-                    <th>Add instrument</th>
-                    <th>Delete instrument</th>
-                </tr>
-                <tr>
-                    <td><input type="text" ng-model = "musicinstrument.instrumentName"></td>
-                    <td><p>{{ musicinstrument.instrumentName }}</p></td>
-                    <td><input type="text" ng-model = "musicinstrumentToDelete.instrumentName"></td>
-                    <td><p>{{ DeleteInstrumentResponse }}</p></td>
-                </tr>
-                <tr>
-                    <td><button type="button" ng-click="addNewInstrument()" class="btn btn-warning btn-sm">Add new instrument</button></td>
-                    <td><button type="button" ng-click="DeleteInstrument()" class="btn btn-warning btn-sm">Delete instrument</button></td>
-                </tr>
-            </table>
-            </div>
-        <div class = "alert alert-info">
-            <span class="lead">Create text file from members</span>
-        </div>
-        <div class="panel-body">
-            <input type="text" ng-model = "savingPath">
-            <button type="button" ng-click="createFileFromMembers()" class="btn btn-warning btn-sm">Save members</button>
-        </div>
-
-
-        <div class = "alert alert-info">
-            <span class="lead">All countries</span>
-        </div>
-        <div class="panel-body">
-            <div class = "table-responsive">
-                <table class = "table table-hover table-bordered">
-
-                    <thead>
-                    <tr>
-                        <th>Country</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat = "country in allCountries">
-                        <td>{{ country }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <button type="button" ng-click="delete()"
-                    class="btn btn-warning btn-sm">Delete all</button>
-            <button type="button" ng-click = "load()"
-                    class="btn btn-warning btn-sm">Load data</button>
-            <button type="button" ng-click = "drop()"
-                    class="btn btn-warning btn-sm">Drop table</button>
-        </div>
-    </div>
-    </div>
--->
 <div class = "container">
     <div id="accordion">
-
         <!--First card-->
         <div class="card">
             <div class="card-header" id="headingOne">
@@ -90,6 +11,9 @@
             </div>
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
+                    <div class = "alert alert-info">
+                        <span class="lead">Registered instruments</span>
+                    </div>
                 <div class = "table table-hover">
                 <table class = "table table-hover table-bordered">
                     <thead>
@@ -142,7 +66,7 @@
                 </div>
             </div>
         </div>
-        <!--Card three-->
+        <!--Third card-->
         <div class="card">
             <div class="card-header" id="headingThree">
                 <h5 class="mb-0">
@@ -153,7 +77,28 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                 <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <div class = "alert alert-info">
+                        <span class="lead">All countries</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class = "table-responsive">
+                            <table class = "table table-hover table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Country</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat = "country in allCountries">
+                                    <td>{{ country }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button type="button" ng-click="delete()" class="btn btn-warning btn-sm">Delete all</button>
+                        <button type="button" ng-click = "load()" class="btn btn-warning btn-sm">Load data</button>
+                        <button type="button" ng-click = "drop()" class="btn btn-warning btn-sm">Drop table</button>
+                    </div>
                 </div>
             </div>
         </div>
