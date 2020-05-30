@@ -42,6 +42,7 @@ public class MusicInstrumentServiceImplementation implements MusicInstrumentServ
         musicInstrumentJpaRepository.dropTable();
         String response;
         int numberOfMembers = musicInstrumentJpaRepository.findAll().size();
+
         if (numberOfMembers == 0){
             response = "Database cleared";
         }else {

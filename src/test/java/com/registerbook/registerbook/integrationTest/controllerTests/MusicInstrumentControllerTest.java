@@ -1,6 +1,6 @@
-package com.registerbook.registerbook.controllerTest.musicInstrumentControllerTests;
+package com.registerbook.registerbook.integrationTest.controllerTests;
 
-import com.registerbook.registerbook.controllerTest.AbstractTest;
+import com.registerbook.registerbook.integrationTest.AbstractTest;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -58,14 +58,10 @@ public class MusicInstrumentControllerTest extends AbstractTest {
                 .getContentAsString();
         allMusicInstrument = super.mapFromJson(content,MusicInstrument[].class);
         assertTrue(allMusicInstrument.length > 0);
-        for (MusicInstrument m : allMusicInstrument){
-            System.out.println(m.getInstrumentName());
-        }
     }
     @Test
     public void C_deleteInstrumentByNameTest() throws Exception {
         int status;
-        String content;
         String url = "/register/musicinstrument/Guitar";
         mvcResult = mvc.perform(MockMvcRequestBuilders.delete(url)).andReturn();
         status = mvcResult.getResponse().getStatus();

@@ -1,6 +1,6 @@
-package com.registerbook.registerbook.controllerTest.countryControllerTests;
+package com.registerbook.registerbook.integrationTest.controllerTests;
 
-import com.registerbook.registerbook.controllerTest.AbstractTest;
+import com.registerbook.registerbook.integrationTest.AbstractTest;
 import com.registerbook.registerbook.model.entities.Country;
 import org.junit.Before;
 import org.junit.FixMethodOrder;

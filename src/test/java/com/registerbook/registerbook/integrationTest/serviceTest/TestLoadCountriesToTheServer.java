@@ -1,6 +1,5 @@
-package com.registerbook.registerbook.serviceTest.countryServiceTests;
+package com.registerbook.registerbook.integrationTest.serviceTest;
 
-import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.repository.CountryJpaRepository;
 import com.registerbook.registerbook.service.countries.CountryServiceImplementation;
 import org.junit.Before;
@@ -10,8 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 @RunWith(MockitoJUnitRunner.class)

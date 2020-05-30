@@ -1,15 +1,13 @@
-package com.registerbook.registerbook.serviceTest.memberServiceTests;
+package com.registerbook.registerbook.integrationTest.serviceTest;
 
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
-import com.registerbook.registerbook.service.register.MemberService;
 import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.internal.matchers.InstanceOf;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
