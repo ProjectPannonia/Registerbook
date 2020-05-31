@@ -1,5 +1,5 @@
 app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$route){
-    $scope.phones = ['Elso','Masodik','Harmadik'];
+   
     $http({
            method : 'GET',
            url : 'http://localhost:8080/register/country/getAllCountries'
@@ -33,9 +33,8 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
             method : 'POST',
             url : 'http://localhost:8080/register/musicinstrument/createNewInstrument',
             data : $scope.instrument
-        }).then(function(response){
-            console.log(response.data);
         });
+
         $http({
             method : 'GET',
             url : 'http://localhost:8080/register/country/getAllCountries'
@@ -53,6 +52,7 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
             $scope.savingPath = null;
         });
     };
+
     $scope.dropInstruments = function(){
         $http({
             method : 'GET',
@@ -61,4 +61,5 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
             console.log(response.data);
         });
     };
+    
 });

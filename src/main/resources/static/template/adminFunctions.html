@@ -1,20 +1,3 @@
-<!--<div class="container">
-<ul class="list-group" style="width:30vw">
-    <li class="list-group-item listyle" ng-repeat="phone in phones">
-        <span>{{phone}}</span>
-    </li>
-</ul>
-
-        <form ng-submit="addNewInstrument()" class="form-horizontal" >
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <label class="col-md-2 control-lable">Name</label>
-                </div>
-            </div>
-        </form>
-
-    </div>
--->
 <div class="container">
     <div class = "panel panel-default">
         <div class = "alert alert-success"><span class="lead">Administration page</span></div>
@@ -30,7 +13,11 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                             <div class = "alert alert-info"><span class="lead">Registered instruments</span></div>
-                            
+                            <div style="margin-bottom: 2rem;margin-left: 1rem;">
+                                <button class="btn btn-secondatry btn-sm">F1</button>
+                                <button class="btn btn-secondatry btn-sm">F2</button>
+                                <button class="btn btn-secondatry btn-sm">F3</button>
+                            </div>
                             <form ng-submit = "addNewInstrument()" class="form-horizontal" >
                                 <div class="row">
                                     <div class="form-group col-md-12">
@@ -46,13 +33,35 @@
                                     
                                 </div>
                             </form>
-                            
-
-
-
                         </div>
                     </div>
                 </div>
+                <!--Second card-->
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-info" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Music instruments</button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class = "alert alert-info"><span class="lead">Members maintanence</span></div>
+                            <form ng-submit = "addNewInstrument()" class="form-horizontal" >
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-3">
+                                            <input type="text" ng-model="instrument.instrumentName" id="instrumentName" class="form-control input-sm" placeholder="Enter music instrument name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-actions col-md-8" style="padding-left: 5rem;">
+                                        <input type="submit" value="Register instrument" class="btn btn-success btn-sm" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--Third card-->
             </div>
         </div>
     </div>
