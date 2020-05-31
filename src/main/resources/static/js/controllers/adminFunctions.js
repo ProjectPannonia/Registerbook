@@ -1,26 +1,24 @@
 app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$route){
-    $scope.allCountries;
-
+    $scope.phones = ['Elso','Masodik','Harmadik'];
     $http({
            method : 'GET',
            url : 'http://localhost:8080/register/country/getAllCountries'
           }).then(function(response){
               $scope.allCountries = response.data;
-          });
+    });
 
     $http({
           method : 'GET',
           url : 'http://localhost:8080/register/musicinstrument/getInstruments'
           }).then(function(response){
             $scope.allInstruments = response.data;
-          });
+    });
 
     $scope.delete = function(){
         $http({
             method : 'DELETE',
             url : 'http://localhost:8080/register/country/deleteAllCountries'
         });
-
     };
     $scope.drop = function(){
         $http({
@@ -32,11 +30,22 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
         $http({
             method : 'POST',
             url : 'http://localhost:8080/register/musicinstrument/createNewInstrument',
-            data : $scope.musicinstrument
-        }).then(function(response){
-            $scope.musicinstrument = response.data;
-        });
+            data : $scope.instrument
+        });/*.then(function(response){
+            console.log(response.data);
+        });*/
+        /*.then(function successCallback(response){
+           $scope.myResponse = response.data;
+           console.log($scope.myResponse);
+        });*/
 
+
+        $http({
+            method : 'GET',
+            url : 'http://localhost:8080/register/country/getAllCountries'
+        }).then(function(response){
+            $scope.allCountries = response.data;
+        });
     };
 
     $scope.createFileFromMembers = function(){
@@ -48,4 +57,12 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
             $scope.savingPath = null;
         });
     };
+    $scope.dropInstruments = function(){
+        $http({
+            method : 'GET',
+            url : 'http://localhost:8080/register/musicinstrument/dropInstruments'
+        }).then(function(response){
+            console.log(response.data);
+        });
+    }
 });

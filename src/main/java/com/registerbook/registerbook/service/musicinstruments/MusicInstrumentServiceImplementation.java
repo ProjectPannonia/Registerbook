@@ -3,6 +3,8 @@ package com.registerbook.registerbook.service.musicinstruments;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
 import com.registerbook.registerbook.repository.MusicInstrumentJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,7 +55,7 @@ public class MusicInstrumentServiceImplementation implements MusicInstrumentServ
     }
 
     @Override
-    public String saveInstrumentIfNotExist(MusicInstrument musicInstrument) {
+    public ResponseEntity<String> saveInstrumentIfNotExist(MusicInstrument musicInstrument) {
         MusicInstrument isInstrumentExist = musicInstrumentJpaRepository.getInstrumentByInsensitiveCaseName(musicInstrument.getInstrumentName().toLowerCase());
         String response = "This instrument: " + musicInstrument.getInstrumentName() + " already exist!";
 
@@ -62,7 +64,7 @@ public class MusicInstrumentServiceImplementation implements MusicInstrumentServ
             response = "Music instrument saved: " + musicInstrument.getInstrumentName();
         }
 
-        return response;
+        return new ResponseEntity<String>(response, HttpStatus.CREATED);
     }
 
     public void Save(MusicInstrument musicInstrument) {

@@ -1,107 +1,27 @@
-<div class = "container">
-    <div id="accordion">
-        <!--First card-->
-        <div class="card">
-            <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                    <button class="btn btn-info" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Music instruments
-                    </button>
-                </h5>
-            </div>
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body">
-                    <div class = "alert alert-info">
-                        <span class="lead">Registered instruments</span>
-                    </div>
-                <div class = "table table-hover">
-                <table class = "table table-hover table-bordered">
-                    <thead>
-                        <tr><th>Registered instruments</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat = "instrument in allInstruments"><td> {{ instrument }}</td></tr>
-                    </tbody>
-                </table>
-                </div>
-                    <div class = "table-responsive">
-                        <table class = "table table-hover table-bordered">
-                            <tr>
-                                <th>Add instrument</th>
-                                <th>Delete instrument</th>
-                            </tr>
-                            <tr>
-                                <td><input type="text" ng-model = "musicinstrument.instrumentName"></td>
-                                <td><p>{{ musicinstrument.instrumentName }}</p></td>
-                                <td><input type="text" ng-model = "musicinstrumentToDelete.instrumentName"></td>
-                                <td><p>{{ DeleteInstrumentResponse }}</p></td>
-                            </tr>
-                            <tr>
-                                <td><button type="button" ng-click="addNewInstrument()" class="btn btn-warning btn-sm">Add new instrument</button></td>
-                                <td><button type="button" ng-click="DeleteInstrument()" class="btn btn-warning btn-sm">Delete instrument</button></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Second card-->
-        <div class="card">
-            <div class="card-header" id="headingTwo">
-                <h5 class="mb-0">
-                    <button class="btn btn-info" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Members maintanence
-                    </button>
-                </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body">
-                    <div class = "alert alert-info">
-                        <span class="lead">Create text file from members</span>
-                    </div>
-                    <div class="panel-body">
-                        <input type="text" ng-model = "savingPath">
-                        <button type="button" ng-click="createFileFromMembers()" class="btn btn-warning btn-sm">Save members</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Third card-->
-        <div class="card">
-            <div class="card-header" id="headingThree">
-                <h5 class="mb-0">
-                    <button class="btn btn-info" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Registered countries
-                    </button>
-                </h5>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                    <div class = "alert alert-info">
-                        <span class="lead">All countries</span>
-                    </div>
-                    <div class="panel-body">
-                        <div class = "table-responsive">
-                            <table class = "table table-hover table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>Country</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat = "country in allCountries">
-                                    <td>{{ country }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <button type="button" ng-click="delete()" class="btn btn-warning btn-sm">Delete all</button>
-                        <button type="button" ng-click = "load()" class="btn btn-warning btn-sm">Load data</button>
-                        <button type="button" ng-click = "drop()" class="btn btn-warning btn-sm">Drop table</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--<div class="container">
+<ul class="list-group" style="width:30vw">
+    <li class="list-group-item listyle" ng-repeat="phone in phones">
+        <span>{{phone}}</span>
+    </li>
+</ul>
 
+        <form ng-submit="addNewInstrument()" class="form-horizontal" >
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-2 control-lable">Name</label>
+                </div>
+            </div>
+        </form>
+
+    </div>
+-->
+<div class="container">
+    <div class = "panel panel-default">
+        <div class = "alert alert-success">
+            <span class="lead">Administration page</span>
+        </div>
+        <div class = "panel-body">
+
+        </div>
     </div>
 </div>

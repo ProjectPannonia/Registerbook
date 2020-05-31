@@ -34,8 +34,8 @@ public class MusicInstrumentController {
 
     @PostMapping(value = "/createNewInstrument", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> createNewInstrumentIfNotExist(@Valid @RequestBody final MusicInstrument musicInstrument) {
-        String response = instrumentServiceImplementation.saveInstrumentIfNotExist(musicInstrument);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        //String response = instrumentServiceImplementation.saveInstrumentIfNotExist(musicInstrument);
+        return instrumentServiceImplementation.saveInstrumentIfNotExist(musicInstrument);
     }
 
 

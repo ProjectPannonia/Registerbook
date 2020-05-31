@@ -1,43 +1,42 @@
-
-    <div class="container">
-        <div class = "panel panel-default">
-            <div class = "alert alert-info">
-                <span class="lead">Basic statistics</span>
-            </div>
-            <div class = "panel-body">
-                <div class = "table-responsive">
-                    <table class = "table table-hover table-bordered">
-                        <thead>
-                        <tr>
-                            <th>Registered musicians</th>
-                            <th>Registered bands</th>
-                            <th>Canadian</th>
-                            <th>Finnish</th>
-                            <th>German</th>
-                            <th>Hungarian</th>
-                            <th>Norwegian</th>
-                            <th>Swedish</th>
-                            <th>British</th>
-                            <th>American</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>{{ statistics.registeredMembers }}</td>
-                            <td>{{ statistics.numberOfBands }}</td>
-                            <td>{{ statistics.canadianBands }}</td>
-                            <td>{{ statistics.finnBands }}</td>
-                            <td>{{ statistics.germanBands }}</td>
-                            <td>{{ statistics.hungarianBands }}</td>
-                            <td>{{ statistics.norwayBands }}</td>
-                            <td>{{ statistics.swedenBands }}</td>
-                            <td>{{ statistics.ukBands }}</td>
-                            <td>{{ statistics.usaBands }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div id="donutchart" style="width: 700px; height: 400px;"></div>
+<div class="container">
+    <div class = "panel panel-default">
+        <div class = "alert alert-success">
+            <span class="lead">Basic statistics</span>
         </div>
+        <div class = "panel-body">
+            <div class = "table-responsive">
+                <table class = "table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Registered musicians</th>
+                        <th>Registered bands</th>
+                        <th>Canadian</th>
+                        <th>Finnish</th>
+                        <th>German</th>
+                        <th>Hungarian</th>
+                        <th>Norwegian</th>
+                        <th>Swedish</th>
+                        <th>British</th>
+                        <th>American</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ statistics.registeredMembers }}</td>
+                        <td>{{ statistics.numberOfBands }}</td>
+                        <td>{{ statistics.canadianBands }}</td>
+                        <td>{{ statistics.finnBands }}</td>
+                        <td>{{ statistics.germanBands }}</td>
+                        <td>{{ statistics.hungarianBands }}</td>
+                        <td>{{ statistics.norwayBands }}</td>
+                        <td>{{ statistics.swedenBands }}</td>
+                        <td>{{ statistics.ukBands }}</td>
+                        <td>{{ statistics.usaBands }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="donutchart" style="width: 700px; height: 400px;"></div>
     </div>
+</div>
