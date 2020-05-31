@@ -17,11 +17,43 @@
 -->
 <div class="container">
     <div class = "panel panel-default">
-        <div class = "alert alert-success">
-            <span class="lead">Administration page</span>
-        </div>
+        <div class = "alert alert-success"><span class="lead">Administration page</span></div>
         <div class = "panel-body">
+            <div id="accordion">
+                <!--First card-->
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-info" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Music instruments</button>
+                        </h5>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class = "alert alert-info"><span class="lead">Registered instruments</span></div>
+                            
+                            <form ng-submit = "addNewInstrument()" class="form-horizontal" >
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-3">
+                                            <input type="text" ng-model="instrument.instrumentName" id="instrumentName" class="form-control input-sm" placeholder="Enter music instrument name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-actions col-md-8" style="padding-left: 5rem;">
+                                        <input type="submit" value="Register instrument" class="btn btn-success btn-sm" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    
+                                </div>
+                            </form>
+                            
 
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

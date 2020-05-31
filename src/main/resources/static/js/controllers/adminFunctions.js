@@ -20,26 +20,22 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
             url : 'http://localhost:8080/register/country/deleteAllCountries'
         });
     };
+
     $scope.drop = function(){
         $http({
             method : 'DELETE',
             url : 'http://localhost:8080/register/country/drop'
         });
     };
+
     $scope.addNewInstrument = function(){
         $http({
             method : 'POST',
             url : 'http://localhost:8080/register/musicinstrument/createNewInstrument',
             data : $scope.instrument
-        });/*.then(function(response){
+        }).then(function(response){
             console.log(response.data);
-        });*/
-        /*.then(function successCallback(response){
-           $scope.myResponse = response.data;
-           console.log($scope.myResponse);
-        });*/
-
-
+        });
         $http({
             method : 'GET',
             url : 'http://localhost:8080/register/country/getAllCountries'
@@ -64,5 +60,5 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
         }).then(function(response){
             console.log(response.data);
         });
-    }
+    };
 });
