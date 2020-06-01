@@ -28,3 +28,14 @@
     margin-top: 5.7rem;
     margin-left: 7rem;
 }
+.mainbuttons {
+    width: 8vw;
+}
+.countriestablediv{
+    margin-top: 3rem; margin-left: 1vw;
+}
+.adminmenubar{
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    text-align: center;
+}

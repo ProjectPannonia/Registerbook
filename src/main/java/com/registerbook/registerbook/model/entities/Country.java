@@ -1,6 +1,5 @@
 package com.registerbook.registerbook.model.entities;
 
-
 import javax.persistence.*;
 
 @Entity
