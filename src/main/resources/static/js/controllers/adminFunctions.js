@@ -62,4 +62,7 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
         });
     };
     
+    $scope.deleteInstruments = function(){
+
+    };
 });

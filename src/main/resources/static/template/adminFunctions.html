@@ -13,26 +13,43 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                             <div class = "alert alert-info"><span class="lead">Registered instruments</span></div>
-                            <div style="margin-bottom: 2rem;margin-left: 1rem;">
-                                <button class="btn btn-secondatry btn-sm">F1</button>
-                                <button class="btn btn-secondatry btn-sm">F2</button>
-                                <button class="btn btn-secondatry btn-sm">F3</button>
-                            </div>
-                            <form ng-submit = "addNewInstrument()" class="form-horizontal" >
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <div class="col-md-3">
-                                            <input type="text" ng-model="instrument.instrumentName" id="instrumentName" class="form-control input-sm" placeholder="Enter music instrument name" />
+                            <div class="flex-container">
+                                <div>
+                                    <form ng-submit = "addNewInstrument()" class="form-horizontal" >
+                                        <div class="row">
+                                            <div class="form-group col-md-10">
+                                                <div class="col-md-10">
+                                                    <input type="text" ng-model="instrument.instrumentName" id="instrumentName" class="form-control input-sm inputbox" placeholder="Enter music instrument name" />
+                                                    <input type="submit" value="Register instrument" class="btn btn-success btn-sm registerbutton" />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-actions col-md-8" style="padding-left: 5rem;">
-                                        <input type="submit" value="Register instrument" class="btn btn-success btn-sm" />
-                                    </div>
+                                    </form>
                                 </div>
-                                <div class="row">
-                                    
+                                <div>
+                                    <form ng-submit = "deleteInstruments()" class="form-horizontal" >
+                                        <div class="row" >
+                                            <div class="form-group col-md-10">
+                                                <div class="col-md-10">
+                                                    <input type="text"  ng-model="instrument.instrumentName" id="" class="form-control input-sm inputbox" placeholder="Enter music instrument name" />
+                                                    <input type="submit" value="Delete instrument" class="btn btn-success btn-sm deletebutton" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
+                                <div>
+                                    <form ng-submit = "dropInstruments()" class="form-horizontal" >
+                                        <div class="row" >
+                                            <div class="form-group col-md-10">
+                                                <div class="col-md-10">
+                                                    <input type="submit" value="Clear" class="btn btn-success btn-sm droptablebutton" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div> 
                         </div>
                     </div>
                 </div>
