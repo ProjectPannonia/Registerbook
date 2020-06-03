@@ -123,7 +123,7 @@ public class MemberServiceImplementation implements MemberService {
         int numberOfMembers = memberJpaRepository.numberOfMembers();
         int numberOfBands = memberJpaRepository.numberOfRegisteredBands();
         List<Country> registeredCountries = memberJpaRepository.getRegisteredCountries();
-    
+
     }
 
     @Override

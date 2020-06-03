@@ -52,4 +52,7 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
 
     @Query(value = "SELECT DISTINCT s.country FROM Member s")
     List<Country> getRegisteredCountries();
+
+    @Query(value = "SELECT COUNT(")
+    int numberOfMembersPerSpecifiedCountry();
 }
