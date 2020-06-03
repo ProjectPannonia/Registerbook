@@ -1,5 +1,6 @@
 package com.registerbook.registerbook.service.register;
 
+import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.register.fileOperation.fileReader.MembersFileReader;
@@ -117,6 +118,12 @@ public class MemberServiceImplementation implements MemberService {
         StatisticData result = statistics.getAdvancedStatistics(numberOfRegisteredMembers,numberOfRegisteredBands,registeredCountries,memberPerCountry);
 
         return result;
+    }
+    public StatisticData getUpdatedStatistic(){
+        int numberOfMembers = memberJpaRepository.numberOfMembers();
+        int numberOfBands = memberJpaRepository.numberOfRegisteredBands();
+        List<Country> registeredCountries = memberJpaRepository.getRegisteredCountries();
+    
     }
 
     @Override

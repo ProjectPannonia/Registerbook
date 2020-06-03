@@ -1,5 +1,6 @@
 package com.registerbook.registerbook.repository;
 
+import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.model.entities.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -49,5 +50,6 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
     @Query(value = "SELECT s FROM Member s WHERE s.name = :sName")
     Member findMemberByName(@Param("sName") String sName);
 
-
+    @Query(value = "SELECT DISTINCT s.country FROM Member s")
+    List<Country> getRegisteredCountries();
 }
