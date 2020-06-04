@@ -123,6 +123,12 @@ public class MemberServiceImplementation implements MemberService {
 
 
     }
+    public StatisticData getUpdatedStatistic(){
+        int numberOfMembers = memberJpaRepository.numberOfMembers();
+        int numberOfBands = memberJpaRepository.numberOfRegisteredBands();
+        List<Country> registeredCountries = memberJpaRepository.getRegisteredCountries();
+
+    }
 
     @Override
     public void loadMembersFromFileToServer(String path) {
