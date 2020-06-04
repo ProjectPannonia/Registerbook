@@ -1,6 +1,5 @@
 package com.registerbook.registerbook.service.register;
 
-import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.register.fileOperation.fileReader.MembersFileReader;
@@ -110,24 +109,18 @@ public class MemberServiceImplementation implements MemberService {
     // Method to get statistics
     @Override
     public StatisticData getStatistics(){
+
         int numberOfRegisteredMembers = memberJpaRepository.numberOfMembers();
         int numberOfMusicBands = memberJpaRepository.numberOfRegisteredBands();
         List<CountryAndQuantity> countryAndQuantities = new ArrayList<>();
-        List<Country> registeredUniqueCountries = memberJpaRepository.registeredUniqueCountries();
-
+        List<String> registeredUniqueCountries = memberJpaRepository.registeredCountries();
+        
         for (int i = 0; i < registeredUniqueCountries.size(); i++){
-            String actualCountryName = registeredUniqueCountries.get(i).getCountryName();
+            String actualCountryName = registeredUniqueCountries.get(i);
             int numberFromActualCountry = memberJpaRepository.numberOfMembersPerSpecifiedCountry(actualCountryName);
             countryAndQuantities.add(new CountryAndQuantity(actualCountryName,numberFromActualCountry));
         }
-
-
-    }
-    public StatisticData getUpdatedStatistic(){
-        int numberOfMembers = memberJpaRepository.numberOfMembers();
-        int numberOfBands = memberJpaRepository.numberOfRegisteredBands();
-        List<Country> registeredCountries = memberJpaRepository.getRegisteredCountries();
-
+        return new StatisticData(numberOfRegisteredMembers,numberOfMusicBands,countryAndQuantities);
     }
 
     @Override

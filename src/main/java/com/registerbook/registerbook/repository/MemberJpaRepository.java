@@ -14,7 +14,7 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
 
     List<Member> findAll();
 
-    @Query(value = "select s from Member s where s.country = :country")
+    @Query(value = "SELECT s FROM Member s WHERE s.country = :country")
     List<Member> countPerCountry(@Param("country")String country);
 
     @Query(value = "SELECT COUNT(name) FROM members",nativeQuery = true)
@@ -29,10 +29,10 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
     @Query(value = "SELECT COUNT(DISTINCT band) FROM members", nativeQuery = true)
     int numberOfRegisteredBands();
 
-    @Query(value = "select s from Member s where s.band = :sband")
+    @Query(value = "SELECT s FROM Member s WHERE s.band = :sband")
     List<Member> getBandMembers(@Param("sband") String sband);
 
-    @Query(value = "select s from Member s where s.name = :memberName")
+    @Query(value = "SELECT s FROM Member s WHERE s.name = :memberName")
     Member getMemberByName(@Param("memberName") String memberName);
 
     @Query(value = "SELECT s FROM Member s WHERE s.address = :mCity")
@@ -53,6 +53,6 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
     @Query(value = "SELECT DISTINCT s.country FROM Member s")
     List<Country> getRegisteredCountries();
 
-    @Query(value = "SELECT COUNT(")
-    int numberOfMembersPerSpecifiedCountry();
+    @Query(value = "SELECT COUNT(s.name) FROM Member s WHERE s.country =:country")
+    int numberOfMembersPerSpecifiedCountry(@Param("country") String country);
 }
