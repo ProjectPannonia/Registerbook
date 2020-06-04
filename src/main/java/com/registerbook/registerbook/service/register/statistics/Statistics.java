@@ -1,6 +1,8 @@
 package com.registerbook.registerbook.service.register.statistics;
 
 import com.registerbook.registerbook.model.entities.Member;
+import com.registerbook.registerbook.service.register.statistics.UpdatedStatistic.CountryAndQuantity;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,15 +15,15 @@ public class Statistics {
         return result;
     }
     private StatisticData makePairs(int numberOfMembers,int numberOfRegisteredBands,List<String> countries,List<Integer> memberPerCountry){
-        List<MembersPerCountry> pairs = new ArrayList<>();
+        List<CountryAndQuantity> pairs = new ArrayList<>();
 
         for(int i = 0; i < countries.size(); i++)
-            pairs.add(new MembersPerCountry(countries.get(i),memberPerCountry.get(i)));
+            pairs.add(new CountryAndQuantity(countries.get(i),memberPerCountry.get(i)));
 
         return createStatistic(numberOfMembers,numberOfRegisteredBands,pairs);
     }
 
-    private StatisticData createStatistic(int numberOfMembers,int numberOfRegisteredBands,List<MembersPerCountry> pairs) {
+    private StatisticData createStatistic(int numberOfMembers,int numberOfRegisteredBands,List<CountryAndQuantity> pairs) {
         StatisticData stat = new StatisticData();
         stat.setRegisteredMembers(numberOfMembers);
         stat.setNumberOfBands(numberOfRegisteredBands);

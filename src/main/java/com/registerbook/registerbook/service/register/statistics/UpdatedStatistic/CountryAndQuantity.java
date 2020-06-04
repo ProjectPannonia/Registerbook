@@ -1,10 +1,10 @@
-package com.registerbook.registerbook.service.register.statistics;
+package com.registerbook.registerbook.service.register.statistics.UpdatedStatistic;
 
-public class MembersPerCountry {
+public class CountryAndQuantity {
     String country;
     int number;
 
-    public MembersPerCountry(String country, int number) {
+    public CountryAndQuantity(String country, int number) {
         this.country = country;
         this.number = number;
     }

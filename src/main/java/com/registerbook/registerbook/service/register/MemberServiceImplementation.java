@@ -1,11 +1,12 @@
 package com.registerbook.registerbook.service.register;
 
+import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.register.fileOperation.fileReader.MembersFileReader;
 import com.registerbook.registerbook.service.register.fileOperation.fileWriter.FileWriter;
+import com.registerbook.registerbook.service.register.statistics.UpdatedStatistic.CountryAndQuantity;
 import com.registerbook.registerbook.service.register.statistics.StatisticData;
-import com.registerbook.registerbook.service.register.statistics.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -110,13 +111,17 @@ public class MemberServiceImplementation implements MemberService {
     @Override
     public StatisticData getStatistics(){
         int numberOfRegisteredMembers = memberJpaRepository.numberOfMembers();
-        int numberOfRegisteredBands = memberJpaRepository.numberOfRegisteredBands();
-        List<String> registeredCountries = memberJpaRepository.registeredCountries();
-        List<Integer> memberPerCountry = memberJpaRepository.numberOfMembersPerCountry();
-        Statistics statistics = new Statistics();
-        StatisticData result = statistics.getAdvancedStatistics(numberOfRegisteredMembers,numberOfRegisteredBands,registeredCountries,memberPerCountry);
+        int numberOfMusicBands = memberJpaRepository.numberOfRegisteredBands();
+        List<CountryAndQuantity> countryAndQuantities = new ArrayList<>();
+        List<Country> registeredUniqueCountries = memberJpaRepository.registeredUniqueCountries();
 
-        return result;
+        for (int i = 0; i < registeredUniqueCountries.size(); i++){
+            String actualCountryName = registeredUniqueCountries.get(i).getCountryName();
+            int numberFromActualCountry = memberJpaRepository.numberOfMembersPerSpecifiedCountry(actualCountryName);
+            countryAndQuantities.add(new CountryAndQuantity(actualCountryName,numberFromActualCountry));
+        }
+
+
     }
 
     @Override

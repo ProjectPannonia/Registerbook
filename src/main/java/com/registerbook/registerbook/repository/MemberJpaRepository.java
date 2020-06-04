@@ -1,5 +1,6 @@
 package com.registerbook.registerbook.repository;
 
+import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.model.entities.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,11 +14,17 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
 
     List<Member> findAll();
 
-    @Query(value = "select s from Member s where s.country = :country")
+    @Query(value = "SELECT s FROM Member s WHERE s.country = :country")
     List<Member> countPerCountry(@Param("country")String country);
 
     @Query(value = "SELECT COUNT(name) FROM members",nativeQuery = true)
     int numberOfMembers();
+
+    @Query(value = "SELECT COUNT(s.name) FROM Member WHERE s.country =: country")
+    int numberOfMembersPerSpecifiedCountry(@Param("country")String country);
+
+    @Query(value = "SELECT DISTINCT(s.country) FROM Member")
+    List<Country> registeredUniqueCountries();
 
     @Query(value = "SELECT COUNT(country) FROM members GROUP BY country ORDER BY country",nativeQuery = true)
     List<Integer> numberOfMembersPerCountry();
@@ -28,10 +35,10 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
     @Query(value = "SELECT COUNT(DISTINCT band) FROM members", nativeQuery = true)
     int numberOfRegisteredBands();
 
-    @Query(value = "select s from Member s where s.band = :sband")
+    @Query(value = "SELECT s FROM Member s WHERE s.band = :sband")
     List<Member> getBandMembers(@Param("sband") String sband);
 
-    @Query(value = "select s from Member s where s.name = :memberName")
+    @Query(value = "SELECT s FROM Member s WHERE s.name = :memberName")
     Member getMemberByName(@Param("memberName") String memberName);
 
     @Query(value = "SELECT s FROM Member s WHERE s.address = :mCity")
@@ -48,6 +55,4 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
 
     @Query(value = "SELECT s FROM Member s WHERE s.name = :sName")
     Member findMemberByName(@Param("sName") String sName);
-
-
 }
