@@ -5,20 +5,23 @@ app.controller('statistics',function($scope,$http,$location,$route){
             url : 'http://localhost:8080/register/member/statistics'
           }).then(function(response){
             $scope.statistics = response.data;
+            let membersPerCountryArray = $scope.statistics.membersPerCountry;
+            let membersPerCountryLength = membersPerCountryArray.length;
+            let resultArr = [];
+            resultArr.push(['Task','Hours per day']);
+
+            for(var i = 0; i < membersPerCountryLength; i++){
+                let temporaryArr = [membersPerCountryArray[i].country,membersPerCountryArray[i].number];
+                resultArr.push(temporaryArr);
+              };
+            
             google.charts.load("current", {packages:["corechart"]});
                             google.charts.setOnLoadCallback(drawChart);
                             function drawChart() {
-                              var data = google.visualization.arrayToDataTable([
-                                ['Task', 'Hours per Day'],
-                                ['German',    $scope.statistics.germanBands],
-                                ['Swedish',   $scope.statistics.swedenBands],
-                                ['Hungarian',  $scope.statistics.hungarianBands],
-                                ['British', $scope.statistics.ukBands],
-                                ['American',    $scope.statistics.usaBands],
-                                ['Norwegian', $scope.statistics.norwayBands],
-                                ['Finnish', $scope.statistics.finnBands],
-                                ['Canadian', $scope.statistics.canadianBands]
-                              ]);
+                            
+                              var data = google.visualization.arrayToDataTable(
+                                resultArr
+                              );
 
                               var options = {
                                 title: 'Members by country',
@@ -29,6 +32,4 @@ app.controller('statistics',function($scope,$http,$location,$route){
                               chart.draw(data, options);
                             }
           });
-
-          console.log("A nation értéke: " + nation);
 });
