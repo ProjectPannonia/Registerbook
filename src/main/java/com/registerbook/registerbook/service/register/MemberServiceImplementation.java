@@ -114,13 +114,14 @@ public class MemberServiceImplementation implements MemberService {
         int numberOfMusicBands = memberJpaRepository.numberOfRegisteredBands();
         List<CountryAndQuantity> countryAndQuantities = new ArrayList<>();
         List<String> registeredUniqueCountries = memberJpaRepository.registeredCountries();
-        
+        int numberOfCountries =  registeredUniqueCountries.size();
+
         for (int i = 0; i < registeredUniqueCountries.size(); i++){
             String actualCountryName = registeredUniqueCountries.get(i);
             int numberFromActualCountry = memberJpaRepository.numberOfMembersPerSpecifiedCountry(actualCountryName);
             countryAndQuantities.add(new CountryAndQuantity(actualCountryName,numberFromActualCountry));
         }
-        return new StatisticData(numberOfRegisteredMembers,numberOfMusicBands,countryAndQuantities);
+        return new StatisticData(numberOfRegisteredMembers,numberOfMusicBands,countryAndQuantities,numberOfCountries);
     }
 
     @Override

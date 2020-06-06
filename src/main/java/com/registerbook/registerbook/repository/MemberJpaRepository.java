@@ -1,6 +1,5 @@
 package com.registerbook.registerbook.repository;
 
-import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.model.entities.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,14 +13,8 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
 
     List<Member> findAll();
 
-    @Query(value = "SELECT s FROM Member s WHERE s.country = :country")
-    List<Member> countPerCountry(@Param("country")String country);
-
     @Query(value = "SELECT COUNT(name) FROM members",nativeQuery = true)
     int numberOfMembers();
-
-    @Query(value = "SELECT COUNT(country) FROM members GROUP BY country ORDER BY country",nativeQuery = true)
-    List<Integer> numberOfMembersPerCountry();
 
     @Query(value = "SELECT country FROM members GROUP BY country ORDER BY country",nativeQuery = true)
     List<String> registeredCountries();
@@ -50,9 +43,15 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
     @Query(value = "SELECT s FROM Member s WHERE s.name = :sName")
     Member findMemberByName(@Param("sName") String sName);
 
-    @Query(value = "SELECT DISTINCT s.country FROM Member s")
-    List<Country> getRegisteredCountries();
-
     @Query(value = "SELECT COUNT(s.name) FROM Member s WHERE s.country =:country")
     int numberOfMembersPerSpecifiedCountry(@Param("country") String country);
+
+    /*
+    @Query(value = "SELECT DISTINCT s.country FROM Member s")
+    List<Country> getRegisteredCountries();
+    @Query(value = "SELECT COUNT(country) FROM members GROUP BY country ORDER BY country",nativeQuery = true)
+    List<Integer> numberOfMembersPerCountry();
+     @Query(value = "SELECT s FROM Member s WHERE s.country = :country")
+    List<Member> countPerCountry(@Param("country")String country);
+    * */
 }

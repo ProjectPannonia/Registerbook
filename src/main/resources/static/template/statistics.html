@@ -7,32 +7,30 @@
             <div class = "table-responsive">
                 <table class = "table table-hover table-bordered">
                     <thead>
-                    <tr ng-repeat = "member in members">
-                        <th>Registered musicians</th>
-                        <th>Registered bands</th>
-                        <th>Canadian</th>
-                        <th>Finnish</th>
-                        <th>German</th>
-                        <th>Hungarian</th>
-                        <th>Norwegian</th>
-                        <th>Swedish</th>
-                        <th>British</th>
-                        <th>American</th>
-                    </tr>
+                        <tr>
+                            <th>Registered musicians</th>
+                            <th>Registered bands</th>
+                            <th>Number of countries</th>
+                        </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>{{ statistics.registeredMembers }}</td>
                         <td>{{ statistics.numberOfBands }}</td>
-                        <td>{{ statistics.canadianBands }}</td>
-                        <td>{{ statistics.finnBands }}</td>
-                        <td>{{ statistics.germanBands }}</td>
-                        <td>{{ statistics.hungarianBands }}</td>
-                        <td>{{ statistics.norwayBands }}</td>
-                        <td>{{ statistics.swedenBands }}</td>
-                        <td>{{ statistics.ukBands }}</td>
-                        <td>{{ statistics.usaBands }}</td>
+                        <td>{{ statistics.numberOfCountries }}</td>
                     </tr>
+                    </tbody>
+                </table>
+                <table class = "table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th  ng-repeat = "data in statistics.membersPerCountry">{{data.country}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td ng-repeat = "data in statistics.membersPerCountry">{{ data.number }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

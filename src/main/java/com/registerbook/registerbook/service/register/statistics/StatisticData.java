@@ -8,12 +8,14 @@ public class StatisticData {
 
     private int registeredMembers;
     private int numberOfBands;
+    private int numberOfCountries;
     private List<CountryAndQuantity> membersPerCountry;
 
-    public StatisticData(int registeredMembers, int numberOfBands, List<CountryAndQuantity> membersPerCountry) {
+    public StatisticData(int registeredMembers, int numberOfBands, List<CountryAndQuantity> membersPerCountry,int numberOfCountries) {
         this.registeredMembers = registeredMembers;
         this.numberOfBands = numberOfBands;
         this.membersPerCountry = membersPerCountry;
+        this.numberOfCountries = numberOfCountries;
     }
 
     public int getRegisteredMembers() {
@@ -38,5 +40,13 @@ public class StatisticData {
 
     public void setMembersPerCountry(List<CountryAndQuantity> membersPerCountry) {
         this.membersPerCountry = membersPerCountry;
+    }
+
+    public int getNumberOfCountries() {
+        return numberOfCountries;
+    }
+
+    public void setNumberOfCountries(int numberOfCountries) {
+        this.numberOfCountries = numberOfCountries;
     }
 }
