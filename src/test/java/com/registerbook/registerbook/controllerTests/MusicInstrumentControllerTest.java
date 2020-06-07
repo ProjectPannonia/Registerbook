@@ -27,6 +27,7 @@ public class MusicInstrumentControllerTest {
     String[] testEmptyResponse;
     String[] testNonEmptyResponse;
     List<MusicInstrument> testInstrumentResponse;
+    MusicInstrument testInstrumentToSave;
 
     @InjectMocks
     MusicInstrumentController musicInstrumentController;
@@ -40,18 +41,22 @@ public class MusicInstrumentControllerTest {
     @Before
     public void init(){
         testEmptyResponse = new String[0];
-        testNonEmptyResponse = new String[4];
-        testInstrumentResponse = new ArrayList<>();
 
+        testNonEmptyResponse = new String[4];
         testNonEmptyResponse[0] = "Gutar";
         testNonEmptyResponse[1] = "Bass Guitar";
         testNonEmptyResponse[2] = "Drum";
         testNonEmptyResponse[3] = "Voice";
 
+        testInstrumentResponse = new ArrayList<>();
         testInstrumentResponse.add(new MusicInstrument());
         testInstrumentResponse.add(new MusicInstrument());
         testInstrumentResponse.add(new MusicInstrument());
         testInstrumentResponse.add(new MusicInstrument());
+
+        testInstrumentToSave = new MusicInstrument();
+        testInstrumentToSave.setId(new Long(0));
+        testInstrumentToSave.setInstrumentName("Guitar");
     }
     @Test
     public void testGetAllMembersNonEmptyResponse(){
@@ -112,12 +117,59 @@ public class MusicInstrumentControllerTest {
         assertNotEquals(responseBody,"Database cleared!");
         assertEquals(responseStatus,expectedStatus);
         assertEquals(responseBody,expectedResponseText);
-        
+
         verify(musicInstrumentServiceImplementation,times(1)).clearTable();
     }
+    @Test
+    public void testWithNonExistingInstrument_CreateNewInstrumentIfNotExist(){
+        String expectedBody = "Music instrument saved: Guitar";
+        HttpStatus expectedStatus = HttpStatus.CREATED;
+        ResponseEntity expectedResponse = new ResponseEntity(expectedBody,expectedStatus);
+        when(musicInstrumentServiceImplementation.saveInstrumentIfNotExist(any(MusicInstrument.class)))
+                .thenReturn(expectedResponse);
+
+        ResponseEntity response = musicInstrumentController.createNewInstrumentIfNotExist(testInstrumentToSave);
+        Object responseBody = response.getBody();
+        HttpStatus responseStatus = response.getStatusCode();
+        Object notExpectedBody = "This instrument: " + testInstrumentToSave.getInstrumentName() + " already exist!";
+
+        assertNotEquals(response,null);
+        assertNotEquals(response.getBody(),notExpectedBody);
+
+        assertEquals(expectedBody,responseBody);
+        assertEquals(responseStatus,responseStatus);
+
+        verify(musicInstrumentServiceImplementation,times(1)).saveInstrumentIfNotExist(any(MusicInstrument.class));
+    }
+    @Test
+    public void testWithExistingInstrument_CreateNewInstrumentIfNotExist(){
+        String expectedBody = "This instrument: " + testInstrumentToSave.getInstrumentName() + " already exist!";
+        HttpStatus expectedStatus = HttpStatus.CREATED;
+        ResponseEntity expectedResponse = new ResponseEntity(expectedBody,expectedStatus);
+        when(musicInstrumentServiceImplementation.saveInstrumentIfNotExist(any(MusicInstrument.class)))
+                .thenReturn(expectedResponse);
+
+        Object notExpectedBody = "Music instrument saved: " + testInstrumentToSave.getInstrumentName();
+        ResponseEntity response = musicInstrumentController.createNewInstrumentIfNotExist(testInstrumentToSave);
+        Object responseBody = response.getBody();
+        HttpStatus responseStatus = response.getStatusCode();
+
+        assertNotEquals(response,null);
+        assertNotEquals(response.getBody(),notExpectedBody);
+
+        assertEquals(expectedBody,responseBody);
+        assertEquals(responseStatus,responseStatus);
+
+        verify(musicInstrumentServiceImplementation,times(1)).saveInstrumentIfNotExist(any(MusicInstrument.class));
+    }
+    @Test
+    public void test_DeleteMember(){
+        when(musicInstrumentServiceImplementation.deleteInstrument(any(String.class)));
+    }
     @After
-    public void killObjects(){
+    public void setToNull(){
         testEmptyResponse = null;
         testNonEmptyResponse = null;
+        testInstrumentResponse = null;
     }
 }
