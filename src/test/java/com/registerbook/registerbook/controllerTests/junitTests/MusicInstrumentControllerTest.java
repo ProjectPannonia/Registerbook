@@ -1,8 +1,7 @@
-package com.registerbook.registerbook.controllerTests;
+package com.registerbook.registerbook.controllerTests.junitTests;
 
 import com.registerbook.registerbook.controller.MusicInstrumentController;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
-import com.registerbook.registerbook.repository.MusicInstrumentJpaRepository;
 import com.registerbook.registerbook.service.musicinstruments.MusicInstrumentServiceImplementation;
 import org.junit.After;
 import org.junit.Before;
@@ -33,10 +32,6 @@ public class MusicInstrumentControllerTest {
     MusicInstrumentController musicInstrumentController;
     @Mock
     MusicInstrumentServiceImplementation musicInstrumentServiceImplementation;
-    @Mock
-    MusicInstrument musicInstrument;
-    @Mock
-    MusicInstrumentJpaRepository musicInstrumentJpaRepository;
 
     @Before
     public void init(){
@@ -162,14 +157,12 @@ public class MusicInstrumentControllerTest {
 
         verify(musicInstrumentServiceImplementation,times(1)).saveInstrumentIfNotExist(any(MusicInstrument.class));
     }
-    @Test
-    public void test_DeleteMember(){
-        when(musicInstrumentServiceImplementation.deleteInstrument(any(String.class)));
-    }
+
     @After
     public void setToNull(){
         testEmptyResponse = null;
         testNonEmptyResponse = null;
+        testInstrumentResponse = null;
         testInstrumentResponse = null;
     }
 }

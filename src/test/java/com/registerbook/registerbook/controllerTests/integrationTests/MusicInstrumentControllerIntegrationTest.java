@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.controllerTests;
+package com.registerbook.registerbook.controllerTests.integrationTests;
 
 import com.registerbook.registerbook.AbstractTest;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
