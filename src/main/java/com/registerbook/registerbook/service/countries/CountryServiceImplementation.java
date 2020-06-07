@@ -19,6 +19,7 @@ public class CountryServiceImplementation implements CountryService {
     public String[] loadCountriesToTheServer() {
         List<Country> countriesAlreadyOnServer = countryJpaRepository.findAll();
         String[] countriesOnServerArray;
+
         if(countriesAlreadyOnServer.isEmpty()) {
             String[] isoCountries = Locale.getISOCountries();
             for (String country : isoCountries) {
