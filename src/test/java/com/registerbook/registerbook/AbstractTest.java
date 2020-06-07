@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.integrationTest;
+package com.registerbook.registerbook;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;

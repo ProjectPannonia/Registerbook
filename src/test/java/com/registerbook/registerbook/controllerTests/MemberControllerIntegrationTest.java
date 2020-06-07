@@ -1,6 +1,6 @@
-package com.registerbook.registerbook.integrationTest.controllerTests;
+package com.registerbook.registerbook.controllerTests;
 
-import com.registerbook.registerbook.integrationTest.AbstractTest;
+import com.registerbook.registerbook.AbstractTest;
 import com.registerbook.registerbook.model.entities.Member;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.junit.jupiter.api.Assertions.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class MemberControllerMiniIntegrationTest extends AbstractTest {
+public class MemberControllerIntegrationTest extends AbstractTest {
 
     private static Member lastMember;
     private static MvcResult mvcResult;

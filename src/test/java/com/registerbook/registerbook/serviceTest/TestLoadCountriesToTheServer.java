@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.integrationTest.serviceTest;
+package com.registerbook.registerbook.serviceTest;
 
 import com.registerbook.registerbook.repository.CountryJpaRepository;
 import com.registerbook.registerbook.service.countries.CountryServiceImplementation;

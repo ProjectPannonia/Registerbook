@@ -1,6 +1,6 @@
-package com.registerbook.registerbook.integrationTest.controllerTests;
+package com.registerbook.registerbook.controllerTests;
 
-import com.registerbook.registerbook.integrationTest.AbstractTest;
+import com.registerbook.registerbook.AbstractTest;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class MusicInstrumentControllerTest extends AbstractTest {
+public class MusicInstrumentControllerIntegrationTest extends AbstractTest {
 
     MvcResult mvcResult;
 

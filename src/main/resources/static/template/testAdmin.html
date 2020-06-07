@@ -2,14 +2,16 @@
     <!--Menu-->
     <nav class = "navbar navbar-default">
     <div class = "container-fluid adminmenubar">
-        <button class="btn btn-info mainbuttons" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Music instruments</button>
-        <button class="btn btn-info mainbuttons" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Members</button>
-        <button class="btn btn-info mainbuttons" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">Countries</button>
+        <button class="btn btn-info adminMainButtons" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Music instruments</button>
+        <button class="btn btn-info adminMainButtons" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Members</button>
+        <button class="btn btn-info adminMainButtons" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">Countries</button>
     </div>
     </nav>
     <!--End menu-->
     <!--Cards - First card-->
-    <div class = "alert alert-info"><span class="lead">Music instruments maintanence</span></div>
+    <div class = "alert alert-info">
+        <span class="lead">Music instruments maintanence</span>
+    </div>
     <div class="card">
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
@@ -21,8 +23,8 @@
                         <div class="row">
                             <div class="form-group col-md-10">
                                 <div class="col-md-10">
-                                    <input type="text" ng-model="instrument.instrumentName" id="instrumentName" class="form-control input-sm inputbox" placeholder="Enter music instrument name" />
-                                    <input type="submit" value="Register instrument" class="btn btn-success btn-sm registerbutton" />
+                                    <input id="instrumentName" class="form-control input-sm inputbox" type="text" ng-model="instrument.instrumentName" placeholder="Enter music instrument name" />
+                                    <input class="btn btn-success adminSubButton" type="submit" value="Register"/>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +35,7 @@
                         <div class="row" >
                             <div class="form-group col-md-10">
                             <div class="col-md-10">
-                                <input type="text"  ng-model="instrument.instrumentName" id="" class="form-control input-sm inputbox" placeholder="Enter music instrument name" />
+                                <input id=""  type="text" class="form-control input-sm inputbox" ng-model="instrument.instrumentName" placeholder="Enter music instrument name" />
                                 <input type="submit" value="Delete instrument" class="btn btn-success btn-sm deletebutton" />
                             </div>
                             </div>
@@ -85,7 +87,7 @@
             <div class="card-body" >
                 <!---->
                 
-                <div class="flex-container>
+                <div class="flex-container">
                     <div>
                         <form ng-submit = "addnewcountry()" class="form-horizontal" >
                             <div class="row">

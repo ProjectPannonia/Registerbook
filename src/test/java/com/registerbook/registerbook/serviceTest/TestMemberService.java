@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.integrationTest.serviceTest;
+package com.registerbook.registerbook.serviceTest;
 
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
