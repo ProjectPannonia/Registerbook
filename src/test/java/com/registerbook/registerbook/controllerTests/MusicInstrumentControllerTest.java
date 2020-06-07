@@ -2,30 +2,31 @@ package com.registerbook.registerbook.controllerTests;
 
 import com.registerbook.registerbook.controller.MusicInstrumentController;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
+import com.registerbook.registerbook.repository.MusicInstrumentJpaRepository;
 import com.registerbook.registerbook.service.musicinstruments.MusicInstrumentServiceImplementation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-@ExtendWith(MockitoExtension.class)
-@RunWith(JUnitPlatform.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.Mockito.*;
+
+@RunWith(SpringJUnit4ClassRunner.class)
 public class MusicInstrumentControllerTest {
 
-    List<MusicInstrument> testEmptyResponse;
-    List<MusicInstrument> testNonEmptyResponse;
-    MusicInstrument testInstrument1;
-    MusicInstrument testInstrument2;
-    MusicInstrument testInstrument3;
-    MusicInstrument testInstrument4;
+    String[] testEmptyResponse;
+    String[] testNonEmptyResponse;
+    List<MusicInstrument> testInstrumentResponse;
 
     @InjectMocks
     MusicInstrumentController musicInstrumentController;
@@ -33,31 +34,87 @@ public class MusicInstrumentControllerTest {
     MusicInstrumentServiceImplementation musicInstrumentServiceImplementation;
     @Mock
     MusicInstrument musicInstrument;
+    @Mock
+    MusicInstrumentJpaRepository musicInstrumentJpaRepository;
 
     @Before
     public void init(){
-        testEmptyResponse = new ArrayList<>();
-        testNonEmptyResponse = new ArrayList<>();
+        testEmptyResponse = new String[0];
+        testNonEmptyResponse = new String[4];
+        testInstrumentResponse = new ArrayList<>();
 
-        testInstrument1.setId(new Long(0));
-        testInstrument1.setInstrumentName("Guitar");
-        testInstrument2.setId(new Long(1));
-        testInstrument2.setInstrumentName("Drum");
-        testInstrument3.setId(new Long(2));
-        testInstrument3.setInstrumentName("Bass guitar");
-        testInstrument4.setId(new Long(3));
-        testInstrument4.setInstrumentName("Voice");
-        
-        testNonEmptyResponse.add(testInstrument1);
-        testNonEmptyResponse.add(testInstrument2);
-        testNonEmptyResponse.add(testInstrument3);
-        testNonEmptyResponse.add(testInstrument4);
+        testNonEmptyResponse[0] = "Gutar";
+        testNonEmptyResponse[1] = "Bass Guitar";
+        testNonEmptyResponse[2] = "Drum";
+        testNonEmptyResponse[3] = "Voice";
+
+        testInstrumentResponse.add(new MusicInstrument());
+        testInstrumentResponse.add(new MusicInstrument());
+        testInstrumentResponse.add(new MusicInstrument());
+        testInstrumentResponse.add(new MusicInstrument());
     }
     @Test
-    public void testGetAllMembers(){
+    public void testGetAllMembersNonEmptyResponse(){
+        when(musicInstrumentServiceImplementation.getAllInstruments()).thenReturn(testNonEmptyResponse);
+        ResponseEntity response = musicInstrumentController.getAllIstruments();
+        Object responseBody = response.getBody();
+        HttpStatus responseStatus = response.getStatusCode();
 
+        assertNotEquals(responseBody,null);
+        assertEquals(responseBody,testNonEmptyResponse);
+        assertEquals(responseStatus, HttpStatus.OK);
+        verify(musicInstrumentServiceImplementation,times(1)).getAllInstruments();
     }
+    @Test
+    public void testGetAllMembersEmptyResponse(){
+        when(musicInstrumentServiceImplementation.getAllInstruments()).thenReturn(testEmptyResponse);
+        ResponseEntity response = musicInstrumentController.getAllIstruments();
+        Object responseBody = response.getBody();
+        HttpStatus responseStatus = response.getStatusCode();
 
+        assertNotEquals(responseBody,testNonEmptyResponse);
+        assertEquals(responseStatus,HttpStatus.OK);
+        assertEquals(responseBody,testEmptyResponse);
+
+        verify(musicInstrumentServiceImplementation,times(1)).getAllInstruments();
+        //verify(musicInstrumentJpaRepository,times(1)).findAll();
+    }
+    @Test
+    public void testDropInstrumentsTableCleared(){
+        when(musicInstrumentServiceImplementation.clearTable()).thenReturn("Database cleared!");
+
+        String expectedResponseText = "Database cleared!";
+        HttpStatus expectedStatus = HttpStatus.OK;
+
+        ResponseEntity response = musicInstrumentController.dropInstrumentsTable();
+        HttpStatus responseStatus = response.getStatusCode();
+        Object responseBody = response.getBody();
+
+        assertNotEquals(responseBody,null);
+        assertNotEquals(responseBody,"Problem with clearing table!");
+        assertEquals(responseStatus,expectedStatus);
+        assertEquals(responseBody,expectedResponseText);
+
+        verify(musicInstrumentServiceImplementation,times(1)).clearTable();
+    }
+    @Test
+    public void testDropInstrumentsTableProblemWithDrop() {
+        when(musicInstrumentServiceImplementation.clearTable()).thenReturn("Problem with clearing table!");
+
+        String expectedResponseText = "Problem with clearing table!";
+        HttpStatus expectedStatus = HttpStatus.OK;
+
+        ResponseEntity response = musicInstrumentController.dropInstrumentsTable();
+        HttpStatus responseStatus = response.getStatusCode();
+        Object responseBody = response.getBody();
+
+        assertNotEquals(responseBody,null);
+        assertNotEquals(responseBody,"Database cleared!");
+        assertEquals(responseStatus,expectedStatus);
+        assertEquals(responseBody,expectedResponseText);
+        
+        verify(musicInstrumentServiceImplementation,times(1)).clearTable();
+    }
     @After
     public void killObjects(){
         testEmptyResponse = null;
