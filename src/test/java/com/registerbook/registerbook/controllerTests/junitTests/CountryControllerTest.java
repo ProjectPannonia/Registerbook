@@ -27,6 +27,7 @@ public class CountryControllerTest {
     String[] isoCountries;
     List<Country> nonEmptyResponseCountriesAlreadyOnServer;
     List<Country> emptyResponseCountriesAlreadyOnServer;
+    List<Country> secondTestResponse;
     String[] responseArray;
 
     @InjectMocks
@@ -54,6 +55,22 @@ public class CountryControllerTest {
         responseArray[0] = "Hungary";
         responseArray[1] = "Germany";
         responseArray[2] = "England";
+
+        secondTestResponse = new ArrayList<>();
+        Country testCountry1 = new Country();
+        testCountry1.setId(new Long(0));
+        testCountry1.setCountryName("Hungary");
+        secondTestResponse.add(testCountry1);
+
+        Country testCountry2 = new Country();
+        testCountry2.setId(new Long(1));
+        testCountry2.setCountryName("Germany");
+        secondTestResponse.add(testCountry2);
+
+        Country testCountry3 = new Country();
+        testCountry3.setId(new Long(2));
+        testCountry3.setCountryName("England");
+        secondTestResponse.add(testCountry3);
     }
 
     @Test
@@ -79,9 +96,13 @@ public class CountryControllerTest {
         ResponseEntity response = countryController.getListOfCountries();
         HttpStatus responseStatus = response.getStatusCode();
         Object responseBody = response.getBody();
+
         assertFalse(responseBody == null);
         assertFalse(responseBody instanceof ArrayList);
         assertTrue(responseBody instanceof String[]);
+        assertEquals(responseBody,responseArray);
+        assertEquals(responseStatus,HttpStatus.OK);
+
         verify(countryServiceImplementation,times(1)).getListOfCountries();
     }
     @Test
