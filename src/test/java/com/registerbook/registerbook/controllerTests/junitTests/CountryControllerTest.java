@@ -18,8 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -75,7 +74,15 @@ public class CountryControllerTest {
 
     @Test
     public void test_getListOfCountries() {
+        when(countryServiceImplementation.getListOfCountries()).thenReturn(responseArray);
 
+        ResponseEntity response = countryController.getListOfCountries();
+        HttpStatus responseStatus = response.getStatusCode();
+        Object responseBody = response.getBody();
+        assertFalse(responseBody == null);
+        assertFalse(responseBody instanceof ArrayList);
+        assertTrue(responseBody instanceof String[]);
+        verify(countryServiceImplementation,times(1)).getListOfCountries();
     }
     @Test
     public void test_drop() {
