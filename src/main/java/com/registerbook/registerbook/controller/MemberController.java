@@ -19,10 +19,12 @@ public class MemberController {
 
     public static final Logger logger = LoggerFactory.getLogger(MemberController.class);
     private MemberServiceImplementation memberServiceImplementation;
+
     @Autowired
     public void setMemberServiceImplementation(MemberServiceImplementation memberServiceImplementation) {
         this.memberServiceImplementation = memberServiceImplementation;
     }
+
 
     @GetMapping("/")
     public ResponseEntity<List<Member>> sendRegisteredMembersToFrontEnd() {
@@ -73,5 +75,3 @@ public class MemberController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
-
-
