@@ -16,7 +16,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class MemberControllerTest {
@@ -81,11 +82,57 @@ public class MemberControllerTest {
     @Test
     public void test_sendRegisteredMembersToFrontEnd(){
         when(memberServiceImplementation.getAllRegisteredMembers())
-                .thenReturn(new ResponseEntity(responseFromDb, HttpStatus.OK));
+                .thenReturn(new ResponseEntity(responseFromDb, HttpStatus.OK))
+                .thenReturn(new ResponseEntity(new ArrayList<Member>(),HttpStatus.NO_CONTENT));
 
+        ResponseEntity nonEmptyResponse = memberController.sendRegisteredMembersToFrontEnd();
+        HttpStatus expectedOkStatus = nonEmptyResponse.getStatusCode();
+        Object expectedNonEmptyBody = nonEmptyResponse.getBody();
+
+        assertNotEquals(expectedOkStatus,null);
+        assertNotEquals(expectedNonEmptyBody,null);
+        assertTrue(expectedOkStatus instanceof HttpStatus);
+        assertTrue(expectedNonEmptyBody instanceof ArrayList);
+        assertEquals(expectedOkStatus,HttpStatus.OK);
+        assertEquals(expectedNonEmptyBody,responseFromDb);
+
+        ResponseEntity emptyResponse = memberController.sendRegisteredMembersToFrontEnd();
+        HttpStatus expectedNoContent = emptyResponse.getStatusCode();
+        Object expectedEmptyBody = emptyResponse.getBody();
+
+        assertEquals(expectedNoContent,HttpStatus.NO_CONTENT);
+        assertTrue(expectedOkStatus instanceof HttpStatus);
+        assertTrue(expectedEmptyBody instanceof ArrayList);
+        assertEquals(expectedEmptyBody,new ArrayList<Member>());
+
+        verify(memberServiceImplementation,times(2)).getAllRegisteredMembers();
     }
     @Test
     public void test_writeMembersToFile(){
+        // First test with empty database, then non empty database
+        HttpStatus expectedFirst = HttpStatus.OK;
+        
+        HttpStatus expectedSecond = HttpStatus.NO_CONTENT;
+        String fileName = "xyz";
+        when(memberServiceImplementation.writeMembersToFile(fileName))
+                .thenReturn(new ResponseEntity<>("File created. Name: " + fileName + ".txt",HttpStatus.OK))
+                .thenReturn(new ResponseEntity<>("Database empty.",HttpStatus.NO_CONTENT));
+
+        ResponseEntity nonEmptyResponse = memberController.writeMembersToFile(fileName);
+        Object responseTextFirst = nonEmptyResponse.getBody();
+        HttpStatus responseStatusFirst = nonEmptyResponse.getStatusCode();
+
+        assertFalse(nonEmptyResponse == null);
+        assertFalse(responseStatusFirst == null);
+        assertFalse(responseTextFirst == null);
+        assertEquals();
+        ResponseEntity emptyResponse = memberController.writeMembersToFile(fileName);
+        Object responseTextSecond = emptyResponse.getBody();
+        HttpStatus responseStatusSecond = emptyResponse.getStatusCode();
+
+
+        verify(memberServiceImplementation,timeout(2))
+                .writeMembersToFile(fileName);
     }
     @Test
     public void test_getMemberById(){
