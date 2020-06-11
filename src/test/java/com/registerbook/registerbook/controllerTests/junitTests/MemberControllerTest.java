@@ -204,13 +204,26 @@ public class MemberControllerTest {
         when(memberServiceImplementation.getStatistics())
                 .thenReturn(testStatisticData);
 
+        ResponseEntity response = memberController.getStatistics();
+        HttpStatus responseStatus = response.getStatusCode();
+        Object responseStatisticData = response.getBody();
 
+        assertFalse(response == null);
+        assertFalse(responseStatus == null);
+        assertFalse(responseStatisticData == null);
+        assertTrue(response instanceof ResponseEntity);
+        assertTrue(responseStatisticData instanceof StatisticData);
+        assertTrue(responseStatus instanceof HttpStatus);
+        assertEquals(responseStatus,HttpStatus.OK);
+        assertEquals(responseStatisticData,testStatisticData);
 
         verify(memberServiceImplementation,times(1))
                 .getStatistics();
     }
+
     @Test
     public void test_createMember(){
+
     }
     @Test
     public void test_getSpecifiedMembers(){
