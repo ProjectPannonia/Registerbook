@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.junitTests;
 
-import com.registerbook.registerbook.AbstractTest;
+import com.registerbook.registerbook.controllerTests.integrationTests.AbstractTest;
 import com.registerbook.registerbook.model.entities.Member;
 import org.junit.After;
 import org.junit.Before;

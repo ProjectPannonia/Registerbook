@@ -1,6 +1,5 @@
 package com.registerbook.registerbook.controllerTests.integrationTests;
 
-import com.registerbook.registerbook.AbstractTest;
 import com.registerbook.registerbook.model.entities.Member;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -114,7 +113,7 @@ public class MemberControllerIntegrationTest extends AbstractTest {
         Member testMember = new Member();
 
         testMember.setId(new Long(999));
-        testMember.setName("Krumpli");
+        testMember.setName("ModifiedTestBand");
         testMember.setBand("Amon Amarth");
         testMember.setAddress("Bszh");
         testMember.setEmail("ld@ld.hu");
