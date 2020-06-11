@@ -3,6 +3,8 @@ package com.registerbook.registerbook.controllerTests.junitTests;
 import com.registerbook.registerbook.controller.MemberController;
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.service.register.MemberServiceImplementation;
+import com.registerbook.registerbook.service.register.statistics.StatisticData;
+import com.registerbook.registerbook.service.register.statistics.UpdatedStatistic.CountryAndQuantity;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,6 +30,8 @@ public class MemberControllerTest {
     Member testM2;
     Member testM3;
     Member testM4;
+    StatisticData testStatisticData;
+    List<CountryAndQuantity> testCountryAndQuantity;
 
     @Mock
     MemberServiceImplementation memberServiceImplementation;
@@ -78,6 +83,13 @@ public class MemberControllerTest {
         responseFromDb.add(testM3);
         responseFromDb.add(testM4);
 
+
+        testCountryAndQuantity = new ArrayList<>();
+        testCountryAndQuantity.add(new CountryAndQuantity("Hungary",3));
+        testCountryAndQuantity.add(new CountryAndQuantity("USA",5));
+        testCountryAndQuantity.add(new CountryAndQuantity("USA",5));
+
+        testStatisticData = new StatisticData(300,20,testCountryAndQuantity,10);
     }
     @Test
     public void test_sendRegisteredMembersToFrontEnd(){
@@ -110,35 +122,92 @@ public class MemberControllerTest {
     @Test
     public void test_writeMembersToFile(){
         // First test with empty database, then non empty database
-        HttpStatus expectedFirst = HttpStatus.OK;
-        
-        HttpStatus expectedSecond = HttpStatus.NO_CONTENT;
-        String fileName = "xyz";
-        when(memberServiceImplementation.writeMembersToFile(fileName))
-                .thenReturn(new ResponseEntity<>("File created. Name: " + fileName + ".txt",HttpStatus.OK))
-                .thenReturn(new ResponseEntity<>("Database empty.",HttpStatus.NO_CONTENT));
+        String testFileName = "xyz";
+        String expectedResponseTextFirst = "File created. Name: " + testFileName + ".txt";
+        String expectedResponseTextSecond = "Database empty.";
+        HttpStatus expectedFirstStatus = HttpStatus.OK;
+        HttpStatus expectedSecondStatus = HttpStatus.NO_CONTENT;
 
-        ResponseEntity nonEmptyResponse = memberController.writeMembersToFile(fileName);
+        when(memberServiceImplementation.writeMembersToFile(testFileName))
+                .thenReturn(new ResponseEntity<>(expectedResponseTextFirst,expectedFirstStatus))
+                .thenReturn(new ResponseEntity<>(expectedResponseTextSecond,expectedSecondStatus));
+
+        ResponseEntity nonEmptyResponse = memberController.writeMembersToFile(testFileName);
         Object responseTextFirst = nonEmptyResponse.getBody();
         HttpStatus responseStatusFirst = nonEmptyResponse.getStatusCode();
 
         assertFalse(nonEmptyResponse == null);
         assertFalse(responseStatusFirst == null);
         assertFalse(responseTextFirst == null);
-        assertEquals();
-        ResponseEntity emptyResponse = memberController.writeMembersToFile(fileName);
+        assertTrue(responseTextFirst instanceof String);
+        assertEquals(responseTextFirst,expectedResponseTextFirst);
+        assertEquals(responseStatusFirst,expectedFirstStatus);
+
+
+        ResponseEntity emptyResponse = memberController.writeMembersToFile(testFileName);
         Object responseTextSecond = emptyResponse.getBody();
         HttpStatus responseStatusSecond = emptyResponse.getStatusCode();
 
+        assertFalse(emptyResponse == null);
+        assertFalse(responseStatusSecond == null);
+        assertFalse(responseTextSecond == null);
+        assertTrue(responseStatusSecond instanceof HttpStatus);
+        assertTrue(responseTextSecond instanceof String);
+        assertEquals(responseStatusSecond,expectedSecondStatus);
+        assertEquals(responseTextSecond,expectedResponseTextSecond);
 
-        verify(memberServiceImplementation,timeout(2))
-                .writeMembersToFile(fileName);
+        verify(memberServiceImplementation,times(2))
+                .writeMembersToFile(testFileName);
     }
+
     @Test
     public void test_getMemberById(){
+        HttpStatus expectedStatusFirst = HttpStatus.OK;
+        HttpStatus expectedStatusSecond = HttpStatus.NO_CONTENT;
+
+        when(memberServiceImplementation.findMemberByIdIfExist(anyLong()))
+                .thenReturn(new ResponseEntity<>(testM1,expectedStatusFirst))
+                .thenReturn(new ResponseEntity<>(null,expectedStatusSecond));
+
+        ResponseEntity responseFirst = memberController.getMemberById(anyLong());
+        HttpStatus responseStatusFirst = responseFirst.getStatusCode();
+        Object responseMemberFirst = responseFirst.getBody();
+
+        assertFalse(responseFirst == null);
+        assertFalse(responseStatusFirst == null);
+        assertFalse(responseMemberFirst == null);
+        assertTrue(responseFirst instanceof ResponseEntity);
+        assertTrue(responseStatusFirst instanceof HttpStatus);
+        assertTrue(responseMemberFirst instanceof Member);
+        assertEquals(responseStatusFirst,expectedStatusFirst);
+        assertEquals(responseMemberFirst,testM1);
+
+        ResponseEntity responseSecond = memberController.getMemberById(anyLong());
+        HttpStatus responseStatusSecond = responseSecond.getStatusCode();
+        Object responseMemberSecond = responseSecond.getBody();
+
+        assertFalse(responseSecond == null);
+        assertFalse(responseStatusSecond == null);
+        assertTrue(responseMemberSecond == null);
+        assertTrue(responseSecond instanceof ResponseEntity);
+        assertTrue(responseStatusSecond instanceof HttpStatus);
+        assertFalse(responseMemberSecond instanceof Member);
+        assertEquals(responseStatusSecond,expectedStatusSecond);
+        assertEquals(responseMemberSecond,null);
+
+        verify(memberServiceImplementation,times(2))
+                .findMemberByIdIfExist(anyLong());
     }
+
     @Test
     public void test_getStatistics(){
+        when(memberServiceImplementation.getStatistics())
+                .thenReturn(testStatisticData);
+
+
+
+        verify(memberServiceImplementation,times(1))
+                .getStatistics();
     }
     @Test
     public void test_createMember(){
