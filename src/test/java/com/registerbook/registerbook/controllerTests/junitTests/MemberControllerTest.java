@@ -223,7 +223,46 @@ public class MemberControllerTest {
 
     @Test
     public void test_createMember(){
+        HttpStatus expectedWhenCreated = HttpStatus.CREATED;
+        HttpStatus expectedWhenAlreadyExist = HttpStatus.CONFLICT;
 
+        when(memberServiceImplementation.saveNewMemberIfNotExist(testM1))
+                .thenReturn(new ResponseEntity<>(testM1,expectedWhenCreated))
+                .thenReturn(new ResponseEntity<>(testM1,expectedWhenAlreadyExist));
+
+        ResponseEntity responseFirst = memberController.createMember(testM1);
+        HttpStatus responseStatusFirst = responseFirst.getStatusCode();
+        Object responseMemberFirst = responseFirst.getBody();
+
+        assertFalse(responseFirst == null);
+        assertTrue(responseFirst instanceof ResponseEntity);
+
+        assertFalse(responseStatusFirst == null);
+        assertTrue(responseStatusFirst instanceof HttpStatus);
+
+        assertFalse(responseMemberFirst == null);
+        assertEquals(responseMemberFirst,testM1);
+
+        assertTrue(responseMemberFirst instanceof Member);
+        assertEquals(responseStatusFirst,HttpStatus.CREATED);
+
+/*
+        ResponseEntity responseSecond = memberController.createMember(testM1);
+        HttpStatus responseStatusSecond = responseFirst.getStatusCode();
+        Object responseMemberSecond = responseFirst.getBody();
+
+        assertFalse(responseSecond == null);
+        assertTrue(responseFirst instanceof ResponseEntity);
+
+        assertFalse(responseStatusSecond == null);
+        assertTrue(responseStatusSecond instanceof HttpStatus);
+
+        assertFalse(responseMemberSecond == null);
+        assertEquals(responseMemberSecond,testM1);
+        assertEquals(responseStatusSecond,HttpStatus.CONFLICT);
+*/
+        verify(memberServiceImplementation,times(1))
+                .saveNewMemberIfNotExist(testM1);
     }
     @Test
     public void test_getSpecifiedMembers(){
