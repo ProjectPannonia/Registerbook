@@ -91,6 +91,9 @@ public class MemberControllerTest {
 
         testStatisticData = new StatisticData(300,20,testCountryAndQuantity,10);
     }
+    //Resource not found exception => runtime exception,Error details(404)
+    // getbyid => dobjon exception
+    // restcontroller, exception => error detailsel
     @Test
     public void test_sendRegisteredMembersToFrontEnd(){
         when(memberServiceImplementation.getAllRegisteredMembers())

@@ -21,7 +21,7 @@ public class MemberControllerIntegrationTest extends AbstractTest {
     public void setup() throws Exception {
         super.setup();
     }
-
+//Teszt eset szerinti elnevezés
     @Test
     public void A_getMemberListTest() throws Exception {
         Member[] memberList;
