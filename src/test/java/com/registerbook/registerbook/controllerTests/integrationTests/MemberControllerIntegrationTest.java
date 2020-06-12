@@ -42,6 +42,7 @@ public class MemberControllerIntegrationTest extends AbstractTest {
         content = mvcResult
                 .getResponse()
                 .getContentAsString();
+
         memberList = super.mapFromJson(content, Member[].class);
         assertTrue(memberList.length > 0);
     }
@@ -57,12 +58,15 @@ public class MemberControllerIntegrationTest extends AbstractTest {
                 .get(url)
                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn();
+
         status = mvcResult
                 .getResponse()
                 .getStatus();
+
         returnedJson = mvcResult
                 .getResponse()
                 .getContentAsString();
+
         testMember = super.mapFromJson(returnedJson,Member.class);
 
         assertNotEquals(null,testMember.getName());
@@ -96,14 +100,17 @@ public class MemberControllerIntegrationTest extends AbstractTest {
                 .post(url).contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(inputJson))
                 .andReturn();
+
         String mResult = mvcResult.getResponse().getContentAsString();
         System.out.println("Ez jött vissza: " + mResult);
         lastMember = super.mapFromJson(mvcResult.getResponse()
                 .getContentAsString(),Member.class);
+
         System.out.println("Ezzel az id-vel lett elmentve"+lastMember.getId());
         status = mvcResult
                 .getResponse()
                 .getStatus();
+
         assertEquals(201, status);
     }
 
@@ -126,12 +133,15 @@ public class MemberControllerIntegrationTest extends AbstractTest {
                 .put(url)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson))
                 .andReturn();
+
         lastMember = super.mapFromJson(mvcResult
                 .getResponse()
                 .getContentAsString(),Member.class);
+
         int status = mvcResult
                 .getResponse()
                 .getStatus();
+
         assertEquals(200,status);
     }
 
@@ -143,9 +153,11 @@ public class MemberControllerIntegrationTest extends AbstractTest {
         mvcResult = mvc.perform(MockMvcRequestBuilders
                 .delete(url))
                 .andReturn();
+
         status = mvcResult
                 .getResponse()
                 .getStatus();
+
         assertEquals(204,status);
     }
 }
