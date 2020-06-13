@@ -23,7 +23,7 @@ public class MemberControllerIntegrationTest extends AbstractTest {
     }
 //Teszt eset szerinti elnevezés
     @Test
-    public void A_getMemberListTest() throws Exception {
+    public void A_testGetAllMembers() throws Exception {
         Member[] memberList;
         String content;
         int status;
@@ -48,7 +48,7 @@ public class MemberControllerIntegrationTest extends AbstractTest {
     }
 
     @Test
-    public void B_getMemberByIdTest()throws Exception{
+    public void B_testGetMemberById()throws Exception{
         String url = "/register/member/3";
         int status;
         String returnedJson;
@@ -80,7 +80,7 @@ public class MemberControllerIntegrationTest extends AbstractTest {
     }
 
     @Test
-    public void C_createNewMemberTest() throws Exception {
+    public void C_testCreateNewMember() throws Exception {
         String url = "/register/member/";
         int status;
         Member testMember = new Member();
@@ -115,7 +115,7 @@ public class MemberControllerIntegrationTest extends AbstractTest {
     }
 
     @Test
-    public void D_updateMemberTest() throws Exception{
+    public void D_testUpdateExistingMember() throws Exception{
         String url = "/register/member/" + lastMember.getId() ;
         Member testMember = new Member();
 
@@ -146,7 +146,7 @@ public class MemberControllerIntegrationTest extends AbstractTest {
     }
 
     @Test
-    public void E_deleteMemberTest() throws Exception {
+    public void E_testDeleteMember() throws Exception {
         String url = "/register/member/" + lastMember.getId();
         int status;
 
