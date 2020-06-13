@@ -1,6 +1,7 @@
 package com.registerbook.registerbook.controllerTests.integrationTests;
 
 import com.registerbook.registerbook.model.entities.Member;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -159,5 +160,10 @@ public class MemberControllerIntegrationTest extends AbstractTest {
                 .getStatus();
 
         assertEquals(204,status);
+    }
+    @After
+    public void setToNull(){
+        lastMember = null;
+        mvcResult = null;
     }
 }
