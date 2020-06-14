@@ -46,12 +46,7 @@ public interface MemberJpaRepository extends JpaRepository<Member,Long> {
     @Query(value = "SELECT COUNT(s.name) FROM Member s WHERE s.country =:country")
     int numberOfMembersPerSpecifiedCountry(@Param("country") String country);
 
-    /*
-    @Query(value = "SELECT DISTINCT s.country FROM Member s")
-    List<Country> getRegisteredCountries();
-    @Query(value = "SELECT COUNT(country) FROM members GROUP BY country ORDER BY country",nativeQuery = true)
-    List<Integer> numberOfMembersPerCountry();
-     @Query(value = "SELECT s FROM Member s WHERE s.country = :country")
-    List<Member> countPerCountry(@Param("country")String country);
-    * */
+    @Query(value = "SELECT s FROM Member s WHERE s.id = :sId")
+    List<Member> getMemberById(@Param("sId") Long sId);
+
 }

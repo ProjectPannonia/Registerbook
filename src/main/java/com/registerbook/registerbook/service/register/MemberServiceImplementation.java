@@ -1,6 +1,5 @@
 package com.registerbook.registerbook.service.register;
 
-import com.registerbook.registerbook.controller.errorHandler.customException.ResourceNotFoundException;
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.register.fileOperation.fileReader.MembersFileReader;
@@ -146,6 +145,8 @@ public class MemberServiceImplementation implements MemberService {
         String property = content[0];
         String value = content[1];
         switch (property){
+            case "Id" : result = memberJpaRepository.getMemberById(Long.parseLong(value));
+                break;
             case "Name" :  result.add(memberJpaRepository.getMemberByName(value));
                 break;
             case "Band" : result = memberJpaRepository.getBandMembers(value);
@@ -158,9 +159,5 @@ public class MemberServiceImplementation implements MemberService {
                 break;
         }
         return result;
-    }
-
-    public Member getMemberById(String name) {
-        return memberJpaRepository.getMemberByName(name);
     }
 }
