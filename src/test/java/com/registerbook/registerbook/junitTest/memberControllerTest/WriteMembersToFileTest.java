@@ -50,6 +50,29 @@ public class WriteMembersToFileTest {
 
         verify(memberServiceImplementation,times(1)).writeMembersToFile(testFileName);
     }
+    @Test
+    public void test_writeMembersToFile_When_FileNotCreated(){
+        String testFileName = "xyz";
+        String expectedResponseText = "Database empty.";
+        HttpStatus expectedStatus = HttpStatus.NO_CONTENT;
+
+        when(memberServiceImplementation.writeMembersToFile(testFileName)).thenReturn(new ResponseEntity<>(expectedResponseText,expectedStatus));
+
+        ResponseEntity emptyResponse = memberController.writeMembersToFile(testFileName);
+        Object responseTextSecond = emptyResponse.getBody();
+        HttpStatus responseStatusSecond = emptyResponse.getStatusCode();
+
+        assertTrue(emptyResponse != null);
+        assertTrue(responseStatusSecond != null);
+        assertTrue(responseTextSecond != null);
+        assertTrue(emptyResponse instanceof ResponseEntity);
+        assertTrue(responseStatusSecond instanceof HttpStatus);
+        assertTrue(responseTextSecond instanceof String);
+        assertEquals(responseStatusSecond,expectedStatus);
+        assertEquals(responseTextSecond,expectedResponseText);
+
+        verify(memberServiceImplementation,times(1)).writeMembersToFile(testFileName);
+    }
     @After
     public void setToNull(){
         memberController = null;
