@@ -1,5 +1,6 @@
 package com.registerbook.registerbook.controller;
 
+import com.registerbook.registerbook.controller.errorHandler.customException.ResourceNotFoundException;
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import com.registerbook.registerbook.service.register.statistics.StatisticData;
@@ -38,7 +39,11 @@ public class MemberController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Member> getMemberById(@PathVariable("id") final Long id) {
-        return memberServiceImplementation.findMemberByIdIfExist(id);
+        ResponseEntity result = memberServiceImplementation.findMemberByIdIfExist(id);
+        if (result.getBody() == null){
+            throw new ResourceNotFoundException("A kért elem nem található");
+        }
+        return result;
     }
     @GetMapping("/statistics")
     public ResponseEntity<StatisticData> getStatistics() {
