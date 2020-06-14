@@ -203,9 +203,9 @@ public class MemberControllerTest {
                 .findMemberByIdIfExist(anyLong());
     }
     @Test(expected = ResourceNotFoundException.class)
-    public void testThrowException(){
+    public void test_GetMemberById_ThrowResourceNotFoundException(){
         when(memberServiceImplementation.findMemberByIdIfExist(anyLong()))
-                .thenReturn(null);
+                .thenReturn(new ResponseEntity<Member>((Member) null,HttpStatus.NOT_FOUND));
         ResponseEntity testResponse = memberController.getMemberById(anyLong());
         Object responseBody = testResponse.getBody();
         HttpStatus responseStatus = testResponse.getStatusCode();

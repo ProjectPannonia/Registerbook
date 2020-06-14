@@ -1,5 +1,5 @@
 app.controller('searchDropdown',function($scope,$http,$location,$route){
-    $scope.names = ["Name","Band","City","Country","Instrument"];
+    $scope.names = ["Id","Name","Band","City","Country","Instrument"];
 
     $scope.push = function(){
 
