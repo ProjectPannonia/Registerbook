@@ -152,6 +152,16 @@ public class SendRegisteredMembersToFrontEndTest{
     }
     @After
     public void setToNull() {
-
+        memberController = null;
+        memberServiceImplementation = null;
+        responseFromDbWhenNotEmpty = null;
+        responseFromDbWhenEmpty = null;
+        responseFromDbWhenOnlyOneMemberRegistered = null;
+        testM1 = null;
+        testM2 = null;
+        testM3 = null;
+        testM4 = null;
+        expectedStatusWhenDatabaseIsNotEmpty = null;
+        expectedStatusWhenDatabaseIsEmpty = null;
     }
 }
