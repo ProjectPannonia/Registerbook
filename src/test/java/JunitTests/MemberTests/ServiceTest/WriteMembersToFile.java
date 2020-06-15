@@ -54,11 +54,11 @@ public class WriteMembersToFile {
         responseNonEmptyDb.add(testM1);
         responseNonEmptyDb.add(testM2);
     }
-    @Test
-    public void test_writeMembersToFile_When_DbIsEmpty(){
+    //@Test
+    /*public void test_writeMembersToFile_When_DbIsEmpty(){
         when(memberJpaRepository.findAll()).thenReturn();
     }
-
+    */
     @After
     public void setToNull(){
         memberJpaRepository = null;
