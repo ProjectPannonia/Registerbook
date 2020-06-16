@@ -15,10 +15,31 @@
     <div class="card">
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
+                <div class="row" style="padding-left: 4vh;">
+                    <div class="col-lg-4">
+                        <form ng-submit = "addNewInstrument()" class="form-horizontal" >
+                                <input id="instrumentName" class="form-control input-sm inputbox" type="text" ng-model="instrument.instrumentName" placeholder="Enter music instrument name" />
+                                <input type="submit" value="Register" class="btn btn-success" style="margin-top: 1.5rem; margin-left: 3rem; margin-bottom: 1.5rem;"/>
+                        </form>
+                    </div>
+                    <div class="col-lg-4">
+                        <form ng-submit = "deleteInstruments()" class="form-horizontal">
+                            <input id=""  type="text" class="form-control input-sm inputbox" ng-model="" placeholder="Enter music instrument name" />
+                            <input type="submit" value="Delete instrument" class="btn btn-success btn-sm adminSubButton" style="margin-top: 10px;margin-bottom: 10px; padding-bottom: 5px;"/>
+                        </form>
+                    </div>
+                    <div class="col-lg-4">
+                        <form ng-submit = "dropInstruments()" class="form-horizontal" >
+                            <input type="submit" value="Clear" class="btn btn-success btn-sm adminSubButton" style="margin-top: 10px;margin-bottom: 10px;"/>
+                        </form>
+                    </div>
+                    
+                    
+                </div>
                 <!---->
-            
-            <div class="flex-container">
-                <div>
+                <!--
+                <div class="flex-container">
+                <div class="col-lg-3">
                     <form ng-submit = "addNewInstrument()" class="form-horizontal" >
                         <div class="row">
                             <div class="form-group col-md-10">
@@ -30,7 +51,7 @@
                         </div>
                     </form>
                 </div>
-                <div>
+                <div class="col-lg-3">
                     <form ng-submit = "deleteInstruments()" class="form-horizontal" >
                         <div class="row" >
                             <div class="form-group col-md-10">
@@ -54,6 +75,8 @@
                         </form>
                     </div>
                 </div> 
+                </div>
+                -->
             </div>
         </div>
     </div>
