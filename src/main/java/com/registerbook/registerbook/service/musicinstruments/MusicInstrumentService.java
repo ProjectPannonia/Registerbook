@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface MusicInstrumentService {
 
-    String[] getAllInstruments();
+    ResponseEntity getAllInstruments();
 
     List<MusicInstrument> isThisInstrumentAlreadyInDatabase(String instrumentName);
 

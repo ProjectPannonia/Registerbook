@@ -30,12 +30,14 @@ public class MusicInstrumentController {
         return result;
     }
     @GetMapping("/getInstruments")
-    public ResponseEntity<String[]> getAllIstruments(){
-        String[] allInstruments =  instrumentServiceImplementation.getAllInstruments();
-        if(allInstruments == null || allInstruments.length == 0){
+    public ResponseEntity<String[]> getAllInstruments(){
+        ResponseEntity allInstruments =  instrumentServiceImplementation.getAllInstruments();
+
+        if(allInstruments.getBody() == null){
             throw new ResourceNotFoundException("Music instruments table is empty!");
         }
-        return new ResponseEntity<>(allInstruments, HttpStatus.OK);
+
+        return allInstruments;
     }
     @GetMapping("/dropInstruments")
     public ResponseEntity<String> dropInstrumentsTable(){

@@ -16,12 +16,18 @@ public class MusicInstrumentServiceImplementation implements MusicInstrumentServ
     MusicInstrumentJpaRepository musicInstrumentJpaRepository;
 
     @Override
-    public String[] getAllInstruments() {
+    public ResponseEntity getAllInstruments() {
         List<MusicInstrument> instrumentList = musicInstrumentJpaRepository.findAll();
+
+        if (instrumentList.size() == 0){
+            return new ResponseEntity(null,HttpStatus.NO_CONTENT);
+        }
+
         String[] instrumentArray = new String[instrumentList.size()];
         for (int i = 0; i < instrumentArray.length; i++)
             instrumentArray[i] = instrumentList.get(i).getInstrumentName();
-        return instrumentArray;
+
+        return new ResponseEntity(instrumentArray,HttpStatus.OK);
     }
 
     @Override
