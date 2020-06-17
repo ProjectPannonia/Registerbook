@@ -18,4 +18,6 @@ public interface MusicInstrumentService {
     String clearTable();
 
     ResponseEntity<String> saveInstrumentIfNotExist(MusicInstrument musicInstrument);
+
+    ResponseEntity findInstrumentById(Long id);
 }

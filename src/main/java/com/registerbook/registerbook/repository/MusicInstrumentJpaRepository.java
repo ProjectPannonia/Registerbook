@@ -37,4 +37,6 @@ public interface MusicInstrumentJpaRepository extends JpaRepository<MusicInstrum
     @Modifying
     void dropTable();
 
+    @Query(value = "SELECT s FROM MusicInstrument s WHERE s.id = :id")
+    MusicInstrument findInstrumentById(@Param("id") Long id);
 }

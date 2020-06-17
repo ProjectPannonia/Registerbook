@@ -1,5 +1,7 @@
 package com.registerbook.registerbook.controller;
 
+import com.registerbook.registerbook.controller.errorHandler.customException.ResourceNotFoundException;
+import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
 import com.registerbook.registerbook.service.musicinstruments.MusicInstrumentServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,20 @@ public class MusicInstrumentController {
     public void setInstrumentServiceImplementation(MusicInstrumentServiceImplementation instrumentServiceImplementation){
         this.instrumentServiceImplementation = instrumentServiceImplementation;
     }
-
+    @GetMapping("/getInstrumentById/{id}")
+    public ResponseEntity<MusicInstrument> getInstrumentById(@PathVariable("id") final Long id){
+        ResponseEntity result = instrumentServiceImplementation.findInstrumentById(id);
+        if (result.getStatusCode() == HttpStatus.NOT_FOUND){
+            throw new ResourceNotFoundException("Music instrument with this id: " + id + " not found!");
+        }
+        return result;
+    }
     @GetMapping("/getInstruments")
     public ResponseEntity<String[]> getAllIstruments(){
         String[] allInstruments =  instrumentServiceImplementation.getAllInstruments();
+        if(allInstruments == null || allInstruments.length == 0){
+            throw new ResourceNotFoundException("Music instruments table is empty!");
+        }
         return new ResponseEntity<>(allInstruments, HttpStatus.OK);
     }
     @GetMapping("/dropInstruments")

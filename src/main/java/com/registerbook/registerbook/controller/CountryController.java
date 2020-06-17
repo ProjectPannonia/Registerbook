@@ -1,5 +1,6 @@
 package com.registerbook.registerbook.controller;
 
+import com.registerbook.registerbook.controller.errorHandler.customException.ResourceNotFoundException;
 import com.registerbook.registerbook.service.countries.CountryServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,9 @@ public class CountryController {
     @GetMapping("/getAllCountries")
     public ResponseEntity<String[]> loadCountriesToTheServer() {
         String[] result = countryServiceImplementation.loadCountriesToTheServer();
+        if(result == null || result.length == 0){
+            throw new ResourceNotFoundException("Countries table is empty!");
+        }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

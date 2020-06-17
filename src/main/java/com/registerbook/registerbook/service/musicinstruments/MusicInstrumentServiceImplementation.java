@@ -59,13 +59,22 @@ public class MusicInstrumentServiceImplementation implements MusicInstrumentServ
         MusicInstrument isInstrumentExist = musicInstrumentJpaRepository.getInstrumentByInsensitiveCaseName(musicInstrument.getInstrumentName().toLowerCase());
         String response = "This instrument: " + musicInstrument.getInstrumentName() + " already exist!";
 
-        if (isInstrumentExist == null){
+        if (isInstrumentExist == null) {
             musicInstrumentJpaRepository.save(musicInstrument);
             response = "Music instrument saved: " + musicInstrument.getInstrumentName();
         }
 
         return new ResponseEntity<String>(response, HttpStatus.CREATED);
     }
+
+    @Override
+    public ResponseEntity findInstrumentById(Long id) {
+        MusicInstrument searchedInstrument = musicInstrumentJpaRepository.findInstrumentById(id);
+        HttpStatus responseStatus = (searchedInstrument == null) ? HttpStatus.NOT_FOUND : HttpStatus.OK;
+
+        return new ResponseEntity(searchedInstrument,responseStatus);
+    }
+
 
     public void Save(MusicInstrument musicInstrument) {
         musicInstrumentJpaRepository.save(musicInstrument);
