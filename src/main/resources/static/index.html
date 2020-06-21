@@ -2,12 +2,38 @@
 <html lang="en" ng-app = "memberregistrationsystem">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <title>Musician's register</title>
     </head>
     <body>
+        <div class="help">
+            <div class="d-block d-sm-none">XS</div>
+            <div class="d-none d-sm-block d-md-none">SM</div>
+            <div class="d-none d-md-block d-lg-none">MD</div>
+            <div class="d-none d-lg-block d-xl-none">LG</div>
+            <div class="d-none d-xl-block">XL</div>
+        </div>
+        <header class="container-fluid">
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        <h1 class="col-lg-4" >Musicband register</h1>
+                        <nav class="col-lg-8">
+                            <a href="#/">Home</a>
+                            <a href="#/new-member-registration">Registration</a>
+                            <a href="#/list-all-members">Members</a>
+                            <a href="#/search-drop-down">Search</a>
+                            <a href="#/statistics">Statistics</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--
         <div  class="page-header text-center">
             <h2>Musician registration system</h2>
         </div>
+        
         <nav class = "navbar navbar-default">
             <div class = "container-fluid" style="text-align: center;">
                 <a href="#/" class = "btn btn-primary btn-lg active box" aria-pressed = "true" role = "button">
@@ -33,7 +59,27 @@
                 </a>
             </div>
         </nav>
-        <div ng-view></div>
+        
+
+        <div class="container-fluid main-image d-none d-sm-block">
+            <div class="row">
+            </div>
+        </div>
+        -->
+        <!--
+        <div class="container">
+        <form>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+          </form>
+        </div>
+        -->
+        <div ng-view class="container explain-container"></div>
+        <footer class="container-fluid sticky-footer">
+            <p>2020 Project Pannonia</p>
+        </footer>
 
         <!--AngularJs files-->
         <script src="/webjars/angularjs/1.4.9/angular.js"></script>
@@ -48,7 +94,7 @@
         <script src="/js/controllers/searchDropdown.js"></script>
         <script src="/js/controllers/statistic.js"></script>
         <!--Design files-->
-        <link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap.css">
+        <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.css">
         <link rel = "stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/adminFunctions.css">
 
