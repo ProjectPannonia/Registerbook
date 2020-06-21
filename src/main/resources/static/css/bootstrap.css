@@ -107,7 +107,15 @@ header nav a{
   }
   
 }
-
+.home-list-item{
+  font-size: 20px;
+  list-style: none;
+}
+.page-title{
+  font-size: 30px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+  text-align: center;
+}
 .box{
   background-color: #f4f4f4;
   padding: 20px;
