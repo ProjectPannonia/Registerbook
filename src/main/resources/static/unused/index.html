@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" ng-app = "memberregistrationsystem">
+    <head>
+        <meta charset="UTF-8">
+        <title>Musician's register</title>
+    </head>
+    <body>
+        <div  class="page-header text-center">
+            <h2>Musician registration system</h2>
+        </div>
+        <nav class = "navbar navbar-default">
+            <div class = "container-fluid" style="text-align: center;">
+                <a href="#/" class = "btn btn-primary btn-lg active box" aria-pressed = "true" role = "button">
+                    Home
+                </a>
+                <a href="#/new-member-registration" class = "btn btn-primary btn-lg active box" aria-pressed="true" role="button">
+                    Registration
+                </a>
+                <a href = "#/list-all-members" class = "btn btn-primary btn-lg active box" aria-pressed="true" role="button">
+                    Registered members
+                </a>
+                <a href = "#/search-drop-down" class = "btn btn-primary btn-lg active box" aria-pressed="true" role="button">
+                    Search
+                </a>
+                <a href="#/statistics" class = "btn btn-primary btn-lg active box" aria-pressed="true" role="button">
+                    Statistics
+                </a>
+                <a href="#/adminGuiPage" class = "btn btn-primary btn-lg active box" aria-pressed="true" role="button">
+                    Admin
+                </a>
+                <a href="#/loginPage" class = "btn btn-primary btn-lg active box" aria-pressed="true" role="button">
+                    Login Page
+                </a>
+            </div>
+        </nav>
+        <div ng-view></div>
+
+        <!--AngularJs files-->
+        <script src="/webjars/angularjs/1.4.9/angular.js"></script>
+        <script src="/webjars/angularjs/1.4.9/angular-resource.js"></script>
+        <script src="/webjars/angularjs/1.4.9/angular-route.js"></script>
+        <!--Separated sontrollers-->
+        <script src="/js/app.js"></script>
+        <script src="/js/controllers/adminFunctions.js"></script>
+        <script src="/js/controllers/listMembers.js"></script>
+        <script src="/js/controllers/memberRegistration.js"></script>
+        <script src="/js/controllers/memberUpdate.js"></script>
+        <script src="/js/controllers/searchDropdown.js"></script>
+        <script src="/js/controllers/statistic.js"></script>
+        <!--Design files-->
+        <link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap.css">
+        <link rel = "stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/adminFunctions.css">
+
+        <!--Google chart-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+        <!--
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    </body>
+</html>
