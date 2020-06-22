@@ -173,21 +173,23 @@ header nav a:hover{
 }
 .explain-container{
   margin-top: 20px;
+  margin-bottom: 20px;
   border: 0.5px solid grey;
   background-color:#e3ecf5;
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
-  height: 780px;
+  height: 700px;
+  
 }
 @media (max-width:992px){
   .explain-container{
     height: 745px;
   }
 }
-@media (max-width:768px){
+@media (max-height:768px){
   .explain-container{
-    height: 610px;
+    height: 450px;
     border-radius: 0px;
   }
 }
