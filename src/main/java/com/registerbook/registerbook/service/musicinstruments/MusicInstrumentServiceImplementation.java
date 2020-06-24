@@ -77,7 +77,6 @@ public class MusicInstrumentServiceImplementation implements MusicInstrumentServ
     public ResponseEntity findInstrumentById(Long id) {
         MusicInstrument searchedInstrument = musicInstrumentJpaRepository.findInstrumentById(id);
         HttpStatus responseStatus = (searchedInstrument == null) ? HttpStatus.NOT_FOUND : HttpStatus.OK;
-
         return new ResponseEntity(searchedInstrument,responseStatus);
     }
 
