@@ -131,9 +131,9 @@ header nav a{
 footer{
   background-color: #74a20c;
   color:#fff;
-  padding:12px 12px;
+  /*padding:12px 12px;*/
   text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
-  height: 70px;
+  height: 10px;
 }
 .sticky-footer {
   left:0;
@@ -142,7 +142,7 @@ footer{
 }
 @media (min-width: 768px) {
   footer{
-    height: 50px;
+    height: 25px;
   }
 }
 .help{
