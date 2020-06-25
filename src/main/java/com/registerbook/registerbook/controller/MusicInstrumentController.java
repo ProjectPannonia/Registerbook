@@ -22,8 +22,7 @@ public class MusicInstrumentController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<MusicInstrument> getInstrumentById(@PathVariable("id") final Long id) throws ResourceNotFoundException{
-        ResponseEntity result = instrumentServiceImplementation.findInstrumentById(id);
-        return result;
+        return instrumentServiceImplementation.findInstrumentById(id);
     }
     @GetMapping("/getInstruments")
     public ResponseEntity<String[]> getAllInstruments(){

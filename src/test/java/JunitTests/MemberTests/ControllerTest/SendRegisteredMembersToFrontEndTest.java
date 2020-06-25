@@ -94,7 +94,7 @@ public class SendRegisteredMembersToFrontEndTest{
     public void test_sendRegisteredMembersToFrontEnd_When_DatabaseIsNotEmpty() {
         when(memberServiceImplementation.getAllRegisteredMembers()).thenReturn(new ResponseEntity(responseFromDbWhenNotEmpty, expectedStatusWhenDatabaseIsNotEmpty));
 
-        ResponseEntity response = memberController.sendRegisteredMembersToFrontEnd();
+        ResponseEntity response = memberController.getAllRegisteredMembers();
         HttpStatus responseStatus = response.getStatusCode();
         Object responseAllMembers = response.getBody();
 
@@ -113,7 +113,7 @@ public class SendRegisteredMembersToFrontEndTest{
     public void test_sendRegisteredMembersToFrontEnd_When_DatabaseIsEmpty(){
         when(memberServiceImplementation.getAllRegisteredMembers()).thenReturn(new ResponseEntity(responseFromDbWhenEmpty,expectedStatusWhenDatabaseIsEmpty));
 
-        ResponseEntity response = memberController.sendRegisteredMembersToFrontEnd();
+        ResponseEntity response = memberController.getAllRegisteredMembers();
         HttpStatus responseStatus = response.getStatusCode();
         Object responseEmptyAllMembers = response.getBody();
 
@@ -132,7 +132,7 @@ public class SendRegisteredMembersToFrontEndTest{
     public void test_sendRegisteredMembersToFrontEnd_When_OnlyOneRegisteredMemberExist(){
         when(memberServiceImplementation.getAllRegisteredMembers()).thenReturn(new ResponseEntity(responseFromDbWhenOnlyOneMemberRegistered,expectedStatusWhenDatabaseIsNotEmpty));
 
-        ResponseEntity response = memberController.sendRegisteredMembersToFrontEnd();
+        ResponseEntity response = memberController.getAllRegisteredMembers();
         HttpStatus responseStatus = response.getStatusCode();
         Object responseAllMembers = response.getBody();
 

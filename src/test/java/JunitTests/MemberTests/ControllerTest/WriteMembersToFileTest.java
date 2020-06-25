@@ -35,7 +35,7 @@ public class WriteMembersToFileTest {
 
         when(memberServiceImplementation.writeMembersToFile(testFileName)).thenReturn(new ResponseEntity<>(expectedResponseText,expectedStatus));
 
-        ResponseEntity nonEmptyResponse = memberController.writeMembersToFile(testFileName);
+        ResponseEntity nonEmptyResponse = memberController.createFileFromMembers(testFileName);
         Object responseText = nonEmptyResponse.getBody();
         HttpStatus responseStatus = nonEmptyResponse.getStatusCode();
 
@@ -58,7 +58,7 @@ public class WriteMembersToFileTest {
 
         when(memberServiceImplementation.writeMembersToFile(testFileName)).thenReturn(new ResponseEntity<>(expectedResponseText,expectedStatus));
 
-        ResponseEntity emptyResponse = memberController.writeMembersToFile(testFileName);
+        ResponseEntity emptyResponse = memberController.createFileFromMembers(testFileName);
         Object responseTextSecond = emptyResponse.getBody();
         HttpStatus responseStatusSecond = emptyResponse.getStatusCode();
 

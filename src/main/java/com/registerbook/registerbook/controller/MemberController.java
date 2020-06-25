@@ -4,8 +4,6 @@ import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNo
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import com.registerbook.registerbook.service.register.statistics.StatisticData;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,22 +24,23 @@ public class MemberController {
         this.memberServiceImplementation = memberServiceImplementation;
     }
 
-
-    @GetMapping("/")
-    public ResponseEntity<List<Member>> sendRegisteredMembersToFrontEnd() {
-        return memberServiceImplementation.getAllRegisteredMembers();
-    }
-
-    @GetMapping(value = "/writeMembersToFile/{fileName}")
-    public ResponseEntity<String> writeMembersToFile(@PathVariable("fileName") final String fileName) {
-         return memberServiceImplementation.writeMembersToFile(fileName);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Member> getMemberById(@PathVariable("id") final Long id) throws ResourceNotFoundException{
         ResponseEntity result = memberServiceImplementation.findMemberByIdIf(id);
         return result;
     }
+
+    @GetMapping("/")
+    public ResponseEntity<List<Member>> getAllRegisteredMembers() {
+        return memberServiceImplementation.getAllRegisteredMembers();
+    }
+
+    @GetMapping(value = "/writeMembersToFile/{fileName}")
+    public ResponseEntity<String> createFileFromMembers(@PathVariable("fileName") final String fileName) {
+         return memberServiceImplementation.writeMembersToFile(fileName);
+    }
+
+
     @GetMapping("/statistics")
     public ResponseEntity<StatisticData> getStatistics() {
         StatisticData resultStatistics = memberServiceImplementation.getStatistics();
