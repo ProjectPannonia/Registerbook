@@ -1,8 +1,13 @@
 package com.registerbook.registerbook.service.countries;
 
+import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
 import com.registerbook.registerbook.model.entities.Country;
+import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.repository.CountryJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -60,5 +65,14 @@ public class CountryServiceImplementation implements CountryService {
         }
         Arrays.sort(countries);
         return countries;
+    }
+
+    @Override
+    public ResponseEntity<Country> findCountryById(Long id) {
+        Country searchedCountry = countryJpaRepository.findCountryById(id);
+        if(searchedCountry == null){
+            throw new ResourceNotFoundException(Country.class,"id",id.toString());
+        }
+        return new ResponseEntity<>(searchedCountry, HttpStatus.OK);
     }
 }

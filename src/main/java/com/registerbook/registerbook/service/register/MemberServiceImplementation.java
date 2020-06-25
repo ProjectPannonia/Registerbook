@@ -1,6 +1,8 @@
 package com.registerbook.registerbook.service.register;
 
+import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
 import com.registerbook.registerbook.model.entities.Member;
+import com.registerbook.registerbook.model.entities.MusicInstrument;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.register.fileOperation.fileReader.MembersFileReader;
 import com.registerbook.registerbook.service.register.fileOperation.fileWriter.FileWriter;
@@ -54,8 +56,11 @@ public class MemberServiceImplementation implements MemberService {
     }
 
     @Override
-    public ResponseEntity<Member> findMemberByIdIfExist(Long id){
+    public ResponseEntity<Member> findMemberByIdIf(Long id){
         Member searchedMember = memberJpaRepository.findMemberById(id);
+        if(searchedMember == null){
+            throw new ResourceNotFoundException(Member.class,"id",id.toString());
+        }
         HttpStatus responseStatus = (searchedMember == null) ? HttpStatus.NOT_FOUND : HttpStatus.OK;
         return new ResponseEntity<>(searchedMember,responseStatus);
     }

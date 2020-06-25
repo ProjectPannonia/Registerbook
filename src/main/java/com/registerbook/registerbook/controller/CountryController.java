@@ -1,14 +1,12 @@
 package com.registerbook.registerbook.controller;
 
 import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
+import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.service.countries.CountryServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/register/country")
@@ -20,13 +18,15 @@ public class CountryController {
     public void setCountryServiceImplementation(CountryServiceImplementation countryServiceImplementation){
         this.countryServiceImplementation = countryServiceImplementation;
     }
+    @GetMapping("/getCountryById/{id}")
+    public ResponseEntity<Country> getCountryById(@PathVariable("id") final Long id) throws ResourceNotFoundException{
 
+        return countryServiceImplementation.findCountryById(id);
+    }
     @GetMapping("/getAllCountries")
     public ResponseEntity<String[]> loadCountriesToTheServer() {
         String[] result = countryServiceImplementation.loadCountriesToTheServer();
-        if(result == null || result.length == 0){
-            throw new ResourceNotFoundException("Countries table is empty!");
-        }
+
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

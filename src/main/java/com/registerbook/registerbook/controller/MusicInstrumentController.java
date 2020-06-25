@@ -20,21 +20,14 @@ public class MusicInstrumentController {
     public void setInstrumentServiceImplementation(MusicInstrumentServiceImplementation instrumentServiceImplementation){
         this.instrumentServiceImplementation = instrumentServiceImplementation;
     }
-    @GetMapping("/getInstrumentById/{id}")
-    public ResponseEntity<MusicInstrument> getInstrumentById(@PathVariable("id") final Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<MusicInstrument> getInstrumentById(@PathVariable("id") final Long id) throws ResourceNotFoundException{
         ResponseEntity result = instrumentServiceImplementation.findInstrumentById(id);
-        if (result.getStatusCode() == HttpStatus.NOT_FOUND){
-            throw new ResourceNotFoundException("Music instrument with this id: " + id + " not found!");
-        }
         return result;
     }
     @GetMapping("/getInstruments")
     public ResponseEntity<String[]> getAllInstruments(){
         ResponseEntity allInstruments =  instrumentServiceImplementation.getAllInstruments();
-
-        if(allInstruments.getBody() == null){
-            throw new ResourceNotFoundException("Music instruments table is empty!");
-        }
 
         return allInstruments;
     }

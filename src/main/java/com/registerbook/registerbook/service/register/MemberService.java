@@ -30,7 +30,7 @@ public interface MemberService {
 
     ResponseEntity<Member> saveNewMemberIfNotExist(Member member);
 
-    ResponseEntity<Member> findMemberByIdIfExist(Long id);
+    ResponseEntity<Member> findMemberByIdIf(Long id);
 
     ResponseEntity<Member> updateMemberIfExist(Long id, Member member);
 }

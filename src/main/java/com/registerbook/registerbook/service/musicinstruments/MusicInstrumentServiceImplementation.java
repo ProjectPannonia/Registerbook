@@ -1,12 +1,12 @@
 package com.registerbook.registerbook.service.musicinstruments;
 
+import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
 import com.registerbook.registerbook.repository.MusicInstrumentJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -76,6 +76,9 @@ public class MusicInstrumentServiceImplementation implements MusicInstrumentServ
     @Override
     public ResponseEntity findInstrumentById(Long id) {
         MusicInstrument searchedInstrument = musicInstrumentJpaRepository.findInstrumentById(id);
+        if(searchedInstrument == null){
+            throw new ResourceNotFoundException(MusicInstrument.class,"id",id.toString());
+        }
         HttpStatus responseStatus = (searchedInstrument == null) ? HttpStatus.NOT_FOUND : HttpStatus.OK;
         return new ResponseEntity(searchedInstrument,responseStatus);
     }

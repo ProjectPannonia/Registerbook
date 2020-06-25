@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/register/member")
 public class MemberController {
 
-    public static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+    //public static final Logger logger = LoggerFactory.getLogger(MemberController.class);
     private MemberServiceImplementation memberServiceImplementation;
 
     @Autowired
@@ -38,11 +38,8 @@ public class MemberController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Member> getMemberById(@PathVariable("id") final Long id) {
-        ResponseEntity result = memberServiceImplementation.findMemberByIdIfExist(id);
-        if (result.getBody() == null){
-            throw new ResourceNotFoundException("Member with id " + id + " not found.");
-        }
+    public ResponseEntity<Member> getMemberById(@PathVariable("id") final Long id) throws ResourceNotFoundException{
+        ResponseEntity result = memberServiceImplementation.findMemberByIdIf(id);
         return result;
     }
     @GetMapping("/statistics")

@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class RestValidationHandler {
 
     private MessageSource messageSource;
@@ -30,8 +30,8 @@ public class RestValidationHandler {
     }
 
     // Method to  handle validation error
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    //@ExceptionHandler(MethodArgumentNotValidException.class)
+    //@ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<FieldValidationErrorDetails> handleValidationError(
             MethodArgumentNotValidException methodArgumentNotValidException, HttpServletRequest request) {
 
