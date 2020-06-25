@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.controller.errorHandler.customException;
+package com.registerbook.registerbook.controller.errorHandler.apiError;
 
 
 public class ResourceNotFoundException extends RuntimeException {

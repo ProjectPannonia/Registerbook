@@ -1,7 +1,7 @@
 package JunitTests.MemberTests.ControllerTest;
 
 import com.registerbook.registerbook.controller.MemberController;
-import com.registerbook.registerbook.controller.errorHandler.customException.ResourceNotFoundException;
+import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
 import com.registerbook.registerbook.model.entities.Member;
 import com.registerbook.registerbook.service.register.MemberServiceImplementation;
 import org.junit.After;

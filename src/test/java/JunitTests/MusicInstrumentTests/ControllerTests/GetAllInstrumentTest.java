@@ -1,7 +1,7 @@
 package JunitTests.MusicInstrumentTests.ControllerTests;
 
 import com.registerbook.registerbook.controller.MusicInstrumentController;
-import com.registerbook.registerbook.controller.errorHandler.customException.ResourceNotFoundException;
+import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
 import com.registerbook.registerbook.service.musicinstruments.MusicInstrumentServiceImplementation;
 import org.junit.After;
 import org.junit.Before;

@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.controller;
 
-import com.registerbook.registerbook.controller.errorHandler.customException.ResourceNotFoundException;
+import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
 import com.registerbook.registerbook.service.countries.CountryServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
