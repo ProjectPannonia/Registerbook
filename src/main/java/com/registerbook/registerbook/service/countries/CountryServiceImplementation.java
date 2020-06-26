@@ -21,6 +21,15 @@ public class CountryServiceImplementation implements CountryService {
     CountryJpaRepository countryJpaRepository;
 
     @Override
+    public ResponseEntity<Country> findCountryById(Long id) {
+        Country country = countryJpaRepository.findCountryById(id);
+        if(country == null)
+            throw new ResourceNotFoundException(Country.class,"id",id.toString());
+
+        return new ResponseEntity<>(country, HttpStatus.OK);
+    }
+
+    @Override
     public String[] loadCountriesToTheServer() {
         List<Country> countriesAlreadyOnServer = countryJpaRepository.findAll();
         String[] countriesOnServerArray;
@@ -67,12 +76,4 @@ public class CountryServiceImplementation implements CountryService {
         return countries;
     }
 
-    @Override
-    public ResponseEntity<Country> findCountryById(Long id) {
-        Country searchedCountry = countryJpaRepository.findCountryById(id);
-        if(searchedCountry == null){
-            throw new ResourceNotFoundException(Country.class,"id",id.toString());
-        }
-        return new ResponseEntity<>(searchedCountry, HttpStatus.OK);
-    }
 }

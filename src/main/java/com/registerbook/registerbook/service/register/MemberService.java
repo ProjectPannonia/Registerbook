@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface MemberService {
 
+    ResponseEntity<Member> findMemberById(Long id);
+
     List<Member> getAllMember();
 
     void saveNewMember(Member member);
-
-    Member findMemberById(Long id);
 
     void deleteMemberById(Long id);
 
@@ -30,7 +30,7 @@ public interface MemberService {
 
     ResponseEntity<Member> saveNewMemberIfNotExist(Member member);
 
-    ResponseEntity<Member> findMemberByIdIf(Long id);
+
 
     ResponseEntity<Member> updateMemberIfExist(Long id, Member member);
 }

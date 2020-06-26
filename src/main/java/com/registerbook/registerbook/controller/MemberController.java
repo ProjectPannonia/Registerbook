@@ -26,7 +26,7 @@ public class MemberController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Member> getMemberById(@PathVariable("id") final Long id) throws ResourceNotFoundException{
-        ResponseEntity result = memberServiceImplementation.findMemberByIdIf(id);
+        ResponseEntity result = memberServiceImplementation.findMemberById(id);
         return result;
     }
 

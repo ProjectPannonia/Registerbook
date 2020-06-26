@@ -23,6 +23,17 @@ public class MemberServiceImplementation implements MemberService {
     MemberJpaRepository memberJpaRepository;
 
     @Override
+    public ResponseEntity<Member> findMemberById(Long id){
+        Member member = memberJpaRepository.findMemberById(id);
+
+        if(member == null)
+            throw new ResourceNotFoundException(Member.class,"id",id.toString());
+
+
+        return new ResponseEntity<>(member,HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity getAllRegisteredMembers() {
         List<Member> allMembers = memberJpaRepository.findAll();
         HttpStatus responseStatus = !allMembers.isEmpty() ? HttpStatus.OK : HttpStatus.NO_CONTENT;
@@ -55,15 +66,7 @@ public class MemberServiceImplementation implements MemberService {
         return new ResponseEntity<>(searchedMember,responseStatus);
     }
 
-    @Override
-    public ResponseEntity<Member> findMemberByIdIf(Long id){
-        Member searchedMember = memberJpaRepository.findMemberById(id);
-        if(searchedMember == null){
-            throw new ResourceNotFoundException(Member.class,"id",id.toString());
-        }
-        HttpStatus responseStatus = (searchedMember == null) ? HttpStatus.NOT_FOUND : HttpStatus.OK;
-        return new ResponseEntity<>(searchedMember,responseStatus);
-    }
+
 
     @Override
     public ResponseEntity<Member> updateMemberIfExist(Long id, Member member) {
@@ -92,10 +95,12 @@ public class MemberServiceImplementation implements MemberService {
     public void saveNewMember(Member member){
         memberJpaRepository.save(member);
     }
+    /*
     @Override
     public Member findMemberById(Long id) {
         return memberJpaRepository.findMemberById(id);
     }
+    */
     @Override
     public void deleteMemberById(Long id) {
         memberJpaRepository.deleteById(id);

@@ -18,7 +18,7 @@ public class CountryController {
     public void setCountryServiceImplementation(CountryServiceImplementation countryServiceImplementation){
         this.countryServiceImplementation = countryServiceImplementation;
     }
-    @GetMapping("/getCountryById/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Country> getCountryById(@PathVariable("id") final Long id) throws ResourceNotFoundException{
 
         return countryServiceImplementation.findCountryById(id);

@@ -45,7 +45,7 @@ public class GetMemberByIdTest {
     }
     @Test(expected = ResourceNotFoundException.class)
     public void test_getMemberById_With_NonExistId(){
-        when(memberServiceImplementation.findMemberByIdIf(anyLong())).thenReturn(new ResponseEntity<>(null,expectedStatusWhenIdNotExist));
+        when(memberServiceImplementation.findMemberById(anyLong())).thenReturn(new ResponseEntity<>(null,expectedStatusWhenIdNotExist));
 
         ResponseEntity resultResponse= memberController.getMemberById(anyLong());
         HttpStatus resultStatus = resultResponse.getStatusCode();
@@ -55,11 +55,11 @@ public class GetMemberByIdTest {
         assertTrue(resultMember == null);
         assertEquals(resultStatus,expectedStatusWhenIdNotExist);
 
-        verify(memberServiceImplementation,times(1)).findMemberByIdIf(anyLong());
+        verify(memberServiceImplementation,times(1)).findMemberById(anyLong());
     }
     @Test
     public void test_getMemberById_With_ExistId(){
-        when(memberServiceImplementation.findMemberByIdIf(anyLong())).thenReturn(new ResponseEntity<>(testMember,expectedStatusWhenIdExist));
+        when(memberServiceImplementation.findMemberById(anyLong())).thenReturn(new ResponseEntity<>(testMember,expectedStatusWhenIdExist));
 
         ResponseEntity resultResponse = memberController.getMemberById(new Long(1));
         HttpStatus resultStatus = resultResponse.getStatusCode();
@@ -71,7 +71,7 @@ public class GetMemberByIdTest {
         assertEquals(resultStatus,expectedStatusWhenIdExist);
         assertEquals(resultMember,testMember);
 
-        verify(memberServiceImplementation,times(1)).findMemberByIdIf(anyLong());
+        verify(memberServiceImplementation,times(1)).findMemberById(anyLong());
     }
     @After
     public void setToNull(){

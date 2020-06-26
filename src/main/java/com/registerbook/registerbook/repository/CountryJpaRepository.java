@@ -31,7 +31,9 @@ public interface CountryJpaRepository extends JpaRepository<Country,Long> {
 
     @Query(value = "SELECT * FROM country",nativeQuery = true)
     List<Country> getAllCountries();
+
     //@Query(value = "SELECT s FROM Member s WHERE s.id = :sId")
+    //    Member findMemberById(@Param("sId") Long sId);
     @Query(value = "SELECT s FROM Country s WHERE s.id = :sId")
-    Country findCountryById(@Param("sId") Long id);
+    Country findCountryById(@Param("sId") Long sId);
 }
