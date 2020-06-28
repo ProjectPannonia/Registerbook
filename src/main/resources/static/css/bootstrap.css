@@ -179,7 +179,7 @@ header nav a:hover{
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
-  height: 700px;
+  height: auto; /* 700 px*/
   
 }
 @media (max-width:992px){
