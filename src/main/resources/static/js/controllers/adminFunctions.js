@@ -9,7 +9,7 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
 
     $http({
           method : 'GET',
-          url : 'http://localhost:8080/register/musicinstrument/getInstruments'
+          url : 'http://localhost:8080/register/instrument/getInstruments'
           }).then(function(response){
             $scope.allInstruments = response.data;
     });
@@ -56,7 +56,7 @@ app.controller('adminFunctions', function($scope,$http,$routeParams,$location,$r
     $scope.dropInstruments = function(){
         $http({
             method : 'GET',
-            url : 'http://localhost:8080/register/musicinstrument/dropInstruments'
+            url : 'http://localhost:8080/register/instrument/dropInstruments'
         }).then(function(response){
             console.log(response.data);
         });

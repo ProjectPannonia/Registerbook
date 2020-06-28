@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/register/musicinstrument")
+@RequestMapping("/register/instrument")
 public class MusicInstrumentController {
 
     private MusicInstrumentServiceImplementation instrumentServiceImplementation;

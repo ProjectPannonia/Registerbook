@@ -29,7 +29,7 @@ public class GetCountryByIdTest {
     }
     @Test
     public void test_getCountryById(){
-        when(countryServiceImplementation.findCountryById(anyLong())).thenReturn(doThrow(new RuntimeException(anyString())));
+        //when(countryServiceImplementation.findCountryById(anyLong())).thenReturn();
     }
     @After
     public void setToNull(){
