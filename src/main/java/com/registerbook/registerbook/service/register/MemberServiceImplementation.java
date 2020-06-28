@@ -29,7 +29,6 @@ public class MemberServiceImplementation implements MemberService {
         if(member == null)
             throw new ResourceNotFoundException(Member.class,"id",id.toString());
 
-
         return new ResponseEntity<>(member,HttpStatus.OK);
     }
 
@@ -70,20 +69,13 @@ public class MemberServiceImplementation implements MemberService {
 
     @Override
     public ResponseEntity<Member> updateMemberIfExist(Long id, Member member) {
-        Member searchedToUpdate = memberJpaRepository.findMemberById(id);
-        HttpStatus responseStatus = (searchedToUpdate != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        Member requiredToUpdate = memberJpaRepository.findMemberById(id);
+        HttpStatus responseStatus = (requiredToUpdate != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        Member updatedMember = updateMemberValues(requiredToUpdate,member);
 
-        searchedToUpdate.setName(member.getName());
-        searchedToUpdate.setInstrument(member.getInstrument());
-        searchedToUpdate.setCountry(member.getCountry());
-        searchedToUpdate.setYearOfBirth(member.getYearOfBirth());
-        searchedToUpdate.setEmail(member.getEmail());
-        searchedToUpdate.setBand(member.getBand());
-        searchedToUpdate.setAddress(member.getAddress());
+        memberJpaRepository.save(updatedMember);
 
-        memberJpaRepository.save(searchedToUpdate);
-
-        return new ResponseEntity<Member>(searchedToUpdate,responseStatus);
+        return new ResponseEntity<Member>(updatedMember,responseStatus);
     }
 
     @Override
@@ -95,12 +87,7 @@ public class MemberServiceImplementation implements MemberService {
     public void saveNewMember(Member member){
         memberJpaRepository.save(member);
     }
-    /*
-    @Override
-    public Member findMemberById(Long id) {
-        return memberJpaRepository.findMemberById(id);
-    }
-    */
+
     @Override
     public void deleteMemberById(Long id) {
         memberJpaRepository.deleteById(id);
@@ -150,6 +137,20 @@ public class MemberServiceImplementation implements MemberService {
     }
 
     /* Private assistant methods */
+
+    private Member updateMemberValues(Member oldProperties, Member newProperties){
+        Member updatedMember = new Member();
+
+        updatedMember.setName(newProperties.getName());
+        updatedMember.setAddress(newProperties.getAddress());
+        updatedMember.setBand(newProperties.getBand());
+        updatedMember.setYearOfBirth(newProperties.getYearOfBirth());
+        updatedMember.setEmail(newProperties.getEmail());
+        updatedMember.setInstrument(newProperties.getInstrument());
+        updatedMember.setCountry(newProperties.getCountry());
+
+        return updatedMember;
+    }
     private List<Member> specifier(String[] content){
         List<Member> result = new ArrayList<>();
         String property = content[0];
