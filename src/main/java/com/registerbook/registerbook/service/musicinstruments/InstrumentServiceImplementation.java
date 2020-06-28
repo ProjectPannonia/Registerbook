@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class MusicInstrumentServiceImplementation implements MusicInstrumentService {
+public class InstrumentServiceImplementation implements InstrumentService {
 
     @Autowired
     MusicInstrumentJpaRepository musicInstrumentJpaRepository;
@@ -20,12 +22,14 @@ public class MusicInstrumentServiceImplementation implements MusicInstrumentServ
         List<MusicInstrument> instrumentList = musicInstrumentJpaRepository.findAll();
 
         if (instrumentList.size() == 0){
-            return new ResponseEntity(null,HttpStatus.NO_CONTENT);
+            return new ResponseEntity(instrumentList,HttpStatus.NO_CONTENT);
         }
 
         String[] instrumentArray = new String[instrumentList.size()];
+
         for (int i = 0; i < instrumentArray.length; i++)
             instrumentArray[i] = instrumentList.get(i).getInstrumentName();
+        Arrays.sort(instrumentArray);
 
         return new ResponseEntity(instrumentArray,HttpStatus.OK);
     }

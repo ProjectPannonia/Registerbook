@@ -2,7 +2,7 @@ package JunitTests.MusicInstrumentTests.ControllerTests;
 
 import com.registerbook.registerbook.model.entities.MusicInstrument;
 import com.registerbook.registerbook.repository.MusicInstrumentJpaRepository;
-import com.registerbook.registerbook.service.musicinstruments.MusicInstrumentServiceImplementation;
+import com.registerbook.registerbook.service.musicinstruments.InstrumentServiceImplementation;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +23,7 @@ public class MusicInstrumentControllerJunitTests {
     MusicInstrumentJpaRepository musicInstrumentJpaRepository;
 
     @InjectMocks
-    MusicInstrumentServiceImplementation musicInstrumentService;
+    InstrumentServiceImplementation musicInstrumentService;
 
     List<MusicInstrument> emptyResponse;
     List<MusicInstrument> nonEmptyResponse;

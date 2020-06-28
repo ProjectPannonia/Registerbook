@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface MusicInstrumentService {
+public interface InstrumentService {
 
     ResponseEntity getAllInstruments();
 

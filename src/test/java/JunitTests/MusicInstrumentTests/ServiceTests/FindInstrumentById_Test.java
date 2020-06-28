@@ -3,7 +3,7 @@ package JunitTests.MusicInstrumentTests.ServiceTests;
 import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
 import com.registerbook.registerbook.repository.MusicInstrumentJpaRepository;
-import com.registerbook.registerbook.service.musicinstruments.MusicInstrumentServiceImplementation;
+import com.registerbook.registerbook.service.musicinstruments.InstrumentServiceImplementation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,14 +17,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class FindInstrumentById_Test {
     @Mock
     MusicInstrumentJpaRepository repo;
     @InjectMocks
-    MusicInstrumentServiceImplementation service;
+    InstrumentServiceImplementation service;
 
     HttpStatus expectedStatus;
     MusicInstrument expectedInstrument;
@@ -50,6 +50,7 @@ public class FindInstrumentById_Test {
         assertEquals(responseStatus,expectedStatus);
         assertEquals(responseInstrument,expectedInstrument);
 
+        verify(repo,times(1)).findInstrumentById(new Long(1));
     }
     @Test(expected = ResourceNotFoundException.class)
     public void test_throw_ResourceNotFound_findInstrumentById(){
@@ -57,9 +58,14 @@ public class FindInstrumentById_Test {
         ResponseEntity response = service.findInstrumentById(new Long(1));
         HttpStatus responseStatus = response.getStatusCode();
         Object responseInstrument = response.getBody();
+        verify(repo,times(1)).findInstrumentById(anyLong());
     }
     @After
     public void setToNull(){
-
+        repo = null;
+        service = null;
+        expectedStatus = null;
+        expectedResponseEntity = null;
+        expectedInstrument = null;
     }
 }

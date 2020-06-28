@@ -1,4 +1,6 @@
-package com.registerbook.registerbook.controller.errorHandler;
+package com.registerbook.registerbook.controller.errorHandler.customException;
+
+import com.registerbook.registerbook.controller.errorHandler.customException.FieldValidationError;
 
 import java.util.HashMap;
 import java.util.List;

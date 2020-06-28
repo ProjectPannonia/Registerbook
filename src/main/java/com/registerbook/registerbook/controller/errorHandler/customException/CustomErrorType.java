@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.controller.errorHandler;
+package com.registerbook.registerbook.controller.errorHandler.customException;
 
 import com.registerbook.registerbook.model.entities.Member;
 

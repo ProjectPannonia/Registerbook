@@ -2,7 +2,7 @@ package JunitTests.MusicInstrumentTests.ControllerTests;
 
 import com.registerbook.registerbook.controller.MusicInstrumentController;
 import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
-import com.registerbook.registerbook.service.musicinstruments.MusicInstrumentServiceImplementation;
+import com.registerbook.registerbook.service.musicinstruments.InstrumentServiceImplementation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 public class GetAllInstrumentTest {
 
     @Mock
-    MusicInstrumentServiceImplementation musicInstrumentServiceImplementation;
+    InstrumentServiceImplementation musicInstrumentServiceImplementation;
     @InjectMocks
     MusicInstrumentController musicInstrumentController;
 

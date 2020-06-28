@@ -2,15 +2,11 @@ package JunitTests.MusicInstrumentTests.ControllerTests;
 
 import com.registerbook.registerbook.controller.MusicInstrumentController;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
-import com.registerbook.registerbook.service.musicinstruments.MusicInstrumentServiceImplementation;
-import org.junit.After;
+import com.registerbook.registerbook.service.musicinstruments.InstrumentServiceImplementation;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
@@ -18,7 +14,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class MusicInstrumentControllerTest {
@@ -31,7 +26,7 @@ public class MusicInstrumentControllerTest {
     @InjectMocks
     MusicInstrumentController musicInstrumentController;
     @Mock
-    MusicInstrumentServiceImplementation musicInstrumentServiceImplementation;
+    InstrumentServiceImplementation musicInstrumentServiceImplementation;
 
     @Before
     public void init(){

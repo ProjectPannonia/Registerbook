@@ -2,7 +2,7 @@ package com.registerbook.registerbook.controller;
 
 import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
 import com.registerbook.registerbook.model.entities.MusicInstrument;
-import com.registerbook.registerbook.service.musicinstruments.MusicInstrumentServiceImplementation;
+import com.registerbook.registerbook.service.musicinstruments.InstrumentServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,10 +14,10 @@ import javax.validation.Valid;
 @RequestMapping("/register/instrument")
 public class MusicInstrumentController {
 
-    private MusicInstrumentServiceImplementation instrumentServiceImplementation;
+    private InstrumentServiceImplementation instrumentServiceImplementation;
 
     @Autowired
-    public void setInstrumentServiceImplementation(MusicInstrumentServiceImplementation instrumentServiceImplementation){
+    public void setInstrumentServiceImplementation(InstrumentServiceImplementation instrumentServiceImplementation){
         this.instrumentServiceImplementation = instrumentServiceImplementation;
     }
     @GetMapping("/{id}")
