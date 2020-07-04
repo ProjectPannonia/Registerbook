@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.service.register.statistics;
+package com.registerbook.registerbook.service.member.statistics;
 
 public class MembersOfSpecifiedCountry {
 

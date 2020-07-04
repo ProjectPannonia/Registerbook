@@ -1,8 +1,8 @@
 package JunitTests.MusicInstrumentTests.ControllerTests;
 
 import com.registerbook.registerbook.controller.MusicInstrumentController;
-import com.registerbook.registerbook.model.entities.MusicInstrument;
-import com.registerbook.registerbook.service.musicinstruments.InstrumentServiceImplementation;
+import com.registerbook.registerbook.model.MusicInstrument;
+import com.registerbook.registerbook.service.instrument.InstrumentServiceImplementation;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

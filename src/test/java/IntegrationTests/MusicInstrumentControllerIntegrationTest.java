@@ -1,6 +1,6 @@
 package IntegrationTests;
 
-import com.registerbook.registerbook.model.entities.MusicInstrument;
+import com.registerbook.registerbook.model.MusicInstrument;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

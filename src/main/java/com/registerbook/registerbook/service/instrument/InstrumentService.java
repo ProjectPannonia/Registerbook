@@ -1,6 +1,6 @@
-package com.registerbook.registerbook.service.musicinstruments;
+package com.registerbook.registerbook.service.instrument;
 
-import com.registerbook.registerbook.model.entities.MusicInstrument;
+import com.registerbook.registerbook.model.MusicInstrument;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

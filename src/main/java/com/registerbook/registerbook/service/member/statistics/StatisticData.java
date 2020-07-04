@@ -1,6 +1,6 @@
-package com.registerbook.registerbook.service.register.statistics;
+package com.registerbook.registerbook.service.member.statistics;
 
-import com.registerbook.registerbook.service.register.statistics.UpdatedStatistic.CountryAndQuantity;
+import com.registerbook.registerbook.service.member.statistics.UpdatedStatistic.CountryAndQuantity;
 
 import java.util.List;
 

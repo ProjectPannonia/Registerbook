@@ -1,7 +1,7 @@
-package com.registerbook.registerbook.service.musicinstruments;
+package com.registerbook.registerbook.service.instrument;
 
 import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
-import com.registerbook.registerbook.model.entities.MusicInstrument;
+import com.registerbook.registerbook.model.MusicInstrument;
 import com.registerbook.registerbook.repository.MusicInstrumentJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

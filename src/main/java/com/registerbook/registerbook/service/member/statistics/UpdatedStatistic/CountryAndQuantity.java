@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.service.register.statistics.UpdatedStatistic;
+package com.registerbook.registerbook.service.member.statistics.UpdatedStatistic;
 
 public class CountryAndQuantity {
     String country;

@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.model.entities;
+package com.registerbook.registerbook.model;
 
 import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;

@@ -1,9 +1,7 @@
-package com.registerbook.registerbook.service.countries;
+package com.registerbook.registerbook.service.country;
 
 import com.registerbook.registerbook.model.entities.Country;
 import org.springframework.http.ResponseEntity;
-
-import java.util.List;
 
 public interface CountryService {
     String[] loadCountriesToTheServer();

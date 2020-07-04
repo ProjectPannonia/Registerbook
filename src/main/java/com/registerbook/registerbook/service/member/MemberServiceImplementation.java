@@ -1,13 +1,12 @@
-package com.registerbook.registerbook.service.register;
+package com.registerbook.registerbook.service.member;
 
 import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
 import com.registerbook.registerbook.model.entities.Member;
-import com.registerbook.registerbook.model.entities.MusicInstrument;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
-import com.registerbook.registerbook.service.register.fileOperation.fileReader.MembersFileReader;
-import com.registerbook.registerbook.service.register.fileOperation.fileWriter.FileWriter;
-import com.registerbook.registerbook.service.register.statistics.UpdatedStatistic.CountryAndQuantity;
-import com.registerbook.registerbook.service.register.statistics.StatisticData;
+import com.registerbook.registerbook.service.member.fileOperation.fileReader.MembersFileReader;
+import com.registerbook.registerbook.service.member.fileOperation.fileWriter.FileWriter;
+import com.registerbook.registerbook.service.member.statistics.UpdatedStatistic.CountryAndQuantity;
+import com.registerbook.registerbook.service.member.statistics.StatisticData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

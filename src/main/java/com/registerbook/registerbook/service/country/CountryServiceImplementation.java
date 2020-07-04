@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.service.countries;
+package com.registerbook.registerbook.service.country;
 
 import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
 import com.registerbook.registerbook.model.entities.Country;

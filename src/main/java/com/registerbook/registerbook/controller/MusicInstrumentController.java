@@ -1,8 +1,8 @@
 package com.registerbook.registerbook.controller;
 
 import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
-import com.registerbook.registerbook.model.entities.MusicInstrument;
-import com.registerbook.registerbook.service.musicinstruments.InstrumentServiceImplementation;
+import com.registerbook.registerbook.model.MusicInstrument;
+import com.registerbook.registerbook.service.instrument.InstrumentServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

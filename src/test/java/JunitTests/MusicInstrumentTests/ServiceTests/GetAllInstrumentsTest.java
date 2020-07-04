@@ -1,8 +1,8 @@
 package JunitTests.MusicInstrumentTests.ServiceTests;
 
-import com.registerbook.registerbook.model.entities.MusicInstrument;
+import com.registerbook.registerbook.model.MusicInstrument;
 import com.registerbook.registerbook.repository.MusicInstrumentJpaRepository;
-import com.registerbook.registerbook.service.musicinstruments.InstrumentServiceImplementation;
+import com.registerbook.registerbook.service.instrument.InstrumentServiceImplementation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -3,7 +3,7 @@ package JunitTests.CountryTests.ControllerTest;
 import com.registerbook.registerbook.controller.CountryController;
 import com.registerbook.registerbook.model.entities.Country;
 import com.registerbook.registerbook.repository.CountryJpaRepository;
-import com.registerbook.registerbook.service.countries.CountryServiceImplementation;
+import com.registerbook.registerbook.service.country.CountryServiceImplementation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

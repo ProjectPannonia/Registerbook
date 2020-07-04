@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.service.register.fileOperation.fileReader;
+package com.registerbook.registerbook.service.member.fileOperation.fileReader;
 
 import com.registerbook.registerbook.model.entities.Member;
 

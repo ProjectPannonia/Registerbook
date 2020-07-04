@@ -1,4 +1,4 @@
-package com.registerbook.registerbook.service.register.fileOperation.fileWriter;
+package com.registerbook.registerbook.service.member.fileOperation.fileWriter;
 
 import com.google.gson.Gson;
 import com.registerbook.registerbook.model.entities.Member;
