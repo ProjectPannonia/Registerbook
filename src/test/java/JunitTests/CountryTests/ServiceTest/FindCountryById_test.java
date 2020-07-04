@@ -1,7 +1,7 @@
 package JunitTests.CountryTests.ServiceTest;
 
 import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
-import com.registerbook.registerbook.model.entities.Country;
+import com.registerbook.registerbook.model.Country;
 import com.registerbook.registerbook.repository.CountryJpaRepository;
 import com.registerbook.registerbook.service.country.CountryServiceImplementation;
 import org.junit.After;

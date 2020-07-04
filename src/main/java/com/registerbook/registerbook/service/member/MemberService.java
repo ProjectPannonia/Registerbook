@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.service.member;
 
-import com.registerbook.registerbook.model.entities.Member;
+import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.service.member.statistics.StatisticData;
 import org.springframework.http.ResponseEntity;
 

@@ -1,7 +1,7 @@
 package com.registerbook.registerbook.service.country;
 
 import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
-import com.registerbook.registerbook.model.entities.Country;
+import com.registerbook.registerbook.model.Country;
 import com.registerbook.registerbook.repository.CountryJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

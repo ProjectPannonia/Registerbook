@@ -1,7 +1,7 @@
 package com.registerbook.registerbook.service.member;
 
 import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
-import com.registerbook.registerbook.model.entities.Member;
+import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.repository.MemberJpaRepository;
 import com.registerbook.registerbook.service.member.fileOperation.fileReader.MembersFileReader;
 import com.registerbook.registerbook.service.member.fileOperation.fileWriter.FileWriter;

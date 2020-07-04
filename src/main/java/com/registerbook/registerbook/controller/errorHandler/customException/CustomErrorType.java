@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.controller.errorHandler.customException;
 
-import com.registerbook.registerbook.model.entities.Member;
+import com.registerbook.registerbook.model.Member;
 
 public class CustomErrorType extends Member {
     private String errorMessage;

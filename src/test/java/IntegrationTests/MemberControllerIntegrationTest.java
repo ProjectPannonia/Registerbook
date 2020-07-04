@@ -1,6 +1,6 @@
 package IntegrationTests;
 
-import com.registerbook.registerbook.model.entities.Member;
+import com.registerbook.registerbook.model.Member;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;

@@ -1,7 +1,7 @@
 package com.registerbook.registerbook.controller;
 
 import com.registerbook.registerbook.controller.errorHandler.apiError.ResourceNotFoundException;
-import com.registerbook.registerbook.model.entities.Member;
+import com.registerbook.registerbook.model.Member;
 import com.registerbook.registerbook.service.member.MemberServiceImplementation;
 import com.registerbook.registerbook.service.member.statistics.StatisticData;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.registerbook.registerbook.service.member.fileOperation.fileWriter;
 
 import com.google.gson.Gson;
-import com.registerbook.registerbook.model.entities.Member;
+import com.registerbook.registerbook.model.Member;
 import java.io.*;
 import java.util.List;
 

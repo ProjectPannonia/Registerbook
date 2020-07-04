@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.service.member.fileOperation.fileReader;
 
-import com.registerbook.registerbook.model.entities.Member;
+import com.registerbook.registerbook.model.Member;
 
 import java.io.File;
 import java.io.FileNotFoundException;

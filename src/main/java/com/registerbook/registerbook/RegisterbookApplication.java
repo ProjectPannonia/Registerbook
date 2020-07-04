@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories("com.registerbook.registerbook.repository")
-@EntityScan("com.registerbook.registerbook.model.entities")
+@EntityScan("com.registerbook.registerbook.model")
 @SpringBootApplication
 public class RegisterbookApplication {
 

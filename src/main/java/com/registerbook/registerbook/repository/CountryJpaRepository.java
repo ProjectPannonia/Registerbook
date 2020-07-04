@@ -1,6 +1,6 @@
 package com.registerbook.registerbook.repository;
 
-import com.registerbook.registerbook.model.entities.Country;
+import com.registerbook.registerbook.model.Country;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
