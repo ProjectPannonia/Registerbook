@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.registerbook.registerbook.model")
 @SpringBootApplication
 public class RegisterbookApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(RegisterbookApplication.class, args);
 	}
