@@ -1,129 +1,16 @@
-<div class="container">
-    <div class = "panel panel-default" style="margin-left: 1vw;">
-        <div class = "alert alert-success"><span class="lead">Administration page</span></div>
-        <div class = "panel-body">
-            <div id="accordion">
-                <!--First card-->
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                            <button class="btn btn-info mainbuttons" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Music instruments</button>
-                        </h5>
-                    </div>
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                            <div class = "alert alert-info"><span class="lead">Music instruments maintanence</span></div>
-                            <div class="flex-container">
-                                <div>
-                                    <form ng-submit = "addNewInstrument()" class="form-horizontal" >
-                                        <div class="row">
-                                            <div class="form-group col-md-10">
-                                                <div class="col-md-10">
-                                                    <input type="text" ng-model="instrument.instrumentName" id="instrumentName" class="form-control input-sm inputbox" placeholder="Enter music instrument name" />
-                                                    <input type="submit" value="Register instrument" class="btn btn-success btn-sm registerbutton" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!--<div>
-                                    <form ng-submit = "deleteInstruments()" class="form-horizontal" >
-                                        <div class="row" >
-                                            <div class="form-group col-md-10">
-                                                <div class="col-md-10">
-                                                    <input type="text"  ng-model="" id="" class="form-control input-sm inputbox" placeholder="Enter music instrument name" />
-                                                    <input type="submit" value="Delete instrument" class="btn btn-success btn-sm deletebutton" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>-->
-                                <div>
-                                    <form ng-submit = "dropInstruments()" class="form-horizontal" >
-                                        <div class="row" >
-                                            <div class="form-group col-md-10">
-                                                <div class="col-md-10">
-                                                    <input type="submit" value="Clear" class="btn btn-success btn-sm droptablebutton" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-                <!--Second card-->
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h5 class="mb-0">
-                            <button class="btn btn-info mainbuttons" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Members</button>
-                        </h5>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card-body">
-                            <div class = "alert alert-info"><span class="lead">Members maintanence</span></div>
-                            <form ng-submit = "addNewInstrument()" class="form-horizontal" >
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <div class="col-md-3">
-                                            <input type="text" ng-model="instrument.instrumentName" id="instrumentName" class="form-control input-sm" placeholder="Enter music instrument name" />
-                                        </div>
-                                    </div>
-                                    <div class="form-actions col-md-8" style="padding-left: 5rem;">
-                                        <input type="submit" value="Register instrument" class="btn btn-success btn-sm" />
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <!--Third card-->
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h5 class="mb-0">
-                            <button class="btn btn-info mainbuttons" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Countries</button>
-                        </h5>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                        <div class="card-body" >
-                            <div class = "alert alert-info">
-                                <span class="lead">Countries maintanence</span>
-                            </div>
-                            <form ng-submit = "addnewcountry()" class="form-horizontal" >
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <div class="col-md-3">
-                                            <input type="text" ng-model="country.countryName" id="" class="form-control input-sm" placeholder="Enter country name" />
-                                        </div>
-                                    </div>
-                                    <div class="form-actions col-md-8" style="padding-left: 5rem;">
-                                        <input type="submit" value="Register country" class="btn btn-success btn-sm" />
-                                    </div>
-                                    </div>
-                                </div>
-                            </form>
-                            <button class="btn btn-success btn-sm" data-toggle="collapse" style="margin-top:1vh;margin-bottom: 1vh; margin-left: 3.2rem;" data-target="#collapseCountries" aria-expanded="true" aria-controls="collapseCountries">Countries list</button>
-                            <div class="row collapse countriestablediv" id="collapseCountries">
-                                <div class = "table" style="width: 15vw; text-align: center;">
-                                    <table class = "table table-hover table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>Registered countries</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr ng-repeat = "country in allCountries">
-                                        <td>{{ country }}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                    </div>
-                    </div>
-                </div>
-                <!--Third card end-->
-            </div>
-        </div>
+<div class="container block" style="height: 700px">
+    <div class="bg-danger h-25  mb-2">
+        <h1 class="bg-primary w-75 ">Music instrument maintanence</h1>
+        <div class="bg-info w-25 d-inline-block">a</div>
+        <div class="bg-danger w-25 d-inline-block">b</div>
+        <div class="bg-dark w-25 d-inline-block">c</div>
+
+
+    </div>
+    <div class="bg-info h-25">
+        info
+    </div>
+    <div class="bg-primary h-25">
+        primary
     </div>
 </div>

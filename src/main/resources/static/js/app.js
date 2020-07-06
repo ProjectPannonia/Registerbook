@@ -17,7 +17,7 @@ app.config(function($routeProvider){
         templateUrl : 'template/statistics.html',
         controller : 'statistics'
     }).when('/adminGuiPage',{
-        templateUrl : 'template/testAdmin.html',
+        templateUrl : 'template/adminFunctions.html',
         controller : 'adminFunctions'
     }).when('/loginPage',{
         templateUrl : 'template/loginPage.html',
