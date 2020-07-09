@@ -1,5 +1,5 @@
 <div class="container block" style="height: 700px">
-    <div class="bg-danger h-25  mb-2">
+    <!--<div class="bg-danger h-25  mb-2">
         <h1 class="bg-primary w-75 ">Music instrument maintanence</h1>
         <div class="bg-info w-25 d-inline-block">a</div>
         <div class="bg-danger w-25 d-inline-block">b</div>
@@ -12,5 +12,27 @@
     </div>
     <div class="bg-primary h-25">
         primary
+    </div>
+    -->
+    <div class="row bg-danger">
+        <div class="row">
+            <h1>Musicinstrument maintanence</h1>
+        </div>
+        <div class="row ">
+            <div>
+                <form ng-submit = "addNewInstrument()" class="form-horizontal" >
+                    <input id="instrumentName" class="form-control input-sm inputbox" type="text" ng-model="instrument.instrumentName" placeholder="Enter music instrument name"/>
+                    <input type="submit" value="Register" class="btn btn-success" style="margin-top: 1.5rem; margin-left: 3rem; margin-bottom: 1.5rem;"/>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row bg-primary">
+        <h1>Country maintanence</h1>
+    </div>
+
+    <div class="row bg-info">
+        <h1>Member maintanence</h1>
     </div>
 </div>
