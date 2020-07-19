@@ -122,18 +122,18 @@ header nav a:hover{
 }
 @media (max-width:992px){
   .explain-container{
-    height: 745px;
+    height: /*745px;*/auto;
   }
 }
 @media (max-height:768px){
   .explain-container{
-    height: 450px;
+    height: /*450px*/ auto;
     border-radius: 0px;
   }
 }
 @media (max-width:576px){
   .explain-container{
-    height: 560px;
+    height: /*560px*/ auto;
   }
 }
 .explain{
