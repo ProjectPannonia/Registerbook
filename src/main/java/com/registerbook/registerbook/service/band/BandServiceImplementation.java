@@ -76,4 +76,10 @@ public class BandServiceImplementation implements BandService{
         }
         return new ResponseEntity<BandNameAndLogo>(bandResponse,HttpStatus.OK);
     }
+
+    @Override
+    public String dropTable() {
+        repository.deleteAll();
+        return "Table cleared";
+    }
 }

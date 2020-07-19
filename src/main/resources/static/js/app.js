@@ -24,6 +24,7 @@ app.config(function($routeProvider){
         controller : 'loginPage'
     }).otherwise({
        redirectTo : '/home',
-       templateUrl : '/template/home.html'
+       templateUrl : '/template/home.html',
+        controller : 'home'
     });
 });

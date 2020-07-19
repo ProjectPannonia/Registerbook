@@ -9,4 +9,6 @@ public interface BandService {
     ResponseEntity getAllBand();
 
     ResponseEntity getBandById(Long id);
+
+    String dropTable();
 }

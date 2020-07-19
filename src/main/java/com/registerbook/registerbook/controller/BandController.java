@@ -34,4 +34,8 @@ public class BandController {
         ResponseEntity result = bandServiceImplementation.getBandById(id);
         return result;
     }
+    @DeleteMapping("/delete")
+    public String dropTable(){
+        return bandServiceImplementation.dropTable();
+    }
 }
