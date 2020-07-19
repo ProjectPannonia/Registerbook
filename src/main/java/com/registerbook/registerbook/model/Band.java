@@ -14,6 +14,9 @@ public class Band {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "IMAGE")
+    private byte[] image;
+
     public Long getId() {
         return id;
     }
@@ -28,5 +31,13 @@ public class Band {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }
