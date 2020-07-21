@@ -9,7 +9,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -27,24 +30,24 @@ public class BandController {
     public ResponseEntity<List<Band>> getAllBands(){
         return bandServiceImplementation.getAllBand();
     }
-    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createBand(@RequestBody final TestUploadForm form){
-        System.out.println("A kapott name: " + form.getName());
-        System.out.println("A kapott path: " + form.getPath());
-        File file = new File(form.getPath());
-        System.out.println(file != null);
-        
-        /*File file = new File(imagePath);
-        String nameOfFile = file.getName();
-        System.out.println("A feltöltött fáj neve: " + nameOfFile);
-        bandServiceImplementation.createBand(name,imagePath);
-        */
 
+    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity createBand(@RequestBody final TestUploadForm form){
+
+        ResponseEntity response = bandServiceImplementation.createBand(form);
+        System.out.println("A visszatérő status code" + response.getStatusCode());
+        System.out.println("A visszatérő body: " + response.getBody());
+        return response;
     }
     @GetMapping("/{id}")
     public ResponseEntity<UploadForm> getBandById(@PathVariable("id") final Long id){
         ResponseEntity result = bandServiceImplementation.getBandById(id);
         return result;
+    }
+    @GetMapping("/reloadImageFromServer/{id}")
+    public ResponseEntity<UploadForm> reloadImageFromServer(@PathVariable("id") final Long id){
+        ResponseEntity response = bandServiceImplementation.getImageToHdd(id);
+        return response;
     }
     @DeleteMapping("/delete")
     public String dropTable(){
