@@ -1,12 +1,13 @@
 package com.registerbook.registerbook.model;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 
-public class BandNameAndLogo {
+public class UploadForm {
     String name;
     BufferedImage bandLogo;
 
-    public BandNameAndLogo(String name, BufferedImage bandLogo) {
+    public UploadForm(String name, BufferedImage bandLogo) {
         this.name = name;
         this.bandLogo = bandLogo;
     }

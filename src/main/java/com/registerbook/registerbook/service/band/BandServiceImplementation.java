@@ -1,7 +1,7 @@
 package com.registerbook.registerbook.service.band;
 
 import com.registerbook.registerbook.model.Band;
-import com.registerbook.registerbook.model.BandNameAndLogo;
+import com.registerbook.registerbook.model.UploadForm;
 import com.registerbook.registerbook.repository.BandJpaRepository;
 import com.registerbook.registerbook.service.band.resizeImage.ImageResizer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +60,7 @@ public class BandServiceImplementation implements BandService{
     @Override
     public ResponseEntity getBandById(Long id) {
         Band searchedBand = repository.getOne(id);
-        BandNameAndLogo bandResponse = null;
+        UploadForm bandResponse = null;
 
         if(searchedBand != null){
             ByteArrayInputStream bais = new ByteArrayInputStream(searchedBand.getImage());
@@ -68,13 +68,13 @@ public class BandServiceImplementation implements BandService{
 
             try{
                 bandLogo = ImageIO.read(bais);
-                bandResponse = new BandNameAndLogo(searchedBand.getName(),bandLogo);
+                bandResponse = new UploadForm(searchedBand.getName(),bandLogo);
             } catch (IOException e) {
                 e.printStackTrace();
             }
             //BufferedImage bandLogo = searchedBand.getImage();
         }
-        return new ResponseEntity<BandNameAndLogo>(bandResponse,HttpStatus.OK);
+        return new ResponseEntity<UploadForm>(bandResponse,HttpStatus.OK);
     }
 
     @Override
