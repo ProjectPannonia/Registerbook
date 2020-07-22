@@ -9,10 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -46,7 +42,7 @@ public class BandController {
     }
     @GetMapping("/reloadImageFromServer/{id}")
     public ResponseEntity<UploadForm> reloadImageFromServer(@PathVariable("id") final Long id){
-        ResponseEntity response = bandServiceImplementation.getImageToHdd(id);
+        ResponseEntity response = bandServiceImplementation.downloadImage(id);
         return response;
     }
     @DeleteMapping("/delete")

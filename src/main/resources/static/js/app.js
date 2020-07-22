@@ -22,6 +22,9 @@ app.config(function($routeProvider){
     }).when('/loginPage',{
         templateUrl : 'template/loginPage.html',
         controller : 'loginPage'
+    }).when('/bandregistration',{
+        templateUrl : 'template/bandregistration.html',
+        controller : 'bandreg'
     }).otherwise({
        redirectTo : '/home',
        templateUrl : '/template/home.html',

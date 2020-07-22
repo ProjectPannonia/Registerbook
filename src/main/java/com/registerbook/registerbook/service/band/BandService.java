@@ -14,5 +14,5 @@ public interface BandService {
 
     String dropTable();
 
-    ResponseEntity getImageToHdd(Long id);
+    ResponseEntity downloadImage(Long id);
 }
