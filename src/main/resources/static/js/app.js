@@ -1,4 +1,19 @@
-var app = angular.module('memberregistrationsystem',['ngRoute','ngResource']);
+var app = angular.module('memberregistrationsystem',['ngRoute','ngResource'])
+    .directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function() {
+                scope.$apply(function() {
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
 
 app.config(function($routeProvider){
     $routeProvider.when('/list-all-members',{
@@ -22,6 +37,9 @@ app.config(function($routeProvider){
     }).when('/loginPage',{
         templateUrl : 'template/loginPage.html',
         controller : 'loginPage'
+    }).when('/bandRegister',{
+        templateUrl :'template/bandregister.html',
+        controller : 'bandregister'
     }).otherwise({
        redirectTo : '/home',
        templateUrl : '/template/home.html',
