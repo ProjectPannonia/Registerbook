@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -59,8 +58,8 @@ public class BandController {
         }
         if(imageInByte != null) System.out.println("Image converted successfully!");
         */
-
-        BufferedImage reBufferedImage = null;
+        System.out.println(file.toString());
+        /*BufferedImage reBufferedImage = null;
         ByteArrayInputStream bais = null;
 
         try {
@@ -71,8 +70,8 @@ public class BandController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+*/
 
-        //System.out.println(file.toString());
         //
         //return response;
         return null;
@@ -84,7 +83,7 @@ public class BandController {
     }
     @GetMapping("/reloadImageFromServer/{id}")
     public ResponseEntity<UploadForm> reloadImageFromServer(@PathVariable("id") final Long id){
-        ResponseEntity response = bandServiceImplementation.getImageToHdd(id);
+        ResponseEntity response = bandServiceImplementation.downloadImage(id);
         return response;
     }
     @DeleteMapping("/delete")

@@ -87,8 +87,13 @@ public class BandServiceImplementation implements BandService{
     }
 
     @Override
-    public ResponseEntity getImageToHdd(Long id) {
+    public ResponseEntity downloadImage(Long id) {
         Band searchedBand = repository.getOne(id);
+        //ResponseEntity responseEntity = new ResponseEntity()
+        if(searchedBand != null){
+
+        }
+        /*Band searchedBand = repository.getOne(id);
         String createHerePath = "D://TestFiles//";
         String createdFileName = searchedBand.getName() + ".txt";
 
@@ -103,20 +108,22 @@ public class BandServiceImplementation implements BandService{
             /*if(!outputFile.exists()){
                 outputFile.createNewFile();
             }*/
-            System.out.println(outputFile.exists());
-            ImageIO.write(reloadedImage,"jpg",outputFile);
-            Writer writer = new BufferedWriter(new FileWriter(outputFile));
+       //     System.out.println(outputFile.exists());
+        //     ImageIO.write(reloadedImage,"jpg",outputFile);
+        //   Writer writer = new BufferedWriter(new FileWriter(outputFile));
+//
+        //          writer.close();
+        //  bais.close();
+        //} catch (IOException e) {
+        //  e.printStackTrace();
+        //}
 
-            writer.close();
-            bais.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         /*
         File outputfile = new File("image.jpg");
         ImageIO.write(bufferedImage, "jpg", outputfile);
         */
 
-        return new ResponseEntity(reloadedImage,HttpStatus.OK);
+        //return new ResponseEntity(reloadedImage,HttpStatus.OK);
+        return null;
     }
 }

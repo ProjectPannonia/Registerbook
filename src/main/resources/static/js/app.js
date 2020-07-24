@@ -40,6 +40,9 @@ app.config(function($routeProvider){
     }).when('/bandRegister',{
         templateUrl :'template/bandregister.html',
         controller : 'bandregister'
+    }).when('/bandregistration',{
+        templateUrl : 'template/bandregistration.html',
+        controller : 'bandreg'
     }).otherwise({
        redirectTo : '/home',
        templateUrl : '/template/home.html',
