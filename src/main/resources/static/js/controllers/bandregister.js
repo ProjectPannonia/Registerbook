@@ -14,7 +14,7 @@ app.controller('bandregister', function ($scope,$http,$location,$route) {
         $http({
             method : 'POST',
             url : 'http://localhost:8080/register/band/',
-            data : r
+            data : f
         }).then(function (response) {
             console.log(response)
         });
