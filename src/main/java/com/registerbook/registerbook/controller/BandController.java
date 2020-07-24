@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -33,7 +35,7 @@ public class BandController {
     }
 
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity createBand(@RequestBody final byte[] file/*TestUploadForm form*/){
+    public ResponseEntity createBand(@RequestBody final MultipartFile file/*TestUploadForm form*/){
         /*
         ResponseEntity response = bandServiceImplementation.createBand(form);
         System.out.println("A visszatérő status code" + response.getStatusCode());
