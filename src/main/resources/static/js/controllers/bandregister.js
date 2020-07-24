@@ -1,7 +1,14 @@
 app.controller('bandregister', function ($scope,$http,$location,$route) {
-    $scope.myNewFile;
+    //$scope.myNewFile;
     $scope.add = function() {
-        var f = document.getElementById('file').files[0],
+        $http({
+                    method : 'POST',
+                    url : 'http://localhost:8080/register/band/',
+                    data : $scope.myFile
+                }).then(function (response) {
+                    console.log(response)
+                });
+        /*var f = document.getElementById('file').files[0],
             r = new FileReader();
 
         r.onloadend = function(e) {
@@ -41,6 +48,7 @@ app.controller('bandregister', function ($scope,$http,$location,$route) {
         }).then(function (response) {
             console.log(response)
         });
+        */
         //var uploadUrl = "/fileUpload";
         //fileUpload.uploadFileToUrl(file, uploadUrl);
         /*$http({

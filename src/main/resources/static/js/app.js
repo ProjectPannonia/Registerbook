@@ -1,5 +1,5 @@
-var app = angular.module('memberregistrationsystem',['ngRoute','ngResource'])
-    .directive('fileModel', ['$parse', function ($parse) {
+var app = angular.module('memberregistrationsystem',['ngRoute','ngResource']);
+    /*.directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
@@ -14,7 +14,7 @@ var app = angular.module('memberregistrationsystem',['ngRoute','ngResource'])
         }
     };
 }]);
-
+*/
 app.config(function($routeProvider){
     $routeProvider.when('/list-all-members',{
         templateUrl : '/template/listMembers.html',
@@ -40,9 +40,6 @@ app.config(function($routeProvider){
     }).when('/bandRegister',{
         templateUrl :'template/bandregister.html',
         controller : 'bandregister'
-    }).when('/bandregistration',{
-        templateUrl : 'template/bandregistration.html',
-        controller : 'bandreg'
     }).otherwise({
        redirectTo : '/home',
        templateUrl : '/template/home.html',
